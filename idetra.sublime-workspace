@@ -1,0 +1,500 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"risk",
+				"risksolution"
+			],
+			[
+				"margin",
+				"margin-top\tproperty"
+			],
+			[
+				"padd",
+				"padding-bottom\tproperty"
+			],
+			[
+				"col",
+				"col-lg-4"
+			],
+			[
+				"pa",
+				"padding\tproperty"
+			],
+			[
+				"project",
+				"project"
+			],
+			[
+				"padding",
+				"padding-bottom\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"borde",
+				"border-color\tproperty"
+			],
+			[
+				"color",
+				"background-color\tproperty"
+			],
+			[
+				"p",
+				"p\tTag"
+			],
+			[
+				"Cadastro",
+				"CadastroForm"
+			],
+			[
+				"li",
+				"list-group"
+			],
+			[
+				"btn",
+				"btn-outline-primary"
+			],
+			[
+				"a",
+				"a\tTag"
+			],
+			[
+				"l",
+				"login_required"
+			],
+			[
+				"ci_",
+				"ci_profile"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"que",
+				"queryset"
+			],
+			[
+				"h",
+				"home_cadastrados"
+			],
+			[
+				"home",
+				"home_home"
+			],
+			[
+				"cadastro",
+				"home_cadastrados"
+			],
+			[
+				"re",
+				"request"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "idetra/templates/ci1_menu.html",
+			"settings":
+			{
+				"buffer_size": 5087,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "idetra/templates/ci3C_project_tools.html",
+			"settings":
+			{
+				"buffer_size": 72673,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/locale",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/locale/pt_BR",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/locale/pt_BR/LC_MESSAGES",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/website"
+	],
+	"file_history":
+	[
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci4_assets.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci3C_project_tools.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci3B_project_tasks.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci3A_project_map.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci3_team.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci3_project.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci2_myarea.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci1_menu.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/base.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/models.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/static_idetra/our_static/css/base.css",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/dict_base.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/edu_menu.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/home.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/lesson.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/ci/views.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_tasks.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_tools.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/ci/urls.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_summary.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_assets.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/urls.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/idetra/urls.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/ci.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_user.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/course_menu.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/idetra/settings.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/locale/pt_BR/LC_MESSAGES/django.po",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/templatetags/edu_tags.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/profile.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/website/models.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/views.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/edu_main.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/user_courses.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/forms.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/edu/admin.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/comments/comment.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/course.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/p_map.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/comments/templatetags/threaded_list.html",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/ci/models.py",
+		"/Users/guilhermeviotti/Documents/+PRO/+CODING/++idetra/idetra/idetra/templates/edu.html",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/website/admin.py",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/locale/pt_BR/LC_MESSAGES/django.po",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/idetra/settings.py",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/website/forms.py",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/website/views.py",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/static_idetra/our_static/css/base.css",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/idetra/urls.py",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/website/templates/base.html",
+		"/Users/guilhermeviotti/Documents/pro/coding/++ idetra/idetra/idetra/website/templates/home.html",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/static_idetra/our_static/img/teste.txt",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/static_idetra/css/base.css",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/static_idetra/our_static/css/base.css",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/models.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/templates/cadastro.html",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/admin.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/idetra/urls.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/templates/home_temp.html",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/forms.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/views.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/templates/home.html",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/website/templates/base.html",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/idetra/static/css/base.css",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra.sublime-project",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/idetra/settings.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/ci/views.py",
+		"/Users/GFV/Documents/Profissional/CODING/idetra/idetra/idetra/edu/views.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/base.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/ci/static/css/base.css",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/ci/settings.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/home/urls.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/400.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/404.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/500.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/cadastro/models.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/profile.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/home/admin.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/home.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/welcome.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/registration/login.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/registration/logged_out.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/home/views.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/ci/urls.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/home/models.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/templates/cadastrados.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/s01-ci/registration/login.html",
+		"/Users/GFV/dev/ci/src/ci/settings.py",
+		"/Users/GFV/dev/ci/src/templates/base.html",
+		"/Users/GFV/dev/ci/src/ci/urls.py",
+		"/Users/GFV/dev/ci/src/requirements.txt",
+		"/Users/GFV/dev/ci/src/templates/formulario.html",
+		"/Users/GFV/dev/ci/src/templates/cadastrados.html",
+		"/Users/GFV/dev/ci/src/templates/home.html",
+		"/Users/GFV/dev/ci/src/cadastro/models.py",
+		"/Users/GFV/dev/ci/src/templates/cadastro.html",
+		"/Users/GFV/dev/ci/src/home/models.py",
+		"/Users/GFV/dev/ci/src/home/admin.py",
+		"/Users/GFV/dev/ci/src/home/views.py",
+		"/Users/GFV/dev/ci/src/home/urls.py",
+		"/Users/GFV/dev/ci/src/README.md",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/.gitignore",
+		"/Users/GFV/Documents/Profissional/CODING/ci/.gitignore",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/register/admin.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/home/admin.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/register/models.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/urls.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/register/views.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings/__init__.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings/base.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings/local.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/wsgi.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/home/urls.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/Procfile",
+		"/Users/GFV/Documents/Profissional/CODING/ci/requirements.txt",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings/production.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/requirements.txt",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings_old.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/Procfile",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/templates/400.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/templates/404.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/templates/500.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/ci.sublime-project",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/register/apps.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/ci/settings.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/manage.py",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/templates/ci.html",
+		"/Users/GFV/Documents/Profissional/CODING/ci/src/templates/base.html"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"LINK",
+			"develop proj",
+			"Show",
+			">\n",
+			"deliveryedit",
+			"taskedit",
+			"teste.com",
+			"green",
+			"blue",
+			"Meeting Room",
+			"execu",
+			"http",
+			"\"\"",
+			"fuzzy",
+			"#,",
+			"from_course",
+			"http:",
+			"UserLes",
+			"userlesson",
+			"l_progre",
+			"chat",
+			"userlesson",
+			"chat",
+			"message",
+			"courses",
+			"cont",
+			"contain",
+			"div"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "idetra/templates/ci1_menu.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5087,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								889,
+								889
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 77.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "idetra/templates/ci3C_project_tools.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 72673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "idetra.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

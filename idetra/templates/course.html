@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load cloudinary %}
+{% block content %}
+
+
+{% if lc == 'en' %}
+<h3>{{ c_course.course_game_name }}</h3>
+({{ c_course.course_name }})
+{% else %}
+<h3>{{ c_course.course_game_name_br }}</h3>
+({{ c_course.course_name_br }})
+{% endif %}
+
+<div class="container-float">
+	<div class="row">
+		<div class="col-md-3 order-md-last">
+			{% include 'edu_menu.html' %}
+			{% include 'course_menu.html' %}
+		</div>
+		<div class="col-md-9 order-md-first">
+		<br><br>
+			<div class="row">
+				<div class="col-8 offset-2">
+					{% if lc == 'en' %}
+
+						<div class="embed-responsive embed-responsive-16by9">
+							<video id="video" controls src="{{ c_course.intro_video }}" controlsList="nodownload" style="width: 100% ; height: auto;">Browser not supported</video>
+						</div>
+
+						{% else %}
+
+						<div class="embed-responsive embed-responsive-16by9">
+							<video controls src="{{ c_course.intro_video_br }}" controlsList="nodownload" style="width: 100% ; height: auto;">Navegador não suportado</video>
+						</div>
+
+					{% endif %}
+				</div>
+			</div>
+
+			<br><br>
+			
+			<div class="row">
+				<div class="col-8 offset-2">
+					{% if lc == 'en' %}
+						{{ c_course.c_description }}
+					{% else %}
+						{{ c_course.c_description_br }}
+					{% endif %}
+				</div>
+			</div>
+		</center>
+		<br><br>
+		<ol class="course">
+			{% for s in sections %}
+				{% if lc == 'en' %}
+					<li class="course"><span style="font-weight:bold;">{{ s.section_name }}</span>
+						<ol class="course">
+			
+				{% else %}
+					<li class="course"><span style="font-weight:bold;">{{ s.section_name_br }}</span>
+						<ol class="course">
+			
+				{% endif %}
+				
+					{% for l in s.lessons.all %}
+						{% if lc == 'en' %}
+							<li class="course"><a href="/{{ lc }}/edu/{{ c_course.slug }}/{{ l.slug }}">{{ l.lesson_name }}</a><br><div class="course_description">{{ l.l_description }}</div></li>
+							
+						{% else %}
+							<li class="course"><a href="/{{ lc }}/edu/{{ c_course.slug_br }}/{{ l.slug_br }}">{{ l.lesson_name_br }}</a><br><div class="course_description">{{ l.l_description_br }}</div></li>
+					
+						{% endif %}
+						
+					{% endfor %}
+						</ol>
+						</li>
+					<br>
+			{% endfor %}
+
+
+		</ol>	
+		</div>
+	</div>
+</div>
+
+{% endblock content %} 
+
+

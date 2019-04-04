@@ -1,0 +1,37 @@
+{% load i18n %}
+
+
+<div class="alert alert-primary" role="alert">
+{% trans 'Here you can find definitions used on all courses' %}.
+<br><div style="margin-top: 5px ;"></div>
+{% trans 'Consult terms listed here even when they are previously familiar to you' %}.
+</div>
+
+<br>
+<ul style="list-style-type:none;">
+{% if lc == 'en' %}
+{% for dic in dictionary|dictsort:"therm" %}
+
+	<li>
+		<div style="font-weight: bold;">
+			{{ dic.therm }}
+		</div>
+		{{ dic.definition }}
+	</li>
+	<br>
+{% endfor %}
+{% else %}
+{% for dic in dictionary|dictsort:"therm_br" %}
+
+	<li>
+		<div style="font-weight: bold;">
+			{{ dic.therm_br }}
+		</div>
+		{{ dic.definition_br }}
+	</li>
+	<br>
+{% endfor %}
+{% endif %}
+
+
+</ul>

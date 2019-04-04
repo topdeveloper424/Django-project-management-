@@ -1,0 +1,151 @@
+{% load edu_tags %}
+{% load i18n %}
+
+			<div class="row">
+				<div class="col offset-md-1">
+					<div class="row justify-content-center">
+						<div class="card-group">
+						{% if educourses %}
+						{% for i in educourses %}
+						<div class="col-md-4 text-center">
+							<div class="card" style="margin-bottom: 25px;">
+								{% if lc == 'en' %}
+								<a class="coursecard" href="{{ i.slug }}">
+								<img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{ i.course_image }}">
+									<div class="card-body" style="height: 250px;">
+										<h5 class="card-title">
+											{{ i.course_game_name }}
+												<div style="font-size: 0.4em;">
+													({{ i.course_name }})
+												</div>
+										</h5>
+											<div style="font-size: 0.4em; text-align: justify;">
+												<p class="card-text">{{ i.c_description }}
+												</p>
+											</div>
+										{% else %}
+								<a class="coursecard" href="{{ i.slug_br }}">
+								<img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{ i.course_image }}">
+									<div class="card-body" style="height: 250px;">
+										<h5 class="card-title">
+												{{ i.course_game_name_br }}
+													<div style="font-size: 0.4em;">
+														({{ i.course_name_br }})
+													</div>
+										</h5>
+											<div style="font-size: 0.4em; text-align: justify;">
+												<p class="card-text">{{ i.c_description_br }}
+												</p>
+											</div>
+										{% endif %}
+										{% if i.exec_edu %}
+										<a class="b-hoover-w text-center " href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Executive' %}" style="padding-bottom: 10px;">
+											<div style="height: 17px; width: 17px; background-color: #007bff; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;">
+												<div style="padding: 1px 0px 0px 0px ; font-size: 0.09em; color:#fff;">
+												E
+												</div>
+											</div>
+										</a>
+										{% endif %}
+										{% if i.pm_edu %}
+										<a class="b-hoover-w text-center " href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Project Manager' %}" style="padding-bottom: 10px;">
+											<div style="height: 17px; width: 17px; background-color: #dc3545; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;">
+												<div style="padding: 1px 0px 0px 0px ;font-size: 0.09em; color:#fff;">
+												PM
+												</div>
+											</div>
+										</a>
+										{% endif %}
+									</div>
+									<div class="card-footer">
+										<small class="text-muted">
+											<div class="progress">
+												<div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" style="width: {% course_progress user=request.user course=i %}% ;  font-weight: bold; " aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+													<div style="color:#e9ecef;">{% course_progress user=request.user course=i %}%</div>
+												</div>
+											</div>
+										</small>
+									</div>
+								</a>
+							</div>
+						</div>
+				{% endfor %}
+				{% endif %}
+					</div> 
+				<center>
+					<div class="col-md-12">
+						<div class="bg bg-danger" style="padding: 2px 0px 3px 0px; border-radius: 5px;border: 0.1em solid #000000; color: #ffffff ;">
+							{% trans 'Extra Courses' %}
+						</div>
+					</div><br><br>
+					{% if extracourses %}
+					{% for i in extracourses %}
+					<div class="col-md-4 text-center">
+						<div class="card" style="margin-bottom: 25px;">
+							{% if lc == 'en' %}
+							<a class="coursecard" href="{{ i.slug }}">
+							<img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{ i.course_image }}">
+								<div class="card-body" style="height: 250px;">
+									
+										<h5 class="card-title">
+											{{ i.course_game_name }}
+											<div style="font-size: 0.4em;">
+											({{ i.course_name }})
+											</div>
+										</h5>
+										<div style="font-size: 0.4em; text-align: justify;">
+											<p class="card-text">{{ i.c_description }}
+											</p>
+										</div>
+									{% else %}
+							<a class="coursecard" href="{{ i.slug_br }}">
+							<img class="card-img-top" src="{{ request.scheme }}://{{ request.get_host }}/media/{{ i.course_image }}">
+								<div class="card-body" style="height: 250px;">
+										<h5 class="card-title">
+									{{ i.course_game_name_br }}
+											<div style="font-size: 0.4em;">
+											({{ i.course_name_br }})
+											</div>
+										</h5>
+										<div style="font-size: 0.4em; text-align: justify;">
+											<p class="card-text">{{ i.c_description_br }}
+											</p>
+										</div>
+									{% endif %}
+									{% if i.exec_edu %}
+									<a class="b-hoover-w text-center " href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Executive' %}" style="padding-bottom: 10px;">
+										<div style="height: 17px; width: 17px; background-color: #007bff; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;">
+											<div style="padding: 1px 0px 0px 0px ; font-size: 0.09em; color:#fff;">
+											E
+											</div>
+										</div>
+									</a>
+									{% endif %}
+									{% if i.pm_edu %}
+									<a class="b-hoover-w text-center " href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Project Manager' %}" style="padding-bottom: 10px;">
+										<div style="height: 17px; width: 17px; background-color: #dc3545; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;">
+											<div style="padding: 1px 0px 0px 0px ;font-size: 0.09em; color:#fff;">
+											PM
+											</div>
+										</div>
+									</a>
+									{% endif %}
+								</div>
+								<div class="card-footer">
+									<small class="text-muted">
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" style="width:{% course_progress user=request.user course=i %}% ; font-weight: bold; " aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+												<div style="color:#e9ecef;">{% course_progress user=request.user course=i %}%</div>
+											</div>
+										</div>
+									</small>
+								</div>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+					{% endif %}
+				</center>
+			</div>
+		</div>
+	</div>

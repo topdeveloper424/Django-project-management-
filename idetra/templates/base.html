@@ -1,0 +1,282 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-78692124-1">
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-78692124-1');
+	</script>
+
+	<title>IDETRA.ORG</title>
+	<!-- Resize font with style='font-size:10vw;' -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favico/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favico/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favico/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'favico/site.webmanifest' %}">
+	<link rel="mask-icon" href="{% static 'favico/safari-pinned-tab.svg' %}" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- toggle buttons -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/titatoggle/2.1.2/titatoggle-dist-min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous">
+	</script>
+	<!-- Material design icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<!-- Internal CSS -->
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<!-- ***************** END HEAD - START BODY ***************** -->
+<body>
+
+	{% get_current_language as lc %}
+
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light" id="navbarbase">
+		<a class="navbar-brand" href="{% url 'home' %}">
+			<img src="{% static 'img/IDETRA_logo_menu.png' %}" />
+		</a>
+
+		<button class="navbar-toggler navbar-toggler-sm" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon">
+			</span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+
+				<li class="nav-item active">
+					<a class="nav-link" href="/{{ lc }}/#objectives">
+						{% trans 'Objectives' %}
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+
+				<li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{% trans 'About'%}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown01">
+						<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="/{{ lc }}/#team">
+							{% trans 'Team' %}
+						</a>
+						<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="/{{ lc }}/#faq">
+							FAQ
+						</a>
+					</div>
+				</li>
+
+				<li class="nav-item dropdown active">
+
+					<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{% trans 'Language' %}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown01">
+
+						<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="{% if request.path|slice:':4' == '/en/' %}{{ request.path }}{% else %}/en/{% with endurl=request.path|slice:'7:' %}{{ endurl }}{% endwith %}{% endif %}">
+							{% trans 'English' %} 
+						</a>
+						<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="{% if request.path|slice:':7' == '/pt-br/' %}{{ request.path }}{% else %}/pt-br/{% with endurl=request.path|slice:'4:' %}{{ endurl }}{% endwith %}{% endif %}">
+							{% trans 'Português' %}
+						</a>
+
+					</div>
+
+				</li>
+
+				<li class="nav-item active" style="margin-left: 2%;">
+					<span class="sr-only">(current)
+					</span>
+
+				</li>
+
+				<li>
+					<a href="https://chat.whatsapp.com/1lkPfAjtrOt97cLEZN1lLx" target="blank">
+						<i class="fab fa-whatsapp fa-lg" style="color: #009a00; margin: 10px 2px 0 2px;">
+						</i>
+					</a>
+
+				</li>
+				<li>
+					<a href="https://t.me/joinchat/DDLY5UKQeCQVCJls3AMo8A" target="blank">
+						<i class="fab fa-telegram fa-lg" style="color: #00a5dd; margin: 10px 2px 0 2px;">
+						</i>
+					</a>
+
+				</li>
+				<li>
+					<a href="https://www.facebook.com/idetraglobal/" target="blank">
+						<i class="fab fa-facebook-square fa-lg" style="color: #376ab3; margin: 10px 2px 0 2px;">
+						</i>
+					</a>
+
+				</li>
+				<li>
+					<a href="https://www.youtube.com/channel/UCAtPEboqGGXtT8c37OpzC2g?view_as=subscriber" target="blank">
+						<i class="fab fa-youtube-square fa-lg" style="color: #ff1000; margin: 10px 5px 0 2px;">
+						</i>
+					</a>
+
+				</li>
+			</ul>
+			<ul class="navbar-nav justify-content-right">
+
+				{% if request.user.is_authenticated %}
+
+					{% if user.is_superuser %}
+						<li class="nav-item active">
+							<a class="btn btn-info btn-sm" id='button-topright' href="/admin" target="_blank" style="background-color: #ff6707; border-color: #ff6707; ">
+								<i class="fas fa-unlock-alt"></i>
+								<span class="sr-only">(current)
+								</span>
+							</a>
+						</li>
+					{% endif %}
+
+				<li class="nav-item active">
+					<!-- <a class="btn btn-success btn-sm" id='button-topright' href="{# url 'edu:edu' lc #}"> -->
+					<a class="btn btn-success btn-sm" id='button-topright' href="/{{ lc }}/edu">
+						EDU
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				{% if request.user.profile.iwanttohelp == True %}
+
+				<li class="nav-item active">
+					<!-- <a class="btn btn-danger btn-sm" id='button-topright' href="{# url 'ci:ci' lc #}"> -->
+					<!-- <a class="btn btn-danger btn-sm" id='button-topright' href="/{{ lc }}/ci"> -->
+					<a class="btn btn-danger btn-sm" id='button-topright' href="/ci">
+						C.I.
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				{% endif %}
+
+				{% if request.user.profile.edu_complete == True %}
+
+				<li class="nav-item active">
+					<a class="btn btn-primary btn-sm" id='button-topright' href="{% url 'home' %}">
+						{% trans 'Blueprints' %}
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				{% endif %}
+
+				<li class="nav-item active">
+					<a class="btn btn-secondary btn-sm" id='button-topright' href="{% url 'profile' %}">
+						{% trans 'Profile' %}
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				<li class="nav-item active">
+					<a class="btn btn-dark btn-sm" id='button-topright' href="{% url 'auth_logout' %}">
+						{% trans 'Logout' %}
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				{% else %}
+
+				{% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+
+				<li class="nav-item active">
+					<form class='navbar-form' method='POST' action='{% url "auth_login" %}'>{% csrf_token %}
+						<div class='form-group' id="nav-login-home">
+							<input type='text' class='form-control form-control-sm' name='username' placeholder="{% trans 'Username' %}"/>
+						</div>
+					</li>
+
+					<li class="nav-item active">
+						<div class='form-group' id="nav-login-home">
+							<input type='password' class='form-control form-control-sm' name='password' placeholder="{% trans 'Password' %}" />
+						</div>
+					</li>
+
+					<li class="nav-item active">
+						<button type='submit' class='btn btn-default btn-sm' id='btn-first-right'>
+							{% trans 'Login' %}
+						</button>
+						<span class="sr-only">(current)
+						</span>
+					</li>
+
+				</form>
+
+				{% endif %} 
+
+				<li class="nav-item active">
+					<a class="btn btn-default btn-sm" id='btn-first-right' href="{% url 'registration_register' %}">
+						{% trans 'Register' %}
+						<span class="sr-only">(current)
+						</span>
+					</a>
+				</li>
+
+				{% endif %}
+
+			</ul>
+
+		</div>
+
+	</nav>
+
+
+
+	<div class="container-fluid" id="core-container">
+		{% block content %}
+		{% endblock content %} 
+	</div>
+
+
+
+<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	</script>
+	<script>
+	$(document).ready(function(){
+    	$('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>
+	<script>
+	$(function () {
+  		$('[data-toggle="popover"]').popover()
+	})
+	</script>
+
+	{% block javascript %}{% endblock %}
+
+</body>
+</html>

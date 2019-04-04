@@ -1,0 +1,93 @@
+{% comment %}
+(C>/)
+code generated from the homepage. some changes regarding formatting. some info that is not necessary to be here should be left out. grab variables in view. only people that appear in the R.A.C.I from that project
+{% endcomment %}
+
+{% load i18n %}
+<div class="row">
+  {% for i in teamp %}
+  <div class="col-md-3 align-self-start">
+    {% if i.picture %}
+    <img src="{{ request.scheme }}://{{ request.get_host }}{{ MEDIA_URL }}{{ i.picture }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;"/>
+    {% else %}
+    <img src="/static/img/user_default_image/user_default_image.png" class="img-fluid" alt="Responsive image" style="border-radius: 50%;"/>
+    {% endif %}
+    <br>
+    {{ i.name }} {{ i.lastname }}
+    <br>
+    {% if i.collaborator %}
+    <a class="b-hoover-b" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Collaborator' %}">
+    <div style="height: 22px; width:22px; background-color: #ffc107; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; font-weight: bold;">C</div></div>
+    </a>
+    {% endif %}
+    {% if i.executive %}
+    <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Executive' %}">
+    <div style="height: 22px; width:22px; background-color: #007bff; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">E</div></div>
+    </a>
+    {% endif %}
+    {% if i.project_manager %}
+    <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Project Manager' %}">
+    <div style="height: 22px; width:22px; background-color: #dc3545; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">PM</div></div>
+    </a>
+    {% endif %}
+    {% if i.program_manager %}
+    <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Program Manager' %}">
+    <div style="height: 22px; width:22px; background-color: #28a745; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">PrM</div></div>
+    </a>
+    {% endif %}
+    {% if i.general_coordinator %}
+    <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'General Coordinator' %}">
+    <div style="height: 22px; width:22px; background-color: #343a40; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">GC</div></div>
+    </a>
+    {% endif %}
+    <br>
+    <div style="font-size: 70%; margin-top: 4px;">
+    <div class="row justify-content-center align-items-center" style="margin-bottom: 4px;">
+      <div class="col-auto">
+        {% trans 'Projects:' %}&nbsp;
+      
+        <span class="badge badge-pill badge-dark">0</span>&nbsp;
+      </div>
+      <div class="col-xs-auto">
+        {% trans 'Completion:' %}
+      </div>
+      <div class="col col-xs-6">
+          <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark " role="progressbar" style="width: 75%; font-size: 70%;  font-weight: bold;" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+                75%
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center" style="margin-bottom: 4px;">
+        <div class="col-auto">
+        {% trans 'Tasks:' %}&nbsp;
+      
+        <span class="badge badge-pill badge-dark">0</span>&nbsp;
+      </div>
+      <div class="col-xs-auto">
+        {% trans 'Completion:' %}
+      </div>
+      <div class="col col-xs-6">
+          <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark " role="progressbar" style="width: 75%; font-size: 70%;  font-weight: bold;" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+                75%
+              </div>
+          </div>
+      </div>
+
+      </div>
+
+     
+    </div>
+
+    {% if 'pt' in request.path|slice:':4' %}
+    <p style="font-size: 70%; text-align: justify; text-justify: inter-word;">{{ i.minibio_br }}</p><br>
+    {% else %}
+    <p style="font-size: 70%; text-align: justify; text-justify: inter-word;">{{ i.minibio_en }}</p><br>
+    {% endif %}
+    <br>
+  </div>
+  {% endfor %}
+</div>
+    

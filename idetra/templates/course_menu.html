@@ -1,0 +1,177 @@
+{% load i18n %}
+{% load edu_tags %}
+
+<div class="row justify-content-center align-items-center">
+	<div class="col offset-md-1">
+		<div class="row align-items-center">
+			<div class="col col-12 text-center">
+				<div style="margin-top: 5px ;"></div>
+              	<div style="margin-top: 5px ;"></div>
+				<center>
+					<div class=" col-12 bg-outline-primary" style=" border-radius: 3px; font-weight: bold; border: 0.1em solid #000000; padding: 1px 5px 2px 5px;">
+							{% trans 'Course Reference' %}
+					</div>
+				</center>
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group btn-block" role="group" aria-label="First group">
+						
+						<button type="button" class="btn btn-primary btn-sm text-center w-100 rounded" data-toggle="modal" data-target=".refbasic_modal" style="margin: 3px 2px 0px 0px; font-weight: bold;">{% trans 'Basic' %}</button>
+						<button type="button" class="btn btn-primary btn-sm text-center w-100 rounded" data-toggle="modal" data-target=".refadv_modal" style="margin: 3px 0px 0px 2px; font-weight: bold;">{% trans 'Advanced' %}</button>
+					</div>
+				</div>
+					<div class="modal fade refbasic_modal" tabindex="-1" role="dialog" aria-labelledby="dictionary_modal" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div style="text-align: left; padding: 20px 20px 20px 20px;">
+									<div class="alert alert-primary" role="alert">
+										<h5 class="alert-heading">{% trans 'External references for this course' %}.</h5>
+										{% trans '<b>BASIC:</b> Knowledge that can help you better understand the lessons' %}.
+									</div>
+									<ol class="link_menu">	
+									{% for b in sections.all %}
+										{% if lc == 'en' %}
+											<li class="link_menu">
+												{{ b.section_name }}
+											<ol class="link_menu">	
+										{% else %}
+											<li class="link_menu">
+												{{ b.section_name_br }}
+											<ol class="link_menu">
+										{% endif %}
+										{% for c in b.lessons.all %}
+											{% if lc == 'en' %}
+												<li class="link_menu">
+													{{ c.lesson_name }}
+												<ol class="link_menu">	
+											{% else %}
+												<li class="link_menu">
+													{{ c.lesson_name_br }}
+												<ol class="link_menu">
+											{% endif %}
+											{% for d in c.lesson_links.all %}
+												{% if lc == 'en' %}
+													{% if d.link_type == "Basic" %}
+														<li class="link_menu"><a href="{{ request.scheme }}://{{ d.link }}" target="_blank">{{ d.link_name }}</a>
+														</li>
+													{% endif %}
+												{% else %}
+													{% if d.link_type == "Basic" %}
+														<li class="link_menu"><a href="{{ request.scheme }}://{{ d.link_br }}" target="_blank">{{ d.link_name_br }}</a>
+														</li>
+													{% endif %}
+												{% endif %}	
+											{% endfor %}
+												</ol>
+												</li>
+										{% endfor %}
+											</ol>
+											</li>	
+									{% endfor %}
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade refadv_modal" tabindex="-1" role="dialog" aria-labelledby="dictionary_modal" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div style="text-align: left; padding: 20px 20px 20px 20px;">
+									<div class="alert alert-primary" role="alert">
+										<h5 class="alert-heading">{% trans 'External references for this course' %}.</h5>
+										{% trans '<b>ADVANCED:</b> In case you want to know more than we present about a given subject' %}.
+									</div>
+									<ol class="link_menu">	
+									{% for b in sections.all %}
+										{% if lc == 'en' %}
+											<li class="link_menu">
+												{{ b.section_name }}
+											<ol class="link_menu">	
+										{% else %}
+											<li class="link_menu">	
+												{{ b.section_name_br }}
+											<ol class="link_menu">	
+										{% endif %}
+										{% for c in b.lessons.all %}
+											{% if lc == 'en' %}
+												<li class="link_menu">
+													{{ c.lesson_name }}
+												<ol class="link_menu">	
+											{% else %}
+												<li class="link_menu">
+													{{ c.lesson_name_br }}
+												<ol class="link_menu">
+											{% endif %}
+											{% for d in c.lesson_links.all %}
+												{% if lc == 'en' %}
+													{% if d.link_type == "Advanced" %}
+														<li class="link_menu"><a href="{{ request.scheme }}://{{ d.link }}" target="_blank">{{ d.link_name }}</a>
+														</li>
+													{% endif %}
+												{% else %}
+													{% if d.link_type == "Advanced" %}
+														<li class="link_menu"><a href="{{ request.scheme }}://{{ d.link_br }}" target="_blank">{{ d.link_name_br }}</a>
+														</li>
+													{% endif %}
+												{% endif %}	
+											{% endfor %}
+												</ol>
+												</li>
+										{% endfor %}
+											</ol>
+											</li>
+									{% endfor %}
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="margin-top: 10px ;"></div>
+              	<div class="row justify-content-start">
+              		<div class="col align-self-start">
+
+              			{% if lc == 'en' %}
+	              			<a class="course_menu" href="/{{ lc }}/edu/{{ c_course.slug }}">{{ c_course.course_name }}</a><div style="margin-top: 5px ;"></div>
+              			{% else %}
+	              			<a class="course_menu" href="/{{ lc }}/edu/{{ c_course.slug_br }}">{{ c_course.course_name_br }}</a><div style="margin-top: 5px ;"></div>
+              			{% endif %}
+              			<span class="badge " style="border: 0.2em solid #000000; ">{% trans 'Completed: ' %}{% course_progress request.user c_course %}%</span>
+              			<div style="margin-top: 10px ;"></div>
+              			<div style="margin-top: 10px ;"></div>
+		              	<ol class="course_menu">
+			              	{% for s in sections %}
+							{% if lc == 'en' %}
+								<li class="course_menu">{{ s.section_name }}
+									<ol class="course_menu">
+							{% else %}
+								<li class="course_menu">{{ s.section_name_br }}
+									<ol class="course_menu">
+							{% endif %}
+								{% for l in s.lessons.all %}
+								{{ l.quizz_correct }}
+									{% if lc == 'en' %} 
+										<li class="course_menu">
+<!-- checkbox for each lesson (based on quizz completion) -->
+											{% if l.lesson_quizz.finished %}<i class="fas fa-check" style="color:#118e2c;"></i>&nbsp;
+											{% endif %}
+
+											<a href="/{{ lc }}/edu/{{ c_course.slug }}/{{ l.slug }}">{{ l.lesson_name }}</a>
+										</li>	
+									{% else %}
+										<li class="course_menu"><i class="fas fa-check" style="color:#118e2c;"></i>&nbsp;<a href="/{{ lc }}/edu/{{ c_course.slug_br }}/{{ l.slug_br }}">{{ l.lesson_name_br }}</a>
+										</li>
+									{% endif %}	
+								{% endfor %}
+									</ol>
+								</li>
+								<br>
+							{% endfor %}
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

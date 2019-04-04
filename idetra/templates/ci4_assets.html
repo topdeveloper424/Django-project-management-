@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'ci1_menu.html' %}
+
+{% comment %}
+assets button and entire page:
+(PM>/PrM>)
+
+- "add asset" is a form to save a new asset on the DB (null and blank=True for all fields except "name")
+
+- cards are populated through a loop
+{% endcomment %}
+
+<div style="margin-top: 4px;"></div>
+<div class="text-right">
+	<a class="btn btn-primary btn-sm" data-toggle="collapse" href="#addasset" role="button" aria-expanded="false" aria-controls="addasset" style="padding-left: 99px; padding-right: 99px;">Add Asset</a>
+</div>
+<br>
+<div class="collapse" id="addasset">
+	<div class="card card-body">
+		<form>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Name:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="Apple Inc.">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Contact:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="Steve Jobs dos Santos">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Link:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="http://www.apple.com/contact_steve_in_afterlife">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Login:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="idetra@idetra.org">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Password:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="************">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Phone1:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="+55 21 90210-1234">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Phone2:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="+1 260 234-3443">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Address:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="Av. Washington Benjamin, 2397, ap 23 Ny, NY, USA. ZIP 90210">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">Info:</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="Company that can help IDETRA in the long run">
+		    </div>
+		  </div>
+
+		  <div class="form-group row">
+		    <div class="col-sm-12 text-right">
+		      <button type="submit" class="btn btn-dark btn-sm">Save</button>
+		    </div>
+		  </div>
+		</form>
+	</div>
+	<br>
+</div>
+
+
+
+<div class="row">
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.
+					<span style="float:right;">
+					<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button></span>
+				</h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+	<div class="col col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Apple Inc.<span style="color:red; float:right;"><i class="fas fa-times-circle"></i></span></h5>
+				<small>
+					<p class="card-text">
+						<span class="badge badge-secondary">Contact:</span>
+						Steve Jobs dos Santos
+						<br>
+						<span class="badge badge-secondary">Link:</span>
+						http://www.apple.com/contact_steve_in_afterlife
+						<br>
+						<span class="badge badge-secondary">Login:</span>
+						idetra@idetra.org
+						<br>
+						<span class="badge badge-secondary">Password:</span>
+						***************
+						<br>
+						<span class="badge badge-secondary">Phone1:</span>
+						+55 21 90210-1234
+						<br>
+						<span class="badge badge-secondary">Phone2:</span>
+						+1 260 234-4332
+						<br>
+						<span class="badge badge-secondary">Address:</span>
+						Av. Washington Benjamin, 2398, ap 23, Ny, NY, USA, ZIP 90210</span>
+					</p>
+				</small>
+			</div>
+			<div class="card-footer">
+				<small class="text-muted"><span class="badge badge-secondary">Info:</span>
+					Company that can help IDETRA in the long run
+				</small>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;"></div>
+	</div>
+</div>
+<br>
+<br>
+
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% for course in courses %}
+  {% if course.has_token %}
+    {% if course.finished %}
+      <a href="{{ course.token_file.url }}" class="b-hoover-b">
+        <img src="/media/{{ course.token_img }}" class="img-fluid" style="border-radius: 50%; width: 40px; height: 40px; margin-bottom: 5px;" />
+      </a>
+    {% else %}
+      <img src="/media/{{ course.token_img }}" class="img-fluid" style="border-radius: 50%; width: 40px; height: 40px; -webkit-filter: grayscale(100%); filter: grayscale(100%); margin-bottom: 5px;"/>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+

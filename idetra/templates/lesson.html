@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load edu_tags %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load threadedcomments_tags %}
+{% load cloudinary %}
+{% load static %}
+
+{% block content %}
+{% if lc == 'en' %}
+<h3>{{ c_lesson.lesson_game_name }}</h3>
+({{ c_lesson.lesson_name }})
+{% else %}
+<h3>{{ c_lesson.lesson_game_name_br }}</h3>
+({{ c_lesson.lesson_name_br }})
+{% endif %}
+
+<div class="container-float">
+	<div class="row">
+		<div class="col-md-3 order-md-last">
+			{% include 'edu_menu.html' %}
+			{% include 'course_menu.html' %}
+		</div>
+		<div class="col-md-9 order-md-first">
+			<br><br>
+			
+			<div class="row">
+				<div class="col-8 offset-2">
+					{% if lc == 'en' %}
+					<div class="embed-responsive embed-responsive-16by9 mx-auto">
+						<video class="video" data-ajax-update-progress-url="/{{ lc }}/edu/lessons/{{ c_lesson.id }}/update-progress/" controls src="{{ c_lesson.lesson_video }}" controlsList="nodownload" style="width: 100% ; height: auto;">Browser not supported</video>
+					</div>
+					{% else %}
+					<div class="embed-responsive embed-responsive-16by9">
+						<video class="video" data-ajax-update-progress-url="/{{ lc }}/edu/lessons/{{ c_lesson.id }}/update-progress/" controls src="{{ c_lesson.lesson_video_br }}" controlsList="nodownload" style="width: 100% ; height: auto;">Navegador não suportado</video>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			<center>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".ldesc" style="margin: 2px 0px 2px 0px;">{% trans 'Description' %}</button>
+
+				<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#transc" aria-expanded="false" aria-controls="collapseExample" style="margin: 2px 0px 2px 0px;">
+				    {% trans 'Transcription' %}
+				</button>
+			</center>
+			<div class="modal fade ldesc" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content" style="padding: 20px;">
+						{% if lc == 'en' %}
+							{{ c_lesson.l_description }}
+						{% else %}
+							{{ c_lesson.l_description_br }}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="collapse" id="transc">
+				<div class="card card-body" style="max-height: 200px;overflow-y: scroll;">
+				{% if lc == 'en' %}
+					{{ c_lesson.l_transcription }}
+				{% else %}
+					{{ c_lesson.l_transcription_br }}
+				{% endif %}
+				</div>
+			</div>
+			
+			{% if quizz_correct == False %}
+				<div id="quizContainer" class="row" {% if not watched %}style="display:none"{% endif %}> 
+
+					<div class="col-8 offset-2">
+						<br>
+						<center>
+							<h2>
+								{% trans 'QUIZ' %}
+							</h2>
+
+							{% if c_lesson.lesson_quizz.final_quizz %}
+							<div class="alert alert-info" role="alert" style="padding: 5px 5px 5px 5px ;">
+			  					<center><h5>{% trans 'Congratulations coming this far!' %}</h5>{% trans 'This is your final quiz for this course.' %}<br>{% trans 'Questions will also relate to all previous lessons.' %}</center>
+							</div>
+							{% endif %}
+
+						</center>
+						<br>
+						<form method="POST">{% csrf_token %}
+							{# tries eh o numero de tentativas feitas #}
+							{% if tries == 0 %}
+								<div class="alert alert-success" role="alert" style="padding: 10px 0px 0px 0px ;">
+			  						<center><h5>{% trans '(You have ' %}3{% trans ' attempts left in 24h)' %}</h5></center>
+								</div>
+							
+							{% elif tries == 1 %}
+								<div class="alert alert-warning" role="alert" style="padding: 10px 0px 0px 0px ;">
+			  						<center><h5>{% trans '(You have ' %}2{% trans ' attempts left in 24h)' %}</h5><br>{% trans 'Check the hints in red below and mark all answers again' %}.</center>
+								</div>
+							{% elif tries == 2 %}
+								<div class="alert alert-warning" role="alert" style="padding: 10px 0px 0px 0px ;">
+			  						<center><h5>{% trans '(You have ' %}1{% trans ' attempt left in 24h)' %}</h5><br>{% trans 'Check the hints in red below and mark all answers again' %}.</center>
+								</div>
+							{% elif tries >= 3 %}
+								<div class="alert alert-danger" role="alert" style="padding: 10px 0px 0px 0px ;">
+			  						<center><h5>{% trans "You don't have any more attempts left. <br>Please try again in 24h" %}</h5><br>{% trans 'Check the hints in red below and consider watching the video again' %}.</center>
+								</div>
+							
+							{% endif %}
+
+						{% for quiz in c_lesson.lesson_quizz.quizz_questions.all %}
+						
+							<h5>{% if lc == 'en' %}{{ quiz.question }}{% else %}{{ quiz.question_br }}{% endif %}</h5>
+							<div style="color:red;">
+							{% question_error quiz lc %}
+							</div>
+							{% if lc == 'en' %}
+								{% for choice in quiz.get_answers_in_english %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{ quiz.pk }}" value="{{ forloop.counter }}" id="{{ quiz.pk }}">
+									<label class="form-check-label" for="{{ quiz.pk }}">
+										{{ choice }} 
+									</label>
+								</div>
+								<br>
+								{% endfor %}
+							{% else %}
+								{% for choice in quiz.get_answers_in_portuguese %}
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="{{ quiz.pk }}" value="{{ forloop.counter }}" id="{{ quiz.pk }}">
+									<label class="form-check-label" for="{{ quiz.pk }}">
+										{{ choice }} 
+									</label>
+								</div>
+								<br>
+								{% endfor %}
+							{% endif %}
+
+						{% endfor %}
+
+							<button type="submit" class="btn btn-primary" {% if tries >= 3 %}disabled{% endif %}>{% trans 'Submit Quiz' %}</button>
+
+						</form><br>
+					</div>
+				</div>
+			{% else %}
+			<br>
+			<div class="alert alert-success" role="alert" style="padding: 10px 0px 0px 0px ;">
+			  <center><h5>{% trans 'Quiz Successfully Completed!'%}</h5></center>
+			</div>
+
+			{% endif %}
+
+			{% if quizz_correct %}
+
+				<br><br><center><h2>CHAT</h2></center>
+<br>
+<hr>
+				
+				{% render_comment_list for c_lesson %}
+				{% render_comment_form for c_lesson %}
+
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock content %} 
+
+{% block javascript %}
+	<script src="{% static 'edu/ajaxcomments.js' %}"></script>
+	<script>
+		$(document).ready(function () {
+			var video = $(".video");
+			var quizContainer = $("#quizContainer");
+			var playedInSeconds = 0;
+
+			var deleteComment = function (e) {
+				$.ajax({
+					url: $(e.target).data("action"),
+					method: "GET",
+					type: "json",
+					success: function (response) {
+						console.log(response);
+						if (response.ok) window.location.reload();
+					} 
+				})				
+			}
+
+			$(".comments").on("click", "#delete-comment", deleteComment);
+
+			var countWatchedTime = function () {
+				if (! video.get(0).paused) {
+					playedInSeconds++;
+				}
+			}	 
+
+			video.on("ended", function () {
+				if (playedInSeconds >= (this.duration * 0.6)) {
+					$.ajax({
+						url: video.data("ajax-update-progress-url"), 
+						method: "GET", 
+						success: function (res) {
+							if (res.ok) {
+								quizContainer.show();
+							}
+						}
+					});
+				} 
+			});
+
+			setInterval(countWatchedTime, 1000);
+		});
+
+	
+	</script>
+{% endblock %}
+
+

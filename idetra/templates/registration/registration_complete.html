@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<br><br><br>
+<center>
+<h3>{% trans "You are now registered. An activation email was send." %}</h3>
+<br><br>
+{% trans 'Please verify your e-mail.' %}
+<br><br>
+{% trans 'Check you spam folder in case your e-mail did not arrive.' %}
+
+</center>
+{% endblock %}

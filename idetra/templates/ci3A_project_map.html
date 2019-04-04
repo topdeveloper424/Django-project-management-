@@ -1,0 +1,1120 @@
+{% comment %}
+map page:
+(E>/)
+
+the graph should be a javascript solution for plotting tree structures. its pretty basic and finding free solutions that are responsive, look good and readable should not be a problem. (only plotting. no editing on the graph to change DB or anything else) 
+
+colors of boxes change based on the percentages (standard 5-colors of system schema)
+
+tasks percentages are the base here and are shown as well.
+
+deliverables percentages are calculated based on tasks percentages (aggregated value bottom-up)
+
+the last box (the top one) is the percentage of the project. it is the one that shows on the top of the page on the right and used on the project's menu
+
+wbs:
+(E>/E>)
+
+each deliverable is plotted on the graph based on another deliverable precendent to it.
+
+there can't be no deliverables without precedents (except the project one - first box on top)
+
+there can have as many posterior deliverables as necessary (the minimum is always 2 posteriors)
+
+info is a free text to detail the deliverable
+
+deleting a deliverable can have two outcomes: delete everything below it (deliverables and tasks) which is risky or throw an error and not allow the change (preferrable)
+
+tasks:
+(E>/E>)
+
+tasks are created HERE and used on the next section.
+tasks can only be associated with the last layer of deliverables (the last ones at the bottom of the tree)
+deliverables that are not in the lower layer can't be selected for task anchoring/association (dont show on the dropdown list)
+tasks can only be associated with one deliverable
+tasks can only be deleted here 
+
+
+Reference:
+https://docs.google.com/spreadsheets/d/1b2Vu9ZYmD1TTmjiqJmQCDK2wj_UFbrJ4K3ku271IBlc/edit#gid=1157638917
+(Fig6)
+
+INTERNAL NOTES (not for dev):
+
+informar boa pratica 8h/80h nessa secao
+
+informar politica de milestones
+
+informar sobre como lidar com tasks que sao para aparecer em mais de um deliverable (duplicar ou anotar algo na info, dependendo do caso) 
+
+{% endcomment %}
+
+<br>
+<iframe frameborder="0" style="width:100%;height:550px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&nav=1&title=mockup_WBS_tree#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1wHT-it-jAhXY92eAcy1VwVGA0USSyRSD%26export%3Ddownload"></iframe>
+
+<br>
+<b>WORK BREAKDOWN STRUCTURE (WBS):</b>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-auto">
+		<span style="color: rgba(0, 0, 0, 0); "><i class="fas fa-pen-square"></i></span>
+	</div>
+	<div class="col-md-3">
+		<div class="d-none d-md-block"><b>DELIVERABLE</b></div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-none d-md-block"><b>PREDECESSOR</b></div>
+	</div>
+	<div class="col-md-5">
+		<div class="d-none d-md-block"><b>INFO</b></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding this specific delivery that is necessary to understand it
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding this specific delivery that is necessary to understand it
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding this specific delivery 
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="deliveryedit" tabindex="-1" role="dialog" aria-labelledby="deliveryedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>DELIVERABLE</b></div>
+		Some delivery here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>PREDECESSOR</b></div>
+		Some predecessor here
+	</div>
+	<div class="col-md-5">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<small>
+			some more information regarding this specific 
+		</small>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#deliveryadd"><i class="fas fa-plus-square" style="color:blue;"></i></a>
+		<div class="modal fade" id="deliveryadd" tabindex="-1" role="dialog" aria-labelledby="deliveryadd" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="delivery">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="predecessor" class="col-sm-3 col-form-label">Predecessor</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="predecessor">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="info" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="info">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<br>
+<b>TASKS:</b>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-auto">
+		<span style="color: rgba(0, 0, 0, 0); "><i class="fas fa-pen-square"></i></span>
+	</div>
+	<div class="col-md-3">
+		<div class="d-none d-md-block"><b>TASK</b></div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-none d-md-block"><b>DELIVERABLE</b></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit" tabindex="-1" role="dialog" aria-labelledby="taskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some task here
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		Some deliverable here
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskadd"><i class="fas fa-plus-square" style="color:blue;"></i></a>
+		<div class="modal fade" id="taskadd" tabindex="-1" role="dialog" aria-labelledby="taskadd" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-3 col-form-label">Task</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="task">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="delivery" class="col-sm-3 col-form-label">Delivery</label>
+								<div class="col-sm-5">
+									<select class="form-control" id="delivery">
+										<option>Delivery 1</option>
+										<option>Delivery 2</option>
+										<option>Delivery 3</option>
+										<option>Delivery 4</option>
+										<option>Delivery n</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+

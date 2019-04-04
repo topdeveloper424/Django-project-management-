@@ -1,0 +1,35 @@
+{% load comments i18n crispy_forms_tags fluent_comments_tags %}
+
+<form id="comment-form-{{ form.target_object.pk }}" 
+    data-object-id="{{ form.target_object.pk }}" 
+    action="{% comment_form_target %}" method="post" 
+    class="{% block form_class %}{{ form.helper.form_class|default:'js-comments-form comments-form form-horizontal' }}{% endblock %}"
+    data-ajax-action="{% url 'comments-post-comment-ajax' %}">
+
+    {% block comment_form %}
+        {% csrf_token %}
+
+        {% if next %}
+            <div><input type="hidden" name="next" value="{{ next }}"/></div>
+        {% endif %}
+
+        {% for field in form.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+
+        <div class="form-group">
+            <label form="{{ form.title.id_for_label }}">{% trans 'Title' %}:</label>
+            <input id="{{ form.title.id_for_label }}" type="text" class="form-control" name="{{ form.title.html_name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.comment.id_for_label }}">{% trans 'Comment' %}:</label>
+            <textarea id="{{ form.comment.id_for_label }}" class="form-control" type="text" name="{{ form.comment.html_name }}"></textarea>
+        </div>
+    {% endblock %}
+
+    <button type="submit" class="btn btn-primary">{% trans 'Post' %}</button>
+
+</form>
+
+<br>

@@ -1,0 +1,9 @@
+# Use PHP5.6 as default
+AddHandler application/x-httpd-php56 .php
+
+AddHandler fcgid-script .fcgi
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/static/
+RewriteCond %{REQUEST_URI} !^/media/
+RewriteRule ^(.*)$ idetra.fcgi/$1 [QSA,L]

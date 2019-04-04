@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load cloudinary %}
+{% block content %}
+
+<h1>{% trans 'EDU' %}</h1>
+<div class="alert alert-warning" role="alert" style="padding: 10px 0px 1px 0px;">
+<h5><center>(UNDER CONSTRUCTION / EM CONSTRUÇÃO)</center></h5>
+</div>
+
+
+<div class="container-float">
+	<div class="row">
+		<div class="col-md-3 order-md-last">
+			{% include 'edu_menu.html' %}
+		</div>
+		<div class="col-md-9 order-md-first">
+			{% include 'edu_main.html' %}
+		</div>
+	</div>
+</div>
+
+{% endblock content %} 

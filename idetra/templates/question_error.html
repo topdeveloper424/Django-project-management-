@@ -1,0 +1,3 @@
+{% if has_error %}
+    {% if language == 'en' %}{{ question.q_val_error }}{% else %}{{ question.q_val_error_br }}{% endif %}
+{% endif %}

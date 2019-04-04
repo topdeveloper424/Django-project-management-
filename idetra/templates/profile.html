@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load edu_tags %}
+
+{% block content %}
+
+<h1>{% trans 'Profile' %}</h1>
+
+<BR><BR><BR>
+<div class="container-float">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col offset-md-1">
+					<h5>
+						<ul class="list-group">
+								{% if userp.iwanttohelp %}
+							<li class="list-group-item border-0">
+								<center>
+								<span class="badge">
+									{% if userp.picture == "" %}
+										<img src="/static/img/user_default_image/user_default_image.png" class="img-fluid" style="border-radius: 50%;"/>
+									{% else %}
+										<img src="{{ request.scheme }}://{{ request.get_host }}/media/{{ userp.picture }}" class="img-fluid"style="border-radius: 50%;"/>
+									{% endif %}
+								</span>
+								</center>
+							</li>
+							<BR><BR>
+								{% endif %}
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your user name' %}
+								<span class="badge badge-dark font-weight-light">{{ user }}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your e-mail' %}
+								<span class="badge badge-dark font-weight-light">{{ user.email }}</span>
+							</li>
+									{% if userp.iwanttohelp %}
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your first name' %}
+								<span class="badge badge-dark font-weight-light">{{ userp.name }}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your middle name(s)' %}
+								<span class="badge badge-dark font-weight-light">{{ userp.middlenames }}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your lastname' %}
+								<span class="badge badge-dark font-weight-light">{{ userp.lastname }}</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Your cell phone' %}
+								<span class="badge badge-dark font-weight-light">{{ userp.cell_phone }}</span>
+							</li>
+									{% endif %}
+						</ul>
+					</h5>
+				</div>
+			</div>
+		</div>	
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col offset-md-1">
+					<h6>
+						<ul class="list-group">
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu Progress' %}
+								<span class="badge font-weight-light border border-dark" style="width: 180px;">
+									<div class="progress">
+  										<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {% overall_progress request.user %}%;" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100">
+  										<div style="color:#e9ecef;">{% overall_progress request.user %}%</div>
+  										</div>
+									</div>
+								</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu completion' %}
+								<span class="badge badge-success font-weight-light">
+									{% if userp.edu_complete %}
+										{% trans 'FINISHED!' %}
+									{% else %}
+										{% trans 'Not finished' %}
+									{% endif %}
+								</span>
+							</li>
+								{% if userp.iwanttohelp == True %}
+							<BR>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu executive progress' %}
+								<span class="badge font-weight-light border border-dark" style="width: 180px;">
+									<div class="progress">
+  										<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {% overall_executive_progress request.user %}%;" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"><div style="color:#e9ecef;">
+  										{% overall_executive_progress request.user %}%</div>
+  										</div>
+									</div>
+								</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu executive completion' %}
+								<span class="badge badge-primary font-weight-light">
+									{% if userp.edu_exec_complete %}
+										{% trans 'FINISHED!' %}
+									{% else %}
+										{% trans 'Not finished' %}
+									{% endif %}
+								</span>
+							</li>
+							<BR>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu P.M. progress' %}
+								<span class="badge font-weight-light border border-dark" style="width: 180px;">
+									<div class="progress">
+  										<div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {% overall_pm_progress request.user %}%;" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100"><div style="color:#e9ecef;">
+  										{% overall_pm_progress request.user %}%</div>
+  										</div>
+									</div>
+								</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center border-0">
+								{% trans 'Edu P.M. completion' %}
+								<span class="badge badge-danger font-weight-light">
+									{% if userp.edu_pm_complete %}
+										{% trans 'FINISHED!' %}
+									{% else %}
+										{% trans 'Not finished' %}
+									{% endif %}
+								</span>
+							</li>
+							<BR>
+							
+							<li class="list-group-item border-0">
+								{% trans 'Your role(s) in IDETRA' %}:
+									<BR><BR>
+									<center>
+									{% if userp.collaborator %}
+									<h4>
+									<span class="badge badge-pill badge-warning">{% trans 'Collaborator' %}</span>
+									{% endif %}
+
+
+									{% if userp.executive %}
+									<span class="badge badge-pill badge-primary font-weight-light">{% trans 'Executive' %}</span>
+									{% endif %}
+
+									{% if userp.project_manager %}
+									<span class="badge badge-pill badge-danger font-weight-light">{% trans 'Project Manager' %}</span>
+									{% endif %}
+
+									{% if userp.program_manager %}
+									<span class="badge badge-pill badge-success font-weight-light">{% trans 'Program Manager' %}</span>
+									{% endif %}
+
+									{% if userp.general_coordinator %}
+									<span class="badge badge-pill badge-dark font-weight-light">{% trans 'General Coordinator' %}</span>
+									</h4>
+									{% endif %}
+									</center>
+									<BR><BR>
+									<center>
+									<button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#rolesinfo" aria-expanded="false" aria-controls="rolseinfo">
+										{% trans 'Learn more...' %}
+									</button>
+									</center>
+									<div class="collapse" id="rolesinfo">
+										<div class="card card-body border-0">
+											<span class="badge badge-pill badge-warning">{% trans 'Collaborator' %}</span> 
+											{% blocktrans %}
+											It's the first role you get when joining the team. You can help us spread the word, see what we're working on and process available tasks on active projects by accessing the C.I. platform.
+											{% endblocktrans %}
+											<span class="badge badge-pill badge-primary font-weight-light">{% trans 'Executive' %}</span>
+											{% blocktrans %}
+											You are required to finish some courses on Edu that are flagged for this role. As an executive, you will be asked to participate in meetings with the team to discuss and execute projects you are willing to join. Each project has a Project Manager and a volunteer team.
+											{% endblocktrans %}
+											<span class="badge badge-pill badge-danger font-weight-light">{% trans 'Project Manager' %}</span>
+											{% blocktrans %}
+											After finishing the Project Management courses you will be interviewed by our General Coordinators to check your time availability and the extent of your abilities. This role consumes more time than the previous ones and requires a certain degree of commitment. Project Managers are not bosses. They are communicators and facilitators so the team can execute a project. You are expected to have done some work within  IDETRA's projects, have met some members of the team and know how we operate internally.
+											{% endblocktrans %}
+											<span class="badge badge-pill badge-success font-weight-light">{% trans 'Program Manager' %}</span>
+											{% blocktrans %}
+											A Program Manager consolidates various projects so they can mutually benefit from their isolated endeavors. You will be required to regularly check how projects are going with Project Managers and help General Coordinators design projects and changes that are aligned with IDETRA's goals.
+											{% endblocktrans %}
+											<span class="badge badge-pill badge-dark font-weight-light">{% trans 'General Coordinator' %}</span>
+											{% blocktrans %}
+											We work on all areas: from executing tasks inside projects to connect with other external and international projects so IDETRA keeps updated and get the required help. We answer questions on digital social channels, give talks, design and redesign the inner workings of IDETRA with the help of all collaborators involved so we all can live in a better environment, with better values and communication skills.
+											{% endblocktrans %}
+										</div>
+									</div>			
+							</li>
+
+
+										{% endif %}
+						</ul>
+					</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<BR><BR>
+
+{% if userp.iwanttohelp %}
+<div class="container-float">
+	<div class="row">
+		<div class="col-4">
+			<div class="list-group" id="myList" role="tablist">
+				<a class="list-group-item list-group-item-action active" data-toggle="list" href="#enbio" role="tab">{% trans '<h5>Bio in en.</h5>(public)' %}</a>
+				<a class="list-group-item list-group-item-action" data-toggle="list" href="#brbio" role="tab">{% trans '<h5>Bio in ptBR.</h5>(public)' %}</a>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="tab-content">
+				<div class="tab-pane active" id="enbio" role="tabpanel">
+					{{ userp.minibio_en }}
+				</div>
+				<div class="tab-pane" id="brbio" role="tabpanel">
+					{{ userp.minibio_br }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endif %}
+
+<BR><BR>
+
+<!-- <div class="container">
+	<div class="row">
+		<div class="col">
+			<center>
+				<ul class="list-group">
+  					<li class="list-group-item active bg-secondary border-0">{% trans "Skill's Tokens: Coming soon..." %}</li>
+  				</ul>
+			</center>
+		</div>
+	</div>
+</div> -->
+
+<BR><BR>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<center>
+				<ul class="list-group">
+					{% if userp.iwanttohelp == True %}
+						<li class="list-group-item active bg-success border-0">
+						{% trans '<h5>"I want to be part of IDETRA"</h5><h6>Current status: "Yes, I am helping!"</h6>' %}
+					{% else %}
+						<li class="list-group-item active bg-warning border-0"  style="color:black;">
+						{% trans '<h5>"I want to be part of IDETRA"</h5><h6>Current status: "Not right now"</h6>(If you are interested, click on "Edit Profile" to integrate our team and help in projects)' %}
+					{% endif %}
+  					</li>
+  				</ul>
+			</center>
+		</div>
+	</div>
+</div>
+
+<BR><BR>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<center>
+				<button class="btn btn-dark" style="margin-bottom: 10px;" type="button" data-toggle="collapse" data-target="#editprofile" aria-expanded="false" aria-controls="editprofile">
+					{% trans 'Edit Profile' %}
+				</button>
+			</center>
+				<div class="collapse" id="editprofile">
+					<div class="card card-body border=0" style="background-color:rgba(0, 0, 0, 0.3);">
+					<BR>
+						<form method="post" action="" enctype="multipart/form-data">{% csrf_token%}
+						<BR>
+						<center><h5>
+						{% trans 'Make all necessary changes and click "Save" at the end of this page'%}</h5>
+						<BR><BR>
+						</center>
+						{{ editform|crispy }}
+						<BR><BR>
+							<div class="row">
+								<div class="col">
+									<center>
+										<ul class="list-group">
+											<li class="list-group-item active bg-primary border-0" style="color:black;">
+												{% trans 'I want to help IDETRA' %}: 
+												{{ iform.iwanttohelp }}
+											</li>
+										</ul>
+									</center>
+								</div>
+							</div>
+						{% if userp.iwanttohelp %}
+						<BR><BR>
+						{{ editformp|crispy }}
+						{% endif %}
+						<BR><center>
+							<button type="submit" name="button" class="btn btn-primary">{% trans 'Save' %}</button>
+							</center>
+						</form>
+					<BR>
+						
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+<BR><BR>
+<center>
+	<a href="{% url 'auth_password_reset' %}">
+		<button type="button" class="btn btn-danger">
+			{% trans 'Change Password' %}
+		</button>
+	</a>
+</center>
+<div style="margin-bottom: 120px;"></div>
+{% endblock content %} 

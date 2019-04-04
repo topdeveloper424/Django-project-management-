@@ -1,0 +1,2104 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-05 04:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: idetra/settings.py:56 templates/base.html:92
+msgid "English"
+msgstr "English"
+
+#: idetra/settings.py:57
+msgid "Portugues"
+msgstr "Português"
+
+#: idetra/urls.py:29
+msgid "^$"
+msgstr "^$"
+
+#: idetra/urls.py:30
+msgid "^ci/"
+msgstr "^ci/"
+
+#: idetra/urls.py:31
+msgid "^edu/"
+msgstr "^edu/"
+
+#: idetra/urls.py:32
+msgid "^profile/"
+msgstr "^profile/"
+
+#: idetra/urls.py:33
+msgid "^dictionary/"
+msgstr "^dictionary/"
+
+#: idetra/urls.py:34
+msgid "^comments/"
+msgstr "^comments/"
+
+#: idetra/urls.py:35
+msgid "^admin/"
+msgstr "^admin/"
+
+#: idetra/urls.py:36
+msgid "^accounts/register/$"
+msgstr "^accounts/register/$"
+
+#: idetra/urls.py:37
+msgid "^accounts/"
+msgstr "^accounts/"
+
+#: templates/400.html:5
+msgid "Error 400"
+msgstr "Erro 400"
+
+#: templates/400.html:9
+msgid "Bad Request"
+msgstr "A requisição falhou"
+
+#: templates/400.html:11
+msgid "Invalid request."
+msgstr "Requisição inválida."
+
+#: templates/401.html:5
+msgid "Error 401 - Authorization Required"
+msgstr "Erro 401 - Autorização necessária"
+
+#: templates/401.html:7
+msgid "Invalid login credentials!"
+msgstr "Credenciais de login inválidas!"
+
+#: templates/403.html:5
+msgid "Error 403 - Permission Denied"
+msgstr "Erro 403 - Permissão Negada"
+
+#: templates/403.html:7
+msgid "You do not have permission for this request"
+msgstr "Você não tem permissão para esta requisição"
+
+#: templates/404.html:4
+msgid "Error 404"
+msgstr "Erro 404"
+
+#: templates/404.html:8
+msgid "The page you tried to access does not exist"
+msgstr "A página que você tentou acessar não existe"
+
+#: templates/404.html:10
+msgid "Please check the typed URL or clicked link"
+msgstr "Por favor, verifique o URL digitado ou o link clicado"
+
+#: templates/500.html:5
+msgid "500 - Internal Server Error"
+msgstr "500 - Erro interno do servidor"
+
+#: templates/500.html:7
+msgid "Please contact us and report this error at:"
+msgstr "Por favor entre em contato e relate este erro para:"
+
+#: templates/base.html:63
+msgid "Objectives"
+msgstr "Objetivos"
+
+#: templates/base.html:72
+msgid "About"
+msgstr "Sobre"
+
+#: templates/base.html:76
+msgid "Team"
+msgstr "Time"
+
+#: templates/base.html:87
+msgid "Language"
+msgstr "Idioma"
+
+#: templates/base.html:95
+msgid "Português"
+msgstr "Português"
+
+#: templates/base.html:177
+msgid "Blueprints"
+msgstr "Soluções"
+
+#: templates/base.html:187 templates/profile.html:8
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/base.html:195
+msgid "Logout"
+msgstr "Deslogar"
+
+#: templates/base.html:208
+msgid "Username"
+msgstr "Usuário"
+
+#: templates/base.html:214
+msgid "Password"
+msgstr "Senha"
+
+#: templates/base.html:220
+msgid "Login"
+msgstr "Logar"
+
+#: templates/base.html:232 templates/registration/login.html:15
+msgid "Register"
+msgstr "Registrar"
+
+#: templates/comments/comment.html:5
+msgid "Preview of your comment"
+msgstr "Visualização do seu comentário"
+
+#: templates/comments/comment.html:9
+msgid "Anonymous"
+msgstr "Anônimo"
+
+#: templates/comments/comment.html:12
+#, python-format
+msgid "on %(submit_date)s"
+msgstr "em %(submit_date)s"
+
+#: templates/comments/comment.html:15
+msgid "moderated"
+msgstr "moderar"
+
+#: templates/comments/comment.html:28
+msgid "Delete"
+msgstr "Apagar"
+
+#: templates/comments/comment.html:32
+msgid "Reply"
+msgstr "Responder"
+
+#: templates/comments/form.html:21
+msgid "Title"
+msgstr "Título"
+
+#: templates/comments/form.html:26
+msgid "Comment"
+msgstr "Comentar"
+
+#: templates/comments/form.html:31
+msgid "Post"
+msgstr "Postar"
+
+#: templates/course_menu.html:12
+msgid "Course Reference"
+msgstr "Referências do Curso"
+
+#: templates/course_menu.html:18
+msgid "Basic"
+msgstr "Básico"
+
+#: templates/course_menu.html:19
+msgid "Advanced"
+msgstr "Avançado"
+
+#: templates/course_menu.html:27 templates/course_menu.html.py:80
+msgid "External references for this course"
+msgstr "Referências externas deste curso"
+
+#: templates/course_menu.html:28 templates/edu_menu.html:50
+msgid "<b>BASIC:</b> Knowledge that can help you better understand the lessons"
+msgstr ""
+"<b>BÁSICO:</b> Informação que pode ajudá-lo a entender melhor as lições"
+
+#: templates/course_menu.html:81 templates/edu_menu.html:52
+msgid ""
+"<b>ADVANCED:</b> In case you want to know more than we present about a given "
+"subject"
+msgstr "<b>AVANÇADO:</b> Caso você queira saber mais sobre um dado tópico"
+
+#: templates/course_menu.html:137
+msgid "Completed: "
+msgstr "Concluído: "
+
+#: templates/dict_base.html:5
+msgid "Here you can find definitions used on all courses"
+msgstr "Aqui você pode encontrar definições usadas em todos os cursos"
+
+#: templates/dict_base.html:7
+msgid "Consult terms listed here even when they are previously familiar to you"
+msgstr ""
+"Consulte os termos listados aqui mesmo que você já esteja familiarizado com "
+"eles"
+
+#: templates/edu.html:7
+msgid "EDU"
+msgstr "EDU"
+
+#: templates/edu_main.html:42 templates/edu_main.html.py:116
+#: templates/home.html:654 templates/profile.html:144
+#: templates/profile.html.py:172 website/models.py:40
+msgid "Executive"
+msgstr "Executivo"
+
+#: templates/edu_main.html:51 templates/edu_main.html.py:125
+#: templates/home.html:659 templates/profile.html:148
+#: templates/profile.html.py:176 website/models.py:41
+msgid "Project Manager"
+msgstr "Gerente de Projetos"
+
+#: templates/edu_main.html:78
+msgid "Extra Courses"
+msgstr "Cursos Extras"
+
+#: templates/edu_menu.html:8
+msgid "Tokens"
+msgstr "Tokens"
+
+#: templates/edu_menu.html:20
+msgid "Dictionary"
+msgstr "Dicionário"
+
+#: templates/edu_menu.html:41
+msgid "References"
+msgstr "Referências"
+
+#: templates/edu_menu.html:43
+msgid "All"
+msgstr "Todas"
+
+#: templates/edu_menu.html:49
+msgid "All external references from all courses"
+msgstr "Todas as referências externas de todos os cursos"
+
+#: templates/edu_menu.html:111
+msgid "Overall Progress"
+msgstr "Progresso Geral"
+
+#: templates/edu_menu.html:131
+msgid "COURSES"
+msgstr "CURSOS"
+
+#: templates/edu_menu.html:145
+msgid "EXTRA COURSES"
+msgstr "CURSOS EXTRAS"
+
+#: templates/home.html:10
+msgid "Initiative for<br>Development to a<br>Transition"
+msgstr "Iniciativa para o<br>Desenvolvimento de uma<br>Transição"
+
+#: templates/home.html:13
+msgid ""
+"Develop a better world...<br>...by improving yourself and your own "
+"environment"
+msgstr ""
+"Crie um mundo melhor...<br>...aprimorando a você mesmo e ao seu ambiente"
+
+#: templates/home.html:35
+msgid "OBJECTIVES"
+msgstr "OBJETIVOS"
+
+#: templates/home.html:43
+msgid ""
+" ATTENTION:\n"
+"      <br><br>\n"
+"      We are currently restructuring some of our systems, tools and "
+"processes (including this website).\n"
+"      <br><br>\n"
+"      This overhaul is programmed to end by August, 2018."
+msgstr ""
+" ATENÇÃO:\n"
+"      <br> <br>\n"
+"      Estamos atualmente reestruturando alguns de nossos sistemas, "
+"ferramentas e processos (incluindo este site).\n"
+"      <br><br>\n"
+"      Esta revisão está programada para ser finalizada em agosto de 2018."
+
+#: templates/home.html:56
+msgid ""
+"(Initiative for Development to a Transition) is a volunteer cooperative "
+"effort between generalists and specialists in various areas of knowledge to:"
+msgstr ""
+"(Iniciativa para o Desenvolvimento de uma Transição) é uma cooperação "
+"voluntária entre generalistas e especialistas em várias áreas de "
+"conhecimento para:"
+
+#: templates/home.html:60
+msgid ""
+" Create and maintain a free educational platform focused on relevant "
+"knowledge that affects how we perceive and interact with ourselves and our "
+"environment. Non-violent communication, scientific method and applied "
+"psychology are some of the topics approached so you can improve your values "
+"and day to day interactions in a saner and healthier way for you, those "
+"around you and your immediate environment."
+msgstr ""
+" Criar e manter uma plataforma educacional gratuita focada em conhecimento "
+"relevante que afeta a forma como percebemos e interagimos com nós mesmos e "
+"com o nosso ambiente. Comunicação não violenta, método científico e "
+"pscicologia aplicada são alguns dos tópicos abordados para que você possa "
+"melhorar seus valores e interações do dia a dia de uma forma mais sã e "
+"saudável para você, aqueles ao seu redor e ao seu ambiente imediato."
+
+#: templates/home.html:63
+msgid ""
+"Research, develop and deliver solutions for you to change your environment "
+"(house, apartment, building, block, neighborhood, city, communal city, "
+"country) with focus on sustainability, recycling and automation."
+msgstr ""
+"Pesquisar, desenvolver e entregar soluções para você mudar seu ambiente "
+"(casa, apartamento, prédio, bairro, cidade, cidade comunal, país) com foco "
+"em sustentabilidade, reciclagem e automação."
+
+#: templates/home.html:66
+msgid ""
+"Promote a network of people around the globe that can help each other "
+"improve themselves and our environment."
+msgstr ""
+"Promover uma rede de pessoas ao redor do mundo que podem ajudar umas às "
+"outras melhorar a si mesmas e ao nosso ambiente."
+
+#: templates/home.html:75 templates/home.html.py:108
+msgid "Summary"
+msgstr "Resumo"
+
+#: templates/home.html:79 templates/home.html.py:187
+msgid "+Details"
+msgstr "+Detalhes"
+
+#: templates/home.html:83
+msgid "\"How?\""
+msgstr "\"Como?\""
+
+#: templates/home.html:87
+msgid "\"Why?\""
+msgstr "\"Por quê?\""
+
+#: templates/home.html:91
+msgid "Start Here"
+msgstr "Comece Aqui"
+
+#: templates/home.html:95 templates/home.html.py:504
+msgid "Phases"
+msgstr "Fases"
+
+#: templates/home.html:100 templates/home.html.py:297 website/models.py:38
+msgid "I want to help"
+msgstr "Eu quero ajudar"
+
+#: templates/home.html:118
+msgid "Let's go through an explanation step by step:"
+msgstr "Vamos seguir uma explicação passo a passo:"
+
+#: templates/home.html:119
+msgid ""
+"1 - If you can properly understand how something works, one thing you can do "
+"is modify it."
+msgstr ""
+"1 - Se você pode entender corretamente como algo funciona, uma coisa que "
+"você pode fazer é modificá-la."
+
+#: templates/home.html:121
+msgid ""
+"Anything that can be modified, can be used to better suit your needs while "
+"maintaining a high level of balance between you, other people and the "
+"general environment."
+msgstr ""
+"Qualquer coisa que possa ser modificada, pode ser usada para melhor atender "
+"às suas necessidades enquanto mantém um grande equilíbrio entre você, outras "
+"pessoas e o ambiente em geral."
+
+#: templates/home.html:123
+msgid ""
+"In order to achieve this, you should get information regarding how your "
+"biological and psychological machinery works, how your social interactions "
+"function and the dynamics of your environment."
+msgstr ""
+"Para conseguir isso, você deve obter informações sobre como as suas máquinas "
+"biológica e psicológica funcionam, como suas interações sociais funcionam e "
+"a dinâmica do seu ambiente."
+
+#: templates/home.html:125
+msgid ""
+"Those abilities can empower you to revise and redesign your values and your "
+"culture."
+msgstr ""
+"Essas habilidades podem capacitá-lo a revisar e redesenhar seus valores e "
+"sua cultura."
+
+#: templates/home.html:127
+msgid "This is the first change we encourage people to make."
+msgstr "Esta é a primeira mudança que encorajamos as pessoas a realizar."
+
+#: templates/home.html:129
+msgid "But you will face limitations regarding the tangible world around you."
+msgstr ""
+"Mas você enfrentará limitações em relação ao mundo tangível ao seu redor."
+
+#: templates/home.html:131
+msgid ""
+"In other words: You changed yourself, but not the tangible things that are "
+"around you."
+msgstr ""
+"Em outras palavras: você mudou a si mesmo, mas não as coisas tangíveis que "
+"estão ao seu redor."
+
+#: templates/home.html:133
+msgid ""
+"2 - That is why after you go through all the courses, you get access to "
+"detailed information on how you can change the world around you. This is "
+"centered (but not limited) to your home."
+msgstr ""
+"2 - É por isso que depois de passar por todos os cursos, você tem acesso a "
+"informações detalhadas sobre como você pode mudar o mundo ao seu redor. Isso "
+"é centrado (mas não limitado) ao seu lar."
+
+#: templates/home.html:135
+msgid ""
+"You will be able to know how to produce your own food, water and "
+"electricity, among other things."
+msgstr ""
+"Você será capaz de saber como produzir sua própria comida, água e "
+"eletricidade, entre outras coisas."
+
+#: templates/home.html:137
+msgid ""
+"These solutions are broken down in various tiers, so people who have no "
+"resources can recycle materials and generate the proposed solutions."
+msgstr ""
+"Essas soluções são divididas em vários níveis, então as pessoas que não "
+"possuem recursos podem reciclar materiais e gerar as soluções propostas."
+
+#: templates/home.html:139
+msgid ""
+"People who have enough resources also will have knowledge on how to buy or "
+"modify and implement ready-to-use solutions to attend their demands."
+msgstr ""
+"Pessoas que têm recursos suficientes também terão conhecimento de como "
+"comprar ou modificar e implementar soluções prontas para usar para atender "
+"suas demandas."
+
+#: templates/home.html:141
+msgid ""
+"All solutions works in various scales (for instance, they work on small "
+"apartments and big houses) and are automation oriented."
+msgstr ""
+"Todas as soluções funcionam em várias escalas (por exemplo, elas funcionam "
+"em pequenos apartamentos e casas grandes) e são orientadas para a automação."
+
+#: templates/home.html:143
+msgid ""
+"3 - But why you should only focus on yourself when we know the world needs "
+"such solutions?"
+msgstr ""
+"3 - Mas porque você deve se concentrar apenas em si mesmo quando sabemos que "
+"o mundo precisa de tais soluções?"
+
+#: templates/home.html:145
+msgid ""
+"Because it is very difficult for one person to change more than what they "
+"can control. The easiest possible path to improve the world is for each "
+"individual to control and modify themselves and where they live."
+msgstr ""
+"Porque é muito difícil para uma pessoa mudar mais do que o que ela pode "
+"controlar. O caminho mais fácil possível para melhorar o mundo é cada "
+"indivíduo controlar e modificar a sí mesmos e onde vivem."
+
+#: templates/home.html:147
+msgid ""
+"Also, even if you agree with everything stated here, you should not try to "
+"directly convince anyone. For reasons too complex to explain here, this way "
+"of changing people simply doesn't work."
+msgstr ""
+"Além disso, mesmo se você concordar com tudo declarado aqui, você não deve "
+"tentar convencer diretamente qualquer pessoa. Por razões muito complexas "
+"para explicar aqui, esta forma de mudar as pessoas simplesmente não funciona."
+
+#: templates/home.html:149
+msgid ""
+"People change when they see the benefits of change and can measure, analyze "
+"and relate to those changes."
+msgstr ""
+"As pessoas mudam quando vêem os benefícios da mudança e podem medir, "
+"analisar e se relacionar com essas mudanças."
+
+#: templates/home.html:151
+msgid "For example:"
+msgstr "Por exemplo:"
+
+#: templates/home.html:153
+msgid ""
+"If you can save money on food, water, electricity and other things, you are "
+"improving your life. If you can interact better with the world around you by "
+"new and balanced values, you can influence other people, so they can at "
+"least be curious about how you are able to live in such a way."
+msgstr ""
+"Se você pode economizar dinheiro em comida, água, eletricidade e outras "
+"coisas, você está melhorando sua vida. Se você puder interagir melhor com o "
+"mundo ao seu redor através de valores novos e equilibrados, você pode "
+"influenciar outras pessoas para que elas fiquem, Pelo menos, curiosas sobre "
+"como você é capaz de viver de tal forma."
+
+#: templates/home.html:155
+msgid ""
+"If someone close to you wants those same benefits, you can tell them how you "
+"managed to do it and even advise them to go through the same process you did "
+"here with us."
+msgstr ""
+"Se alguém próximo a você quiser os mesmos benefícios, você pode dizer a ele "
+"como você conseguiu tudo isso e até mesmo aconselhá-lo a passar pelo mesmo "
+"processo que você realizou aqui com a gente."
+
+#: templates/home.html:157
+msgid ""
+"Consider that you positively influenced someone to undergo the EDU process."
+msgstr "Considere que você influenciou positivamente alguém a passar pelo EDU."
+
+#: templates/home.html:159
+msgid ""
+"Now, there are two people that changed and aligned behaviours and their own "
+"environment to improve the way they live."
+msgstr ""
+"Agora, existem duas pessoas que mudaram e alinharam comportamentos e os seus "
+"próprios ambientes para melhorar a maneira como elas vivem."
+
+#: templates/home.html:161
+msgid ""
+"Extrapolating this to a critical mass scale, if your neighbours undergo the "
+"same understanding, you can work cooperatively and change the environment "
+"you all share. For example, a building could have a vertical automated farm "
+"with solar and wind electricity production that can abundantly provide to "
+"all apartments."
+msgstr ""
+"Extrapolando isso para uma escala de massa crítica, se seus vizinhos tiverem "
+"o mesmo entendimento, vocês podem trabalhar cooperativamente e mudar o "
+"ambiente que todos compartilham. Por exemplo, um prédio pode ter uma fazenda "
+"vertical automatizada com geração de energia solar e eólica que pode "
+"fornecer abundantemente a todos os apartamentos."
+
+#: templates/home.html:163
+msgid ""
+"Since our platform is free and online, this process can happen "
+"simultaneously anywhere in the world."
+msgstr ""
+"Como nossa plataforma é gratuita e on-line, esse processo pode acontecer "
+"simultaneamente em qualquer lugar do mundo."
+
+#: templates/home.html:165
+msgid ""
+"If we keep the extrapolation of this example, we can eventually make changes "
+"that change the entire world."
+msgstr ""
+"Se mantivermos a extrapolação desse exemplo, poderemos eventualmente fazer "
+"mudancas que mudem o mundo inteiro."
+
+#: templates/home.html:173 templates/home.html.py:231 templates/home.html:283
+#: templates/home.html.py:323 templates/home.html:400
+#: templates/home.html.py:493 templates/home.html:614
+msgid "Close"
+msgstr "Fechar"
+
+#: templates/home.html:195
+msgid "Ok, so let's detail this endeavor even more:"
+msgstr "Ok, então vamos detalhar essa iniciativa ainda mais:"
+
+#: templates/home.html:197
+msgid ""
+"Performing initiatives of self-improvement and physical implementations, "
+"such as housing or even the construction of a city with all these aspects in "
+"mind, do not reflect a real transition: it is necessary that the culture and "
+"values of a particular individual are aligned with others so the acceptance "
+"of immutable facts, limitations of the planet's resources and understanding "
+"the impact of distorted social values that has been perpetuated for "
+"generations are recognize as well as the human capacity to shape the "
+"conditions in which it exists, without extinguishing their cultural "
+"expressions or co-opt with something at the expense of their welfare."
+msgstr ""
+"Realizar iniciativas de auto-aperfeiçoamento e implementações físicas como "
+"em habitação ou mesmo a construção de uma cidade com todos esses aspectos em "
+"mente, não refletem uma transição real: é necessário que a cultura e valores "
+"de um indivíduo em particular estejam alinhados com os outros para que a "
+"aceitação de fatos imutáveis como limitações de recursos do planeta e "
+"entendimento do impacto dos valores sociais distorcidos que foram "
+"perpetuados por gerações, sejam reconhecidos assim como a capacidade de "
+"moldar as condições na qual vivem, sem extinguir suas expressões culturais "
+"ou cooptar com algo à custa do seu bem-estar."
+
+#: templates/home.html:199
+msgid ""
+"Therefore, IDETRA proposition is that all individuals are properly informed "
+"about the aspects that surround them and perform in their current values, a "
+"behavioral transition. To achieve this goal, a free online education system "
+"containing the information necessary for this first stage to be completed "
+"will be available. At the end of the educational iteration, the participant "
+"is granted access to sets of transactional projects customizable to his "
+"reality. Taking into account that it is possible to develop and implement "
+"such projects with very few resources, they are designed in a modular way as "
+"previously stated."
+msgstr ""
+"Portanto, a proposta do IDETRA é que todos os indivíduos sejam devidamente "
+"informados sobre os aspectos que os cercam e executam em seus valores "
+"atuais, uma transição comportamental. Para atingir este objetivo, um sistema "
+"de educação on-line gratuito contendo as informações necessárias para que "
+"esta primeira etapa seja concluída estará disponível. No final da iteração "
+"educacional, o participante obtém acesso a conjuntos de projetos "
+"transacionais personalizáveis para a sua realidade. Tendo em conta que é "
+"possível desenvolver e implementar tais projetos com muito poucos recursos, "
+"eles são projetados de forma modular como anteriormente declarado."
+
+#: templates/home.html:201
+msgid ""
+"From our standpoint, if you can create automated equipments and perform "
+"maintenance of those equipments using waste and recycled materials, any "
+"other instance that could be achieved with more resources is easily "
+"conceivable."
+msgstr ""
+"Do nosso ponto de vista, se você pode criar equipamentos automatizados e "
+"executar manutenção desses equipamentos usando resíduos e materiais "
+"reciclados, qualquer outra instância que poderia ser alcançada com mais "
+"recursos é facilmente concebível."
+
+#: templates/home.html:204
+msgid ""
+"Regarding limitations to this approach, technology and planetary capacities "
+"are usually under measured. Consider the following illustrative examples:"
+msgstr ""
+"Quanto às limitações desta abordagem, tecnologia e capacidades planetárias "
+"geralmente estão sob medida. Considere os seguintes exemplos ilustrativos:"
+
+#: templates/home.html:207
+msgid ""
+"The human being is able to create a high-tech closed ecosystem and live in a "
+"hostile environment such as outer space. (In other words: we have the "
+"technology to accomplish extraordinary feats)"
+msgstr ""
+"O ser humano é capaz de criar um ecossistema fechado de alta tecnologia e "
+"viver em um ambiente hostil como o espaço sideral. (Em outras palavras: nós "
+"temos a tecnologia para realizar feitos extraordinários)"
+
+#: templates/home.html:210
+msgid ""
+"If it rained gold for two days, all the people would try to gather the "
+"maximum amount of such mineral at home. If it continued raining every day "
+"for a year, they would create mechanisms to get rid of the nuisance. (In "
+"other words: the real problem is not the use of resources but the perception "
+"of the current value things around us have. This is intrinsic to any culture)"
+msgstr ""
+"Se chovesse ouro por dois dias, todas as pessoas tentariam reunir o máximo "
+"possível de tal mineral em casa. Se continuasse chovendo todo dia por um "
+"ano, eles criariam mecanismos para se livrar do incômodo. (Em outras "
+"palavras: o problema real não é o uso de recursos, mas a percepção do valor "
+"atual que as coisas ao nosso redor têm. Isso é intrínseco a qualquer cultura)"
+
+#: templates/home.html:213
+msgid ""
+"Considering an area the size of Australia (7,692,024 km²) and dividing it by "
+"the number of human inhabitants of the planet (round it up to 8 billion "
+"people), every baby, child, man, woman and elderly could possess for their "
+"own use, an area of 961.50 m², leaving the rest of the world for other "
+"things, such as agriculture, recreation, ecosystem not altered by man, etc. "
+"(In other words: we have more than enough territorial resources left to "
+"implement what is necessary for several generations)"
+msgstr ""
+"Considerando uma área do tamanho da Austrália (7.692.024 km²) e dividindo-a "
+"pelo número de habitantes humanos do planeta (arredondado para 8 bilhões de "
+"pessoas), cada bebê, criança, homem, mulher e idoso poderiam possuir para o "
+"seu uso próprio, uma área de 961,50 m², deixando o resto do mundo para "
+"outras coisas como agricultura, recreação, ecossistema não alterado pelo "
+"homem, etc. (Em outras palavras: nós temos recursos territoriais mais do que "
+"suficientes para implementar o que é necessário por várias gerações)"
+
+#: templates/home.html:215
+msgid ""
+"In the 1960's, when the United States and the Soviet Union where on a space "
+"race, pens that write in zero gravity were developed at a cost of $ 1 "
+"million dolars and acquired by NASA so astronauts could write in space "
+"missions. The Soviet Union used pencils that could do pretty much the same "
+"type of work. Although the real history has more details, including the fact "
+"that USSR also purchased such pens later, this example still proves a point. "
+"(In other words: you can solve problems and overcome adversity in a highly "
+"technological and practical way, with a low commitment of money and very few "
+"resources)"
+msgstr ""
+"Na década de 1960, quando os Estados Unidos e a União Soviética estavam em "
+"uma corrida espacial, canetas que escrevem em gravidade zero foram "
+"desenvolvidas a um custo de US $ 1 milhão de dólares e adquiridos pela NASA "
+"para que os astronautas pudessem escrever no espaço. A União Soviética usava "
+"lápis que poderiam fazer praticamente o mesmo tipo de trabalho. Embora a "
+"história real tenha mais detalhes, inclusive o fato que a URSS também "
+"comprou tais canetas mais tarde, este exemplo ainda prova um importante "
+"ponto.(Em outras palavras: você pode resolver problemas e superar "
+"adversidades de forma altamente tecnológica e prática, com um baixo "
+"compromisso de dinheiro e muito poucos Recursos)"
+
+#: templates/home.html:218
+msgid ""
+"We call 'transition' the effort made by every human being to improve "
+"themselves and the environment up to a point where the root causes of all "
+"our problems are surpassed."
+msgstr ""
+"Nós chamamos de 'transição' o esforço feito por cada ser humano para "
+"melhorar ele mesmo e o meio ambiente até um ponto em que as causas de todos "
+"os nossos problemas sejam superadas."
+
+#: templates/home.html:221
+msgid ""
+"It is possible to say that to achieve such transition, we have to "
+"drastically change our values, the way we behave, how we live and how we "
+"relate among ourselves and with the environment. However, these changes are "
+"intended not to bring limitations to the welfare, the environment or the "
+"human expression of individuality. The plentifulness of resources and to "
+"change the governance matrix for a technological model have the "
+"characteristics of a necessary complementation to this expected behavioral "
+"change."
+msgstr ""
+"É possível afirmar que, para alcançar essa transição, temos que mudar "
+"drasticamente nossos valores, a maneira como nos comportamos, como vivemos e "
+"como nós nos relacionamos e como é a relação com o meio ambiente. No "
+"entanto, essas mudanças não se destinam a trazer limitações para o bem-"
+"estar, o ambiente ou a expressão humana da individualidade. A abundância de "
+"recursos e a mudança da matriz de governança para um modelo tecnológico "
+"possui características de uma complementação necessária para esta "
+"esperadamudança de comportamento."
+
+#: templates/home.html:223
+msgid ""
+"We understand that if we don't undergo this transition, we will continue on "
+"the harmful course of a global detrimental reality we face today. Therefore, "
+"we propose starting iterating a new social, economic and cultural model, "
+"gradually supplanting the previous one."
+msgstr ""
+"Entendemos que, se não passarmos por essa transição, continuaremos no curso "
+"prejudicial de uma realidade global detrimental que enfrentamos hoje. "
+"Portanto, propomos começar a iterar um novo modelo social, econômico e "
+"cultural gradualmente suplantando o anterior."
+
+#: templates/home.html:245
+msgid "How"
+msgstr "Como"
+
+#: templates/home.html:254
+msgid "But how can we do this?"
+msgstr "Mas como podemos fazer isso?"
+
+#: templates/home.html:256
+msgid ""
+"Everything starts with the educational platform. After you register and log "
+"in this website, you will have access to the EDU platform. There, you will "
+"find courses that are designed to inform you about the mechanics behind how "
+"you behave, how you interact with your general environment and how both of "
+"them work."
+msgstr ""
+"Tudo começa com a plataforma educacional. Depois de se registrar e logar "
+"neste site, você terá acesso à plataforma EDU. Lá, você vai encontrar cursos "
+"que são projetados para informá-lo sobre a mecânica por trás de como você se "
+"comporta, como você interage com seu ambiente e como ambos funcionam."
+
+#: templates/home.html:258
+msgid ""
+"Imagine you could change your perception and values in such a way that is "
+"easy to avoid conflicts with family members, co-workers and strangers. That "
+"you can be healthier by doing a basic analysis of what you are eating and "
+"the exercise you can start doing without the need of relying on expensive "
+"solutions, biased products and services or poor advice."
+msgstr ""
+"Imagine você poder mudar sua percepção e valores de tal forma que seja fácil "
+"evitar conflitos com membros da sua família, colegas de trabalho e "
+"estranhos. Que você pode ser mais saudável fazendo uma análise básica do que "
+"você está comendo e os exercícios que você pode começar a fazer sem a "
+"necessidade de confiar em caras soluções, produtos e serviços tendenciosos "
+"ou conselhos ruins."
+
+#: templates/home.html:260
+msgid ""
+"Imagine that you can better understand where most of the behavior you want "
+"to change comes from, and have the tools to change them."
+msgstr ""
+"Imagine que você possa entender melhor de onde vem a maior parte do "
+"comportamento que deseja mudar, e possui as ferramentas para alterá-los."
+
+#: templates/home.html:262
+msgid "This is what we are offering you."
+msgstr "É isso que estamos oferecendo a você."
+
+#: templates/home.html:264
+msgid ""
+"One important aspect behind all this is to inform you of facts and not try "
+"to indoctrinate you. We give you information and rely on it to be enough for "
+"all those changes to happen."
+msgstr ""
+"Um aspecto importante por trás de tudo isso é informá-lo dos fatos e não "
+"tentar doutrinar você. Nós lhe damos informação e confiamos ela ser "
+"suficiente para que todas essas mudanças aconteçam."
+
+#: templates/home.html:266
+msgid ""
+"In other words: We are not trying to convince you of anything. Get the "
+"information we provide, understand it and arrive at your own conclusions."
+msgstr ""
+"Em outras palavras: não estamos tentando convencê-lo de nada. Obtenha a "
+"informação que oferecemos, entendenda-a e chegue às suas próprias conclusões."
+
+#: templates/home.html:268
+msgid ""
+"To facilitate the entire process, all content is framed in a gamified "
+"fashion. This way, it is easier for you to go through all the material and "
+"makes all the knowledge actionable."
+msgstr ""
+"Para facilitar todo o processo, todo o conteúdo é enquadrado em um formato "
+"de jogo (ou o mais próximo que conseguimos disso). Desta forma, é mais fácil "
+"para você passar por todo o material e torna todo o conhecimento acionável."
+
+#: templates/home.html:270
+msgid ""
+"If you find difficult to keep up with the courses and quizzes because you "
+"don't have the basic knowledge required to understand the subject addressed, "
+"we indicate third-party courses listed on each subject."
+msgstr ""
+"Se você achar difícil acompanhar os cursos e os testes porque você não tem o "
+"conhecimento básico necessário para entender o assunto abordado, indicamos "
+"cursos de base de terceiros, listados em cada assunto."
+
+#: templates/home.html:272
+msgid ""
+"If you want to know more about a specific subject, we provide links for "
+"those as well."
+msgstr ""
+"Se você quiser saber mais sobre um assunto específico, nós fornecemos links "
+"para cursos de aprofundamento também."
+
+#: templates/home.html:274
+msgid ""
+"There is also a discussion forum at the end of the page in each lesson and "
+"our social network of people who went through the entire course that can "
+"help you directly."
+msgstr ""
+"Há também um fórum de discussão no final da página em cada lição além de "
+"nossa rede de pessoas que passaram por todo o curso que podem Ajudar você "
+"diretamente."
+
+#: templates/home.html:276
+msgid ""
+"For further clarifications on what the EDU platform is and how does it work, "
+"we encourage you to register and check its contents for yourself. It's free."
+msgstr ""
+"Para mais esclarecimentos sobre o que é a plataforma EDU e como ela funciona "
+"nós encorajamos você a se registrar e verificar o conteúdo por si próprio. É "
+"grátis."
+
+#: templates/home.html:305
+msgid "Loved it! I want to help IDETRA: How can I do it?"
+msgstr ""
+"Este projeto é sensacional! Eu quero ajudar o IDETRA: Como posso fazer isso?"
+
+#: templates/home.html:307
+msgid ""
+"If you want to help us, after your registration, opt in under \"Profile\" > "
+"\"Edit Profile\" and you will have access to the C.I. (Center of "
+"Intelligence) platform."
+msgstr ""
+"Se você quiser nos ajudar, após o seu registro vá em \"Perfil\" > \"Editar "
+"Perfil\" e opte por ajudar. Você terá acesso a plataforma C.I. (Centro de "
+"Inteligência)."
+
+#: templates/home.html:309
+msgid "There, we manage all projects that comprise IDETRA."
+msgstr "Lá, gerenciamos todos os projetos que compõem o IDETRA."
+
+#: templates/home.html:311
+msgid ""
+"First, you will only gain an execution-level access to it (so you can help "
+"by doing things that are required)."
+msgstr ""
+"Primeiro, você só terá acesso em nível de execução (para que possa ajudar "
+"fazendo atividades que são necessárias)."
+
+#: templates/home.html:313
+msgid ""
+"After you go through some specific courses on EDU, you are granted higher "
+"level access to projects and can work closer to the teams."
+msgstr ""
+"Depois de passar por alguns cursos específicos no EDU, você receberá outros "
+"níveis de acesso a projetos e pode trabalhar mais perto das equipes."
+
+#: templates/home.html:315
+msgid ""
+"This 'leveling' process is necessary so we can be more effective in our "
+"internal projects."
+msgstr ""
+"Este processo de 'nivelamento' é necessário para que possamos ser mais "
+"eficazes em nossos projetos internos."
+
+#: templates/home.html:317
+msgid "For more information, please keep checking the rest of the website."
+msgstr ""
+"Para mais informações, por favor, continue verificando o resto do site."
+
+#: templates/home.html:337
+msgid "Why"
+msgstr "Por que"
+
+#: templates/home.html:346
+msgid "On a final note,"
+msgstr "Em uma nota final,"
+
+#: templates/home.html:347
+msgid ""
+"we would like to state what is the core motivator of this entire endeavour:"
+msgstr ""
+"gostaríamos de dizer qual é o principal motivador de todo este esforço:"
+
+#: templates/home.html:349
+msgid ""
+"Consider that today, modern society has access to highly advanced technology "
+"and can make available food, clothing, housing and medical care, upgrade our "
+"educational system and develop a limitless supply of renewable and non-"
+"polluting goods and services."
+msgstr ""
+"Considere que hoje, a sociedade moderna tem acesso a tecnologia altamente "
+"avançada e pode disponibilizar alimentos, roupas, habitação e cuidados "
+"médicos, atualizar o nosso sistema educacional e desenvolver uma oferta "
+"ilimitada de bens e serviços renováveis e não-poluidores."
+
+#: templates/home.html:351
+msgid ""
+"Through the provision of a projected efficiently economy, everyone could "
+"enjoy a very high standard of living with all the amenities of a highly "
+"technological society. Instead of money, we could easily produce all the "
+"necessities of life and provide a high standard of living for everyone, "
+"unlike an economy based on scarcity (such as capitalism, socialism, "
+"communism, marxism, etc.)"
+msgstr ""
+"Através da provisão de uma economia eficientemente projetada, todos poderiam "
+"desfrutar de um alto padrão de vida com todas as comodidades de uma "
+"sociedade altamentetecnológica. Em vez de dinheiro, poderíamos facilmente "
+"produzir todos as necessidades cotidianas e fornecer um alto padrão de vida "
+"para todos, ao contrário de uma economia baseada na escassez (como o "
+"capitalismo, socialismo, comunismo, marxismo, etc.)"
+
+#: templates/home.html:353
+msgid ""
+"Our proposal states that the planet's resources cannot be linked to human "
+"labor, much less to repetitive work processes that can be easily performed "
+"by machines (including machine maintenance)"
+msgstr ""
+"Nossa proposta afirma que os recursos do planeta não podem ser ligados a "
+"trabalho humano, muito menos a processos de trabalho repetitivo que podem "
+"ser facilmente executados por máquinas (incluindo a manutenção de máquinas)"
+
+#: templates/home.html:355
+msgid ""
+"All the resources are held as the common heritage of all the people of "
+"planet Earth, in order to transcend over time the need for artificial "
+"boundaries that separate people and unifying our civilization. We emphasize "
+"that this approach to global governance has nothing in common with the "
+"present aims of the elite to form a world government headed by large "
+"corporations, with the majority of the global population subject to them. "
+"Our vision of globalization encourages all people on the planet to be the "
+"best they can, not to live in abject submission to a corporate governance."
+msgstr ""
+"Todos os recursos são mantidos como patrimônio comum de todos no planeta "
+"Terra, a fim de transcender ao longo do tempo a necessidade de fronteiras "
+"artificiais que separam as pessoas e unificar nossa civilização. Nós "
+"enfatizamos que esta abordagem da governança global não tem nada em comum "
+"com a presente meta da elite para formar um governo mundial liderado por "
+"grandes corporações, com a maioria da população global sujeita a eles. Nossa "
+"visão de globalização encoraja todas as pessoas do planeta a serem o melhor "
+"que podem, e não viver submissas a uma governança corporativa."
+
+#: templates/home.html:357
+msgid ""
+"This proposal not only contributes to the well-being of people but also "
+"provides the resources and information necessary for an individual to "
+"participate in any area of competency. Success would be measured by the "
+"satisfaction of individual activities, rather than the acquisition of "
+"wealth, property and power."
+msgstr ""
+"Esta proposta não só contribui para o bem-estar das pessoas, mas também "
+"fornece os recursos e informações necessárias para um indivíduo participar "
+"em qualquer área de competência. O sucesso seria medido pela satisfação de "
+"atividades individuais, em vez da aquisição de riqueza, propriedade e poder."
+
+#: templates/home.html:359
+msgid ""
+"At the moment, we have enough material resources to provide a high standard "
+"of living for all inhabitants of the earth. Only when the population exceeds "
+"the tolerable capacity of a site is that problems such as greed, crime and "
+"violence emerge. To overcome this shortage, most of the crimes and even the "
+"prisons of today's society would no longer be necessary. We understand that "
+"this is an extremely difficult scenario to envision but these notions are "
+"well grounded in studies and experimentations. It would be possible to use "
+"technology to overcome shortages, through the application of renewable "
+"energy sources, computerization and automation of production, inventory and "
+"distribution, design of safe, energy-efficient cities, with advanced "
+"transportation systems, providing universal health care and more relevant "
+"education, and above all, generating a new incentive system based on human "
+"and environmental concern. You can extrapolate that aspect by changing "
+"certain behaviors that are considered standard by the current culture or "
+"even said instinctual, combined with the use of automated machines to "
+"replace the repetitive work and resource management (extraction, production, "
+"testing, measurement, distribution and recycling), we already have the "
+"ability to live by these precepts, extinguishing inequalities and factors "
+"that generate them (competition, monetary system, negotiations archaic as "
+"law enforcement, treatment of diseases, rehabilitation of offenders, etc.). "
+"Many people believe that today there is a lot of technology in the world, "
+"and this technology is the major cause of our environmental pollution. It's "
+"not the case. The abuse and misuse of technology that is what should be our "
+"main concerns. In a more humane civilization, instead of machines replacing "
+"people on a harmful perspective, they would reduce the workday, increase the "
+"availability of goods and services, and prolong the rest period. If we use "
+"new technologies to complement each and every repetitive work, raising the "
+"standard of living of all people, the introduction of technological machines "
+"will no longer be any kind of threat."
+msgstr ""
+"No momento, temos recursos materiais suficientes para fornecer um alto "
+"padrão de viver para todos os habitantes da terra. Somente quando a "
+"população excede a capacidade tolerável de um local é que problemas como "
+"ganância, crime e violência emergem. Para superar essa escassez, a maioria "
+"dos crimes e até mesmo as prisões da sociedade de hoje não seriam mais "
+"necessárias. Entendemos que este é um cenário extremamente difícil de "
+"imaginar, mas essas noções são bem fundamentada em estudos e "
+"experimentações. Seria possível usar tecnologia para superar escassez, "
+"através da aplicação de fontes renováveis de energia, informatização e "
+"automação de produção, inventário e distribuição, projetos de cidades "
+"seguras e eficientes em energia, com avançado sistemas de transporte, "
+"proporcionando cuidados de saúde universal e uma educação mais relevante, e "
+"acima de tudo, gerando um novo sistema de incentivo baseado em preocupação "
+"humana e ambiental. Você pode extrapolar esse aspecto alterando certos "
+"comportamentos que são considerados padrão ou mesmo instintivo pela cultura "
+"atual. Combinando o uso de máquinas automatizadas para substituir o trabalho "
+"repetitivo e o gerenciamento de recursos (extração, produção, teste, "
+"medição, distribuição e reciclagem) já possuímos a capacidade de viver de "
+"acordo com esses preceitos, extinguindo desigualdades e fatores que os geram "
+"(concorrência, sistema monetário, negociações arcaicas como aplicação da "
+"lei, tratamento de doenças, reabilitação de criminosos, etc.). Muitas "
+"pessoas acreditam que hoje há muita tecnologia no mundo e esta tecnologia é "
+"a principal causa de nossa poluição ambiental. Não é o caso. O abuso e uso "
+"indevido de tecnologia é que deveria ser a nossaprincipal preocupação. Em "
+"uma civilização mais humana, em vez de máquinas substituindo as pessoas em "
+"uma perspectiva prejudicial, eles iriam reduzir o dia de trabalho, aumentar "
+"a disponibilidade de bens e serviços, e prolongar o período de descanso. Se "
+"usarmos novas tecnologias para complementar todo e qualquer trabalho "
+"repetitivo, elevando o padrão de vida de todas as pessoas, a introdução de "
+"máquinas e tecnologia não será mais nenhum tipo de ameaça."
+
+#: templates/home.html:361
+msgid ""
+"A world based on such principles would also involve the effort to develop "
+"new energy sources, clean, renewable and geothermal, controlled fusion, "
+"solar, photovoltaic, wind, wave and tidal. We would finally be able to "
+"produce energy in unlimited quantity that could propel civilization for "
+"thousands of years. An initiative such as this should also commit to re-"
+"design our cities, transportation systems and industrial plants, to be "
+"efficient, clean and conveniently meet the needs of all people."
+msgstr ""
+"Um mundo baseado em tais princípios também requisitaria esforço para "
+"desenvolver novas fontes de energia limpa, renovável e geotérmica, fusão "
+"controlada, solar, fotovoltaica, vento, onda e maré. Finalmente poderíamos "
+"produzir energia em quantidade ilimitada que poderia impulsionar a "
+"civilização por milhares de anos. Uma iniciativa como esta também deve "
+"comprometer-se a reprojetar nossas cidades, sistemas de transporte e plantas "
+"industriais, para serem eficientes, limpas e convenientemente atender às "
+"necessidades de todas as pessoas."
+
+#: templates/home.html:363
+msgid ""
+"With automated inventory on a global scale, we can maintain a balance "
+"between production and distribution. Only nutritious and healthy food would "
+"be available and planned obsolescence would be unnecessary and non-existent "
+"in such reality. By getting rid of the need for professions based on the "
+"monetary system, such as lawyers, bankers, insurance salesmen, marketing and "
+"advertising teams, vendors and stockbrokers, a considerable amount of waste "
+"will be eliminated. A good amount of energy would also be saved by "
+"eliminating the duplication of competitive products such as tools, cutlery, "
+"pots, pans and vacuum cleaners. It is good to choose. But instead of "
+"hundreds of different manufacturing plants and all the paperwork and "
+"personnel required to make similar products, only some of the highest "
+"quality would be needed to serve the entire population. Our only shortage is "
+"the lack of creative thought and intelligence to do this management for "
+"ourselves and criticism limited to the belief in our leaders to solve these "
+"and other problems. The most valuable untapped resource today is human "
+"ingenuity. With the elimination of debt, fear of losing employment and other "
+"ills plaguing our society, we can re-draw our values. Such security in "
+"knowing that your needs will always be met, combined with teaching how to "
+"relate to the planet and its limitations as well as with other human beings "
+"in a much more meaningful way, considerably reduce both mental and physical "
+"stress leaving us free to explore and develop our abilities and potential. "
+"If the idea of eliminating money bothers you, consider this: If a group of "
+"people with gold, diamonds and money was trapped on an island with no "
+"resources such as food, clean water and air, such wealth would be irrelevant "
+"to their survival. Only when resources are scarce is that money can be used "
+"to control the distribution. You can not, for example, sell the air we "
+"breathe or the water that flows from the abundant source of a mountain. "
+"Although the air and water are valuable when plentiful, they can not be "
+"sold. Counterpoint, if it rained gold every day of the year, people would no "
+"longer value it as scarce and expensive and would then seek solutions to "
+"control the aberrant weather event that is disrupting their lives, "
+"generating mechanisms in which gold rain would not negatively influence "
+"their daily lives. Money is only important in a society when certain "
+"resources for survival must be rationed and the people accept money as "
+"medium to exchange scarce resources. Money is a social convention, an "
+"agreement, so to speak. It is not a natural resource nor does it represent "
+"one. It is not necessary for survival unless we have been conditioned to "
+"accept it as such. Politics, beliefs and pseudoscience do not have "
+"guidelines for a management system in which human well-being is the driving "
+"force of its execution. We propose a model that puts nature and its laws, "
+"fauna and flora, together with the human being in the center of the whole "
+"purpose of civilization."
+msgstr ""
+"Com o inventário automatizado em escala global, podemos manter um equilíbrio "
+"entre produção e distribuição. Somente alimentos nutritivos e saudáveis "
+"estariam disponível e a obsolescência planejada seria desnecessária e "
+"inexistente em tal realidade. Ao nos livrarmos da necessidade de profissões "
+"com base no sistema monetário, como advogados, banqueiros, vendedores de "
+"seguros, marketing e equipes de publicidade, fornecedores e corretores, uma "
+"quantidade considerável de resíduos não será mais produzida. Uma boa "
+"quantidade de energia também será economizada ao eliminar a duplicação de "
+"produtos competitivos como ferramentas, cutelaria, panelas, frigideiras e "
+"aspiradores de pó. É bom escolher. Mas em vez de centenas de fábricas "
+"diferentes e toda a burocracia e pessoal necessário para fabricar produtos "
+"similares, apenas alguns produtos da mais alta qualidade seriam necessários "
+"para atender toda a população. Nossa única escassez é a falta de pensamento "
+"criativo e inteligência para fazer essa gestão para nós mesmos, e críticas "
+"limitadas à crença em nossos líderes para resolver estes e outros problemas. "
+"O recurso inexplorado mais valioso hoje é a engenhosidade humana Com a "
+"eliminação da dívida, do medo de perder emprego e outros males que assolam "
+"nossa sociedade, podemos redesenhar nossos valores. Tal segurança em saber "
+"que suas necessidades serão sempre atendidas, combinadas com o conhecimento "
+"de como relacionar-se com o planeta e suas limitações, assim como com outros "
+"seres humanos de uma forma muito mais significativa, reduz consideravelmente "
+"o estresse tanto mental quanto físico nos deixando livres para explorar e "
+"desenvolver nossas habilidades e potencialidades. Se a ideia de eliminar "
+"dinheiro incomoda você, considere isto: Se um grupo de pessoas com ouro, "
+"diamantes e dinheiro ficaram presos em uma ilha sem recursos como comida, "
+"água potável e ar, essa 'riqueza' seria irrelevante para a sua "
+"sobrevivência. Somente quando os recursos são escassos é que o dinheiro pode "
+"ser usado para controlar a distribuição. Você não pode, por exemplo, vender "
+"o ar que nós respiramos ou a água que flui da fonte abundante de uma "
+"montanha. Embora o ar e a água sejam valiosos quando abundantes, eles não "
+"podem ser vendidos. Contraponto, se chovesse ouro todos os dias do ano, as "
+"pessoas não o valorizariam mais como escasso e caro e, em seguida, buscariam "
+"soluções para controlar o evento climático aberrante que está atrapalhando "
+"suas vidas gerando mecanismos nos quais a chuva de ouro não influenciaria "
+"negativamente seu cotidiano. Dinheiro só é importante em uma sociedade "
+"quando determinados recursos para a sobrevivência devem ser racionados e as "
+"pessoas aceitam dinheiro como meio para trocar tais recursos escassos. "
+"Dinheiro é uma convenção social, um acordo, por assim dizer. Não é um "
+"recurso natural nem representa um. Não é necessário para sobrevivência a "
+"menos que tenhamos sido condicionados a aceitar como tal. Política, crenças "
+"e pseudociência não possuem diretrizes para um sistema de gestão em que o "
+"bem-estar humano é a força motriz de sua execução. Propomos um modelo que "
+"coloca a natureza e suas leis, fauna e flora, junto com o ser humano no "
+"centro do todo o propósito da civilização."
+
+#: templates/home.html:365
+msgid ""
+"For this initiative to work, it is primarily necessary that entrenched "
+"concepts of our society are criticized for each individual in their own "
+"reality, especially the duality 'what I want' versus 'what I need', where "
+"the inexorable conclusion is that a system can produce and supply what you "
+"need - when you need it - and unnecessary and cyclical goods and processes "
+"can be dramatically reduced, generating plenty of production and "
+"distribution."
+msgstr ""
+"Para que esta iniciativa funcione, é necessário principalmente que conceitos "
+"arraigados de nossa sociedade sejam criticados por cada indivíduo em sua "
+"própria realidade, especialmente a dualidade 'o que eu quero' versus 'o que "
+"eu preciso', onde a conclusão inexorável é que um sistema pode produzir e "
+"fornecer o que você necessita - quando você ncessita - e bens e processos "
+"desnecessários e cíclicos podem ser drasticamente reduzidos, gerando "
+"abundante produção e distribuição."
+
+#: templates/home.html:367
+msgid ""
+"Thus, inequality is taken out of the human civilization equation. Scientific "
+"studies show that societies produce more and develop better their creativity "
+"when the population is free and widely attended (sometimes at no cost), and "
+"fully embedded with factors related to survival and well-being, excluding "
+"socio-economic and cultural distortions that generate most psychosis, "
+"prejudices, phobias and current diseases. You must also separate initiatives "
+"related to transition to such a civilization from a civilization that lives "
+"in such a format. While the transition will need to encompass cultural and "
+"human practical differences that despite harmful are still considered "
+"'normal' for the happiness and well being, the generations that are created "
+"in a resource-based economy will not know or live these old detrimental "
+"concepts and only then will the practice of that today is extrapolated as "
+"the best possible future of humanity. In the long term, this project aims to "
+"be the core drives from other cities to be replicated and that, "
+"consequently, this group of cities take such a proportion that they are no "
+"longer needed financial resources (donations, external production, "
+"exchange / barter and marketing of surplus production) intrinsically linked "
+"to the current state transition to a new technological socio-culture "
+"redesign. It is considered also that this transformation can occur in other "
+"countries, in parallel or sequentially to the project, which can result in "
+"critical mass range of cities in this format on the planet, thus having a "
+"real global transition from a scarcity-based reality to a reality based on "
+"abundance. This is considered only as a baseline for alignment opportunities "
+"and other initiatives."
+msgstr ""
+"Assim, a desigualdade é retirada da equação da civilização humana. Estudos "
+"científicos mostram que as sociedades produzem mais e desenvolvem melhor sua "
+"criatividade quando a população é livre e amplamente atendida (às vezes sem "
+"custo), e totalmente incorporada com fatores relacionados à sobrevivência e "
+"bem-estar, excluindo distorções socioeconômicas e culturais que geram mais "
+"psicoses, preconceitos, fobias e doenças mentais atuais. Você também deve "
+"separar iniciativas relacionadas à transição para tal civilização de uma "
+"civilização que vive em tal formato. Enquanto a transição terá de abranger "
+"diferenças culturais e práticas humanas que apesar de nocivas ainda são "
+"consideradas 'normais' para a felicidade e bem estar, as gerações que serão "
+"criadas em uma economia baseada em recursos não vão saber ou viver esses "
+"velhos e detrimentais conceitos e só então a prática desses valores "
+"conseguirá realizar o melhor futuro possível da humanidade. A longo prazo, "
+"este projeto visa ser o núcleo impulsionador de outras cidades para serem "
+"replicadas e que consequentemente, estes grupos de cidades tomem uma "
+"proporção tal que não sejam mais necessários recursos financeiros (doações, "
+"produção externa, troca / permuta e comercialização de excedentes de "
+"produção) intrinsecamente ligados a transição atual do estado para o "
+"redesenho de uma nova sociocultura tecnológica.Considera-se também que esta "
+"transformação possa ocorrer em outros países, em paralelo ou sequencialmente "
+"ao projeto, o que pode resultar em alcance de massa crítica das cidades "
+"neste formato ao redor do planeta, ocasionando em uma transição global real "
+"de uma realidade baseada na escassez para uma realidade baseada em "
+"abundância. Isso é considerado também como uma linha de base para "
+"oportunidades de alinhamento a outras iniciativas."
+
+#: templates/home.html:369
+msgid ""
+"Therefore, our proposal could be summarized in the following parameters:"
+msgstr ""
+"Portanto, nossa proposta poderia ser resumida nos seguintes parâmetros:"
+
+#: templates/home.html:373
+msgid "Monetary or marketing system is completely unnecessary"
+msgstr "Sistema monetário ou de mercado é completamente desnecessário"
+
+#: templates/home.html:376
+msgid "Any repetitive work is automated by machines"
+msgstr "Qualquer trabalho repetitivo é automatizado por máquinas"
+
+#: templates/home.html:379
+msgid ""
+"Unification of the planet and its resources by a technological approach "
+"system\n"
+"                Strategic access to consumer goods instead of personal "
+"property"
+msgstr ""
+"Unificação do planeta e seus recursos por uma abordagem tecnológica sistema\n"
+"                Acesso estratégico a bens de consumo em vez de propriedade "
+"pessoal"
+
+#: templates/home.html:383
+msgid "Self-contained production systems / located within the same city"
+msgstr ""
+"Sistemas de produção independentes / localizados dentro da mesma cidade"
+
+#: templates/home.html:386
+msgid "The scientific method as governance methodology"
+msgstr "O método científico como metodologia de governança"
+
+#: templates/home.html:389
+msgid ""
+"Educational change of the population from the perspective WANT versus NEED"
+msgstr ""
+"Mudança educacional da população a partir da perspectiva DESEJO versus "
+"NECESSIDADE"
+
+#: templates/home.html:392
+msgid ""
+"Consequent extinction of aberrant socio-economic-cultural practices to the "
+"current state of the human race"
+msgstr ""
+"Consequente extinção de práticas sócio-econômico-culturais aberrantes para "
+"oestado atual da raça humana"
+
+#: templates/home.html:420
+msgid "Indexed related posts"
+msgstr "Indexação de posts relacionados"
+
+#: templates/home.html:427
+msgid "Zeitgeist - Moving Forward"
+msgstr "Zeitgeist - Moving Forward"
+
+#: templates/home.html:432
+msgid "The Venus Project - The Choice is Ours"
+msgstr "O Projeto Venus - A Escolha é Nossa"
+
+#: templates/home.html:437
+msgid "The biology of our best and worst selves"
+msgstr "A biologia dos nossos melhores e piores 'eus'"
+
+#: templates/home.html:442
+msgid "Addiction"
+msgstr "Vícios"
+
+#: templates/home.html:447
+msgid "Non-violent communication"
+msgstr "Comunicação Não Violenta"
+
+#: templates/home.html:452
+msgid "Is science \"just a theory\"?"
+msgstr "É a ciência \"apenas uma teoria\"?"
+
+#: templates/home.html:457
+msgid "Critical thinking"
+msgstr "Pensamento crítico"
+
+#: templates/home.html:462
+msgid "Religion"
+msgstr "Religião"
+
+#: templates/home.html:467
+msgid "Do you have an \"open mind\"?"
+msgstr "Você tem uma \"mente aberta\"?"
+
+#: templates/home.html:472
+msgid "Scientific method (1)"
+msgstr "Método científico (1)"
+
+#: templates/home.html:477
+msgid "Scientific method (2)"
+msgstr "Método científico (2)"
+
+#: templates/home.html:482
+msgid "Extra: Niemeyer meets Jacque Fresco"
+msgstr "Extra: Niemeyer e Jaque Fresco"
+
+#: templates/home.html:511
+msgid ""
+"TOTAL PROGRESS</h5>(feb/2015 - )\n"
+"          <p></p>\n"
+"          Summary of all phases combined"
+msgstr ""
+"PROGRESSO TOTAL</h5>(fev/2015 - )\n"
+"          <p></p>\n"
+"          Resumo de todas as fases combinadas"
+
+#: templates/home.html:520
+msgid ""
+"1) IDETRA Design</h5>(feb/2015 - oct/2015)\n"
+"          <p></p>\n"
+"          Research, discuss and design how we can reach a resource based "
+"economy using a strategy that can be implemented as quickly as possible, "
+"easily implemented by anyone in the world and have exponential capabilities, "
+"despite the resourses an individual has."
+msgstr ""
+"1) IDETRA Design</h5>(fef/2015 - out/2015)\n"
+"<p></p>\n"
+"Pesquisa, discussão e desenho de como podemos chegar a uma economia baseada "
+"em recursos utilizando uma estratégia que possa ser implementada o mais "
+"rápido possível, que seja facilmente implementável por qualquer pessoa no "
+"mundo e possua capacidades exponenciais, independente dos recursos que um "
+"indivíduo possua."
+
+#: templates/home.html:530
+msgid ""
+"2) Volunteers callout</h5>(jan/2016 - )\n"
+"          <p></p>\n"
+"          Make IDETRA public and connect with people who are willing to help "
+"make IDETRA a reality."
+msgstr ""
+"2) Chamada a voluntários</h5>(jan/2016 - )\n"
+"<p></p>\n"
+"Tornar o IDETRA público e conectar com pessoas que queiram ajudar o IDETRA a "
+"ser uma realidade."
+
+#: templates/home.html:539
+msgid ""
+"3) EDU syllabus</h5>(jun/2016 - jan/2018)\n"
+"          <p></p>\n"
+"          Research, discuss and design what we should inform people, how to "
+"make it inclusive and if we can make the entire process a light experience."
+msgstr ""
+"3) Programa de estudos EDU</h5>(jun/2016 - jan/2018)\n"
+"<p></p>\n"
+"Pesquisar, discutir e desenhar o que devemos informar às pesoas, como fazê-"
+"lo de forma inclusiva e se podemos tornar o curso uma experiência leve."
+
+#: templates/home.html:549
+msgid ""
+"4) EDU platform</h5>(aug/2017 - jul/2018)\n"
+"          <p></p>\n"
+"          Create the online patform that users from all over the world will "
+"be able to access the courses and educate themselves."
+msgstr ""
+"4) Plataforma EDU</h5>(ago/2017 - jul/2018)\n"
+"<p></p>\n"
+"\t\t\tCriar a plataforma online em que os usuários do mundo todo terão "
+"acesso aos cursos e poderão se educar."
+
+#: templates/home.html:558
+msgid ""
+"5) Research and development of tangible solutions</h5>(jan/2016 - )\n"
+"          <p></p>\n"
+"          Understand what are the possible demands people can have and "
+"validate solution for all tiers (from recicled materials adaptations to "
+"ready-to-install solutions)"
+msgstr ""
+"5) Pesquisa e desenvolvimento de soluções tangíveis</h5>(jan/2016 - )\n"
+"<p></p>\n"
+"Entender quais são as possíveis demandas que as pessoas possuem e validar "
+"soluções para todas as camadas (de adaptação de material reciclado até "
+"soluções prontas para o uso)"
+
+#: templates/home.html:567
+msgid ""
+"6) Prototype house</h5>(nov/2017 - )\n"
+"          <p></p>\n"
+"          Define, design and modify a house so IDETRA can validate it's "
+"final purpose and help people understand and engage more with the project."
+msgstr ""
+"6) Casa-protótipo</h5>(nov/2017 - )\n"
+"<p></p>\n"
+"Definir, desenhar e modificar uma casa para que o IDETRA possa validar sua "
+"meta final e ajude o público em geral a entender e engajar mais com o "
+"projeto."
+
+#: templates/home.html:576
+msgid ""
+"7) \"Graduated\" individuals (EDU)</h5>( - )\n"
+"          <p></p>\n"
+"          Have the first interested individuals finish the entire course"
+msgstr ""
+"7) Pessoas \"Formadas\" (EDU)</h5>( - )\n"
+"<p></p>\n"
+"Conseguir que os primeiros envolvidos finalizem o curso completo"
+
+#: templates/home.html:585
+msgid ""
+"8) Environment changes (individual or group)</h5>( - )\n"
+"          <p></p>\n"
+"          Follow up how we are helping people change themselves and the "
+"world around them."
+msgstr ""
+"8) Mudanças ambientais (individuais ou em grupo)</h5>( - )\n"
+"<p></p>\n"
+"Acompanhar como estamos ajudando pessoas a mudar elas mesmas e o mundo em "
+"torno delas."
+
+#: templates/home.html:594
+msgid ""
+"9) Critical mass and expansion</h5>( - )\n"
+"          <p></p>\n"
+"          Follow through all changes being made and improve processes so "
+"critical mass can be achieved in multiple places"
+msgstr ""
+"9) Massa crítica e expansão</h5>( - )\n"
+"<p></p>\n"
+"Acompanhar todas as alterações sendo realizadas e melhorar processos para "
+"que massas críticas possam ser alcançadas em múltiplos locais"
+
+#: templates/home.html:603
+msgid ""
+"10) RBE (Resource Based Economy)</h5>( - )\n"
+"          <p></p>\n"
+"          The ultimate goal. This may take several years or even "
+"generations, and time will tell if and how IDETRA and other initiatives with "
+"the same goal will work together. We are here to aggregate, not be an "
+"independent endeavor that pursues only one strategy. Contact us if you "
+"believe your project is aligned with ours so we can benefit from a joint "
+"venture."
+msgstr ""
+"10) EBR (Economia Baseada em Recursos)</h5>( - )\n"
+"<p></p>\n"
+"O objetivo final. Isto talvez tome vários anos ou até mesmo gerações, e o "
+"tempo dirá SE e COMO o IDETRA e outras iniciativas com os mesmos objetivos "
+"irão trabalhar juntas. Estamos aqui para agregar, não para sermos uma "
+"iniciativa independente que busca somente uma estratégia. Nos contacte se "
+"você acredita que o seu projeto é alinhado com o nosso para que possamos nos "
+"beneficiar mutuamente de uma parceria."
+
+#: templates/home.html:628
+msgid "TEAM"
+msgstr "TIME"
+
+#: templates/home.html:649 templates/profile.html:139
+#: templates/profile.html.py:168 website/models.py:39
+msgid "Collaborator"
+msgstr "Colaborador"
+
+#: templates/home.html:664 templates/profile.html:152
+#: templates/profile.html.py:180 website/models.py:42
+msgid "Program Manager"
+msgstr "Gerente de Programas"
+
+#: templates/home.html:669 templates/profile.html:156
+#: templates/profile.html.py:184 website/models.py:43
+msgid "General Coordinator"
+msgstr "Coordenador Geral"
+
+#: templates/home.html:677
+msgid "Projects:"
+msgstr "Projetos:"
+
+#: templates/home.html:682 templates/home.html.py:699
+msgid "Completion:"
+msgstr "Concluído:"
+
+#: templates/home.html:694
+msgid "Tasks:"
+msgstr "Atividades:"
+
+#: templates/home.html:736
+msgid "FAQ (Frequently Asked Questions)"
+msgstr "FAQ (Perguntas Frequentes)"
+
+#: templates/home.html:744
+msgid "Does The Venus Project knows about IDETRA?"
+msgstr "O Projeto Venus conhece o IDETRA?"
+
+#: templates/home.html:748
+msgid ""
+"Yes, but TVP does not support IDETRA in anyway. This was the agreement "
+"between both projects in 2015, so as not to cause problems of communication "
+"with the public and also so individuals who act on both initiatives do not "
+"cause interference in the progress of the work performed by each "
+"organization."
+msgstr ""
+"Sim, mas o TVP não apóia o IDETRA de nenhuma maneira. Este foi o acordo "
+"entre os dois projetos em 2015, para não causar problemas de comunicação com "
+"o público e também para que as pessoas que trabalham em ambas as iniciativas "
+"não causem interferência no progresso do trabalho realizado por cada "
+"organização."
+
+#: templates/home.html:753
+msgid "IDETRA and The Venus Project are related?"
+msgstr "IDETRA e o Projeto Venus estão relacionados?"
+
+#: templates/home.html:757
+msgid ""
+"IDETRA was founded by one of the POCs (point of contact) of The Venus "
+"Project in Brazil, but the connection between the two entities ends there. "
+"TVP (The Venus Project) does not directly support external initiatives that "
+"could lead to a Resource Based Economy (RBE), something that is completely "
+"understandable and justifiable considering not only past experiences of TVP "
+"in providing this type of support which have resulted in distortions of RBE "
+"concepts and serious problems (including legal ones) for TVP. In summary, "
+"both projects pursue very similar objectives but in different ways and need "
+"to act independently of one another."
+msgstr ""
+"O IDETRA foi fundado por um dos POCs (pontos de contato) do Projeto Venus no "
+"Brasil, mas a conexão entre as duas entidades termina aí. O TVP (The Venus "
+"Project) não apóia diretamente iniciativas externas que poderiam levar a uma "
+"economia baseada em recursos (EBR), algo que é completamente compreensível e "
+"justificável considerando não apenas as experiências passadas do TVP na "
+"prestação deste tipo de apoio que resultaram em distorções de noções e "
+"conceitos de EBR bem como problemas sérios (inclusive jurídicos) para o TVP. "
+"Em resumo, ambos os projetos perseguem objetivos muito semelhantes, mas de "
+"maneiras diferentes e precisam agir de forma independente um do outro."
+
+#: templates/home.html:762
+msgid "How can I contact IDETRA directly?"
+msgstr "Como posso entrar em contato com o IDETRA diretamente?"
+
+#: templates/home.html:766
+msgid "You can contact us on the e-mail"
+msgstr "Você pode nos contactar através do e-mail"
+
+#: templates/lesson.html:42
+msgid "Description"
+msgstr "Descrição"
+
+#: templates/lesson.html:45
+msgid "Transcription"
+msgstr "Transcrição"
+
+#: templates/lesson.html:76
+msgid "QUIZ"
+msgstr "QUESTIONÁRIO"
+
+#: templates/lesson.html:81
+msgid "Congratulations coming this far!"
+msgstr "Parabéns por chegar até aqui!"
+
+#: templates/lesson.html:81
+msgid "This is your final quiz for this course."
+msgstr "Este é o questionário final deste curso."
+
+#: templates/lesson.html:81
+msgid "Questions will also relate to all previous lessons."
+msgstr "Perguntas irão referenciar lições anteriores."
+
+#: templates/lesson.html:91 templates/lesson.html.py:96
+#: templates/lesson.html:100
+msgid "(You have "
+msgstr "(Você possui "
+
+#: templates/lesson.html:91 templates/lesson.html.py:96
+msgid " attempts left in 24h)"
+msgstr " tentativas em 24h)"
+
+#: templates/lesson.html:96 templates/lesson.html.py:100
+msgid "Check the hints in red below and mark all answers again"
+msgstr ""
+"Verifique as dicas em vermelho abaixo e marque todas as respostas novamente"
+
+#: templates/lesson.html:100
+msgid " attempt left in 24h)"
+msgstr " tentativa em 24h)"
+
+#: templates/lesson.html:104
+msgid "You don't have any more attempts left. <br>Please try again in 24h"
+msgstr ""
+"Você não possui mais nenhuma tentativa. <br>Por favor, tente novamente em 24h"
+
+#: templates/lesson.html:104
+msgid "Check the hints in red below and consider watching the video again"
+msgstr ""
+"Verifique as dicas em vermelho abaixo e considere assistir ao vídeo novamente"
+
+#: templates/lesson.html:139
+msgid "Submit Quiz"
+msgstr "Enviar Questionário"
+
+#: templates/lesson.html:147
+msgid "Quiz Successfully Completed!"
+msgstr "Questionário Concluído com Sucesso!"
+
+#: templates/profile.html:33
+msgid "Your user name"
+msgstr "Seu nome de usuário"
+
+#: templates/profile.html:37
+msgid "Your e-mail"
+msgstr "Seu e-mail"
+
+#: templates/profile.html:42
+msgid "Your first name"
+msgstr "Seu primeiro nome"
+
+#: templates/profile.html:46 website/models.py:23
+msgid "Your middle name(s)"
+msgstr "Seu(s) nome(s) do meio"
+
+#: templates/profile.html:50
+msgid "Your lastname"
+msgstr "Seu último nome"
+
+#: templates/profile.html:54
+msgid "Your cell phone"
+msgstr "Seu celular"
+
+#: templates/profile.html:69
+msgid "Edu Progress"
+msgstr "Progresso EDU"
+
+#: templates/profile.html:79
+msgid "Edu completion"
+msgstr "EDU Completo"
+
+#: templates/profile.html:82 templates/profile.html.py:104
+#: templates/profile.html:125
+msgid "FINISHED!"
+msgstr "FINALIZADO!"
+
+#: templates/profile.html:84 templates/profile.html.py:106
+#: templates/profile.html:127
+msgid "Not finished"
+msgstr "Não finalizado"
+
+#: templates/profile.html:91
+msgid "Edu executive progress"
+msgstr "Progresso 'Edu executive'"
+
+#: templates/profile.html:101
+msgid "Edu executive completion"
+msgstr "'Edu executive' completo"
+
+#: templates/profile.html:112
+msgid "Edu P.M. progress"
+msgstr "Progresso 'P.M. Edu'"
+
+#: templates/profile.html:122
+msgid "Edu P.M. completion"
+msgstr "'Edu P.M.' completo"
+
+#: templates/profile.html:134
+msgid "Your role(s) in IDETRA"
+msgstr "Seu(s) Papel(éis) no IDETRA"
+
+#: templates/profile.html:163
+msgid "Learn more..."
+msgstr "Saiba mais..."
+
+#: templates/profile.html:169
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tIt's the first role you get when joining the team. You "
+"can help us spread the word, see what we're working on and process available "
+"tasks on active projects by accessing the C.I. platform.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tÉ o primeiro papel que você pode desempenhar quando se "
+"junta à equipe. Você pode nos ajudar divulgando o IDETRA, ver em que estamos "
+"trabalhando e processar tarefas disponíveis em projetos ativos acessando a "
+"plataforma C.I.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+
+#: templates/profile.html:173
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tYou are required to finish some courses on Edu that "
+"are flagged for this role. As an executive, you will be asked to participate "
+"in meetings with the team to discuss and execute projects you are willing to "
+"join. Each project has a Project Manager and a volunteer team.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tÉ requerido que você termine alguns cursos no Edu que "
+"estão marcados para este papel. Como executivo, você será solicitado a "
+"participar de reuniões com a equipe para discutir e executar projetos que "
+"você está disposto a participar. Cada projeto tem um gerente de projeto e "
+"uma equipe de voluntários.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+
+#: templates/profile.html:177
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tAfter finishing the Project Management courses you "
+"will be interviewed by our General Coordinators to check your time "
+"availability and the extent of your abilities. This role consumes more time "
+"than the previous ones and requires a certain degree of commitment. Project "
+"Managers are not bosses. They are communicators and facilitators so the team "
+"can execute a project. You are expected to have done some work within  "
+"IDETRA's projects, have met some members of the team and know how we operate "
+"internally.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tDepois de terminar os cursos de Gerenciamento de "
+"Projetos, você será entrevistado pelos nossos Coordenadores Gerais para "
+"verificar sua disponibilidade de tempo e a extensão de suas habilidades. "
+"Este papel consome mais tempo do que os anteriores e requer um certo grau de "
+"comprometimento. Gerentes de Projetos não são chefes. Eles são comunicadores "
+"e facilitadores para que a equipe possa executar um projeto. Espera-se que "
+"você tenha feito algum trabalho dentro de projetos do IDETRA, conheça alguns "
+"membros da equipe e saiba como operamos internamente.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+
+#: templates/profile.html:181
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tA Program Manager consolidates various projects so "
+"they can mutually benefit from their isolated endeavors. You will be "
+"required to regularly check how projects are going with Project Managers and "
+"help General Coordinators design projects and changes that are aligned with "
+"IDETRA's goals.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tUm gerente de programa consolida diversos projetos "
+"para que eles podem se beneficiar mutuamente de seus esforços isolados. Você "
+"será requisitado a verificar regularmente como os projetos estão indo com os "
+"respectivos Gerentes de Projetos e ajudar os Coordenadores Gerais a projetar "
+"projetos e mudanças que estejam alinhados com os objetivos do IDETRA.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+
+#: templates/profile.html:185
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tWe work on all areas: from executing tasks inside "
+"projects to connect with other external and international projects so IDETRA "
+"keeps updated and get the required help. We answer questions on digital "
+"social channels, give talks, design and redesign the inner workings of "
+"IDETRA with the help of all collaborators involved so we all can live in a "
+"better environment, with better values and communication skills.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t\tTrabalhamos em todas as áreas: desde a execução de "
+"tarefas dentro de projetos até conectar com outras iniciativas externas e "
+"internacionais para que o IDETRA mantém-se atualizado e que receba a ajuda "
+"necessária. Respondemos perguntas em canais digitais, realizamos palestras, "
+"projetamos e redesenhamos o funcionamento interno do IDETRA com a ajuda de "
+"todos os colaboradores envolvidos para que todos possamos viver em um "
+"ambiente melhor, com melhores valores e habilidades de comunicação.\n"
+"\t\t\t\t\t\t\t\t\t\t\t"
+
+#: templates/profile.html:209
+msgid "<h5>Bio in en.</h5>(public)"
+msgstr "<h5>Bio em en.</h5>(público)"
+
+#: templates/profile.html:210
+msgid "<h5>Bio in ptBR.</h5>(public)"
+msgstr "<h5>Bio em ptBR.</h5>(público)"
+
+#: templates/profile.html:235
+msgid "Skill's Tokens: Coming soon..."
+msgstr "Tokens de habilidades: Em Breve..."
+
+#: templates/profile.html:251
+msgid ""
+"<h5>\"I want to be part of IDETRA\"</h5><h6>Current status: \"Yes, I am "
+"helping!\"</h6>"
+msgstr ""
+"<h5>\"Eu quero fazer parte do IDETRA\"</h5><h6>Status atual: \"Sim, eu estou "
+"ajudando!\"</h6>"
+
+#: templates/profile.html:254
+msgid ""
+"<h5>\"I want to be part of IDETRA\"</h5><h6>Current status: \"Not right now"
+"\"</h6>(If you are interested, click on \"Edit Profile\" to integrate our "
+"team and help in projects)"
+msgstr ""
+"<h5>\"Eu quero fazer parte do IDETRA\"</h5><h6>Status atual: \"Não nesse "
+"momento\"</h6>(Se você estiver interessado, clique em \"Editar Perfil\" para "
+"integrar o nosso time e ajudar em projetos)"
+
+#: templates/profile.html:270
+msgid "Edit Profile"
+msgstr "Editar Perfil"
+
+#: templates/profile.html:279
+msgid "Make all necessary changes and click \"Save\" at the end of this page"
+msgstr ""
+"Realize todas as alterações necessárias e clique em \"Salvar\" ao final "
+"desta página"
+
+#: templates/profile.html:289
+msgid "I want to help IDETRA"
+msgstr "Eu quero ajudar o IDETRA"
+
+#: templates/profile.html:301
+msgid "Save"
+msgstr "Salvar"
+
+#: templates/profile.html:315
+msgid "Change Password"
+msgstr "Mudar Senha"
+
+#: templates/registration/activate.html:7
+msgid "Account activation failed"
+msgstr "Falha na ativação da conta"
+
+#: templates/registration/activate.html:9
+msgid "Please try again or contact us at idetra@idetra.org"
+msgstr "Por favor tente novamente ou contacte-nos em idetra@idetra.org"
+
+#: templates/registration/activation_complete.html:6
+msgid "Your account is now activated."
+msgstr "Sua conta foi ativada."
+
+#: templates/registration/activation_complete.html:8
+msgid "Check your unlocked options at right corner of our website menu."
+msgstr ""
+"Verifique suas opções desbloqueadas no canto direito do menu do nosso site."
+
+#: templates/registration/activation_email.html:6
+#: templates/registration/activation_email.txt:2
+#: templates/registration/activation_email_subject.txt:2
+msgid "Welcome to IDETRA!"
+msgstr "Bem vind@ ao IDETRA!"
+
+#: templates/registration/activation_email.html:11
+msgid ""
+"\n"
+"    This e-mail was registered on the website idetra.org\n"
+"    "
+msgstr ""
+"\n"
+"    Este e-mail foi cadastrado no site idetra.org\n"
+"    "
+
+#: templates/registration/activation_email.html:16
+msgid ""
+"\n"
+"    Click on the link below to activate your account:\n"
+"    "
+msgstr ""
+"\n"
+"    Clique no link abaixo para ativar sua conta:\n"
+"    "
+
+#: templates/registration/activation_email.html:27
+#, python-format
+msgid ""
+"\n"
+"    This link is valid for %(expiration_days)s days.\n"
+"    "
+msgstr ""
+"\n"
+"    Este link é válido por %(expiration_days)s dias.\n"
+"    "
+
+#: templates/registration/activation_email.html:33
+msgid ""
+"\n"
+"    Please ignore this e-mail if you did not request access to idetra.org. "
+"Your e-mail will be automatically removed from our records.\n"
+"    "
+msgstr ""
+"\n"
+"    Por favor ignore este e-mail caso você não tenha requisitado acesso ao "
+"site idetra.org. Seu e-mail será automaticamente removido dos nossos "
+"registros.\n"
+"    "
+
+#: templates/registration/activation_email.txt:5
+msgid "This e-mail was registered on the website idetra.org"
+msgstr "Este e-mail foi registrado no site idetra.org"
+
+#: templates/registration/activation_email.txt:7
+msgid "Click on the link below to activate your account:"
+msgstr "Clique no link abaixo para ativar sua conta:"
+
+#: templates/registration/activation_email.txt:10
+#, python-format
+msgid ""
+"\n"
+"\n"
+"This link is valid for %(expiration_days)s days.\n"
+"\n"
+"\n"
+"Please ignore this e-mail if you did not request access to idetra.org. Your "
+"e-mail will be automatically removed from our records.\n"
+msgstr ""
+"\n"
+"\n"
+"Este link é válido por %(expiration_days)s dias.\n"
+"\n"
+"\n"
+"Por favor ignore este e-mail caso você nÃo tenha requisitado acesso ao site "
+"idetra.org. Seu e-mail sera automaticamente removido dos nossos registros.\n"
+
+#: templates/registration/login.html:10
+#: templates/registration/password_reset_complete.html:9
+msgid "Log in"
+msgstr "Iniciar sessão"
+
+#: templates/registration/login.html:14
+msgid "Forgot you password"
+msgstr "Esqueceu sua senha?"
+
+#: templates/registration/login.html:14
+msgid "Reset it"
+msgstr "Redefinir"
+
+#: templates/registration/login.html:15
+msgid "Not a member?"
+msgstr "Não é um membro ainda?"
+
+#: templates/registration/logout.html:7
+msgid "You were logged out."
+msgstr "Você foi desconectado"
+
+#: templates/registration/password_change_done.html:7
+msgid "Your password was successfully updated."
+msgstr "Sua senha foi atualizada com sucesso."
+
+#: templates/registration/password_change_form.html:10
+#: templates/registration/password_reset_form.html:7
+msgid "Password change"
+msgstr "Mudança de senha"
+
+#: templates/registration/password_change_form.html:23
+#: templates/registration/password_reset_confirm.html:12
+#: templates/registration/password_reset_form.html:13
+#: templates/registration/registration_form.html:21
+msgid "Submit"
+msgstr "Enviar"
+
+#: templates/registration/password_reset_complete.html:7
+msgid "Password reset successfull."
+msgstr "Senha redefinida com sucesso."
+
+#: templates/registration/password_reset_confirm.html:17
+msgid ""
+"Password reset failed. Please try again or contact us at idetra@idetra.org"
+msgstr ""
+"A redefinição da senha falhou. Por favor, tente novamente ou entre em "
+"contato conosco: idetra@idetra.org"
+
+#: templates/registration/password_reset_done.html:7
+msgid "An e-mail with password reset instructions has been sent to you."
+msgstr ""
+"Um e-mail com instruções de redefinição de senha foi enviado para você."
+
+#: templates/registration/password_reset_done.html:9
+#: templates/registration/registration_complete.html:9
+msgid "Please verify your e-mail."
+msgstr "Por favor, verifique seu e-mail."
+
+#: templates/registration/password_reset_done.html:11
+#: templates/registration/registration_complete.html:11
+msgid "Check you spam folder in case your e-mail did not arrive."
+msgstr "Cheque sua caixa de spam caso seu e-mail não tenha chegado."
+
+#: templates/registration/password_reset_email.html:2
+msgid "IDETRA - Password reset"
+msgstr "IDETRA - Redefinição de Senha"
+
+#: templates/registration/registration_closed.html:7
+msgid "Registration is currently closed."
+msgstr "O cadastramento está suspenso no momento."
+
+#: templates/registration/registration_complete.html:7
+msgid "You are now registered. An activation email was send."
+msgstr "Você foi cadastrado. Um email de ativação foi enviado."
+
+#: templates/registration/registration_form.html:11
+msgid "Registration"
+msgstr "Cadastro"
+
+#: website/models.py:14
+msgid "Yes"
+msgstr "Sim"
+
+#: website/models.py:14
+msgid "No"
+msgstr "Não"
+
+#: website/models.py:21
+msgid "Your Name"
+msgstr "Seu Nome"
+
+#: website/models.py:22
+msgid "Your last name"
+msgstr "Seu último nome"
+
+#: website/models.py:24
+msgid "Upload a profile picture"
+msgstr "Faça o upload de uma imagem de perfil"
+
+#: website/models.py:31
+msgid ""
+"Phone number must be entered in the format: '+999999999'. Up to 17 digits "
+"allowed."
+msgstr ""
+"O celular deve ter o seguinte formato: '+999999999'. Até 17 digitos aceitos."
+
+#: website/models.py:32
+msgid "Use the format +999999999 - Up to 17 digits allowed."
+msgstr "Use o formato +999999999 - Até 17 dígitos aceitos"
+
+#: website/models.py:33
+msgid ""
+"Write a little about yourself in portuguese (public information - 500 "
+"characters max)"
+msgstr ""
+"Escreva um pouco sobre você em português (informação pública - 500 "
+"caracteres no máximo)"
+
+#: website/models.py:34
+msgid ""
+"Write a little about yourself in english (public information - 500 "
+"characters max)"
+msgstr ""
+"Escreva um pouco sobre você em inglês (informação pública - 500 caracteres "
+"no máximo)"
+
+#: website/models.py:35
+msgid "Edu Complete"
+msgstr "Edu Completo"
+
+#: website/models.py:36
+msgid "Edu Exec Complete"
+msgstr "Edu Exec Completo"
+
+#: website/models.py:37
+msgid "Edu PM Complete"
+msgstr "Edu GP Completo"

@@ -1,0 +1,772 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container" id="main-presentation">
+  <div class="row">
+    <div class='col-md-6'>
+      <h2>
+        {% trans 'Initiative for<br>Development to a<br>Transition' %}
+      </h2>
+      <br><br><br>
+      <p class="lead">{% trans 'Develop a better world...<br>...by improving yourself and your own environment' %}
+      </p>
+
+    </div>
+    <div class='col-md-6'>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" style="max-width:480px; max-height:270px; border: 1px solid black;  " src="https://www.youtube.com/embed/5bTl4QhsT8Y?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen>
+
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- title model -->
+<div class="container-fluid" id="titlecontainer">
+  <div class="row"><a name="objectives"></a>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-auto" id="titlename">
+      <h3 style="margin-left: 7px;">{% trans 'OBJECTIVES' %}</h3>
+    </div>
+  </div>
+</div>
+<!-- end title model -->
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <center>
+    <i>{% blocktrans %} ATTENTION:
+      <br><br>
+      We are currently restructuring some of our systems, tools and processes (including this website).
+      <br><br>
+      This overhaul is programmed to end by August, 2018.{% endblocktrans %}
+    </i>
+    <br>
+  </center>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<br><br>
+<strong>IDETRA</strong> {% trans '(Initiative for Development to a Transition) is a volunteer cooperative effort between generalists and specialists in various areas of knowledge to:' %}
+<br><br>
+<ul>
+  <li>
+    {% blocktrans %} Create and maintain a free educational platform focused on relevant knowledge that affects how we perceive and interact with ourselves and our environment. Non-violent communication, scientific method and applied psychology are some of the topics approached so you can improve your values and day to day interactions in a saner and healthier way for you, those around you and your immediate environment.{% endblocktrans %}
+  </li><br>
+  <li>
+    {% blocktrans %}Research, develop and deliver solutions for you to change your environment (house, apartment, building, block, neighborhood, city, communal city, country) with focus on sustainability, recycling and automation.{% endblocktrans %}
+  </li><br>
+  <li>
+    {% blocktrans %}Promote a network of people around the globe that can help each other improve themselves and our environment.{% endblocktrans %}
+  </li>
+</ul>
+
+<br><br>
+<center>
+  <!-- START MODAL -->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#summary" style="margin: 2px 0px 2px 0px;">
+    {% trans 'Summary' %}
+  </button>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#+details" style="margin: 2px 0px 2px 0px;">
+    {% trans '+Details' %}
+  </button>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#how" style="margin: 2px 0px 2px 0px;">
+    {% trans '"How?"' %}
+  </button>
+    <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#purpose" style="margin: 2px 0px 2px 0px;">
+    {% trans '"Why?"' %}
+  </button>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#extracontent" style="margin: 2px 0px 2px 0px;">
+    {% trans 'Start Here' %}
+  </button>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#executionphases" style="margin: 2px 0px 2px 0px;">
+    {% trans 'Phases' %}
+  </button>
+  <br><br>
+  <!-- Button trigger modal -->
+  <button type="button" style="border: 1px solid #000000; margin: 2px 0px 2px 0px;" class="btn btn-warning" data-toggle="modal" data-target="#iwanttohelp">
+    {% trans 'I want to help' %}
+  </button>
+</center>
+<!-- Modal -->
+<div class="modal fade" id="summary" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">{% trans 'Summary' %}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="extrainfo">
+          <!-- CONTENT -->
+
+
+          <p>{% blocktrans %}Let's go through an explanation step by step:{% endblocktrans %}</p>
+          <h6>{% blocktrans %}1 - If you can properly understand how something works, one thing you can do is modify it.{% endblocktrans %}</h6>
+          <p>
+            {% blocktrans %}Anything that can be modified, can be used to better suit your needs while maintaining a high level of balance between you, other people and the general environment.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}In order to achieve this, you should get information regarding how your biological and psychological machinery works, how your social interactions function and the dynamics of your environment.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Those abilities can empower you to revise and redesign your values and your culture.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}This is the first change we encourage people to make.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}But you will face limitations regarding the tangible world around you.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}In other words: You changed yourself, but not the tangible things that are around you.{% endblocktrans %} 
+          </p>
+          <h6>{% blocktrans %}2 - That is why after you go through all the courses, you get access to detailed information on how you can change the world around you. This is centered (but not limited) to your home.{% endblocktrans %}</h6>
+          <p>
+            {% blocktrans %}You will be able to know how to produce your own food, water and electricity, among other things.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}These solutions are broken down in various tiers, so people who have no resources can recycle materials and generate the proposed solutions.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}People who have enough resources also will have knowledge on how to buy or modify and implement ready-to-use solutions to attend their demands.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}All solutions works in various scales (for instance, they work on small apartments and big houses) and are automation oriented.{% endblocktrans %} 
+          </p>
+          <h6>{% blocktrans %}3 - But why you should only focus on yourself when we know the world needs such solutions?{% endblocktrans %}</h6>
+          <p>
+            {% blocktrans %}Because it is very difficult for one person to change more than what they can control. The easiest possible path to improve the world is for each individual to control and modify themselves and where they live.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Also, even if you agree with everything stated here, you should not try to directly convince anyone. For reasons too complex to explain here, this way of changing people simply doesn't work.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}People change when they see the benefits of change and can measure, analyze and relate to those changes.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}For example:{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}If you can save money on food, water, electricity and other things, you are improving your life. If you can interact better with the world around you by new and balanced values, you can influence other people, so they can at least be curious about how you are able to live in such a way.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}If someone close to you wants those same benefits, you can tell them how you managed to do it and even advise them to go through the same process you did here with us.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Consider that you positively influenced someone to undergo the EDU process.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Now, there are two people that changed and aligned behaviours and their own environment to improve the way they live.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Extrapolating this to a critical mass scale, if your neighbours undergo the same understanding, you can work cooperatively and change the environment you all share. For example, a building could have a vertical automated farm with solar and wind electricity production that can abundantly provide to all apartments.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Since our platform is free and online, this process can happen simultaneously anywhere in the world.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}If we keep the extrapolation of this example, we can eventually make changes that change the entire world.{% endblocktrans %}
+          </p>
+
+        </div>
+
+        <!-- END CONTENT -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
+
+<!-- START MODAL -->
+
+<!-- Modal -->
+<div class="modal fade" id="+details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">{% trans '+Details' %}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="extrainfo">
+          <!-- CONTENT -->
+          <p>{% blocktrans %}Ok, so let's detail this endeavor even more:{% endblocktrans %}</p>
+          <p>
+            {% blocktrans %}Performing initiatives of self-improvement and physical implementations, such as housing or even the construction of a city with all these aspects in mind, do not reflect a real transition: it is necessary that the culture and values of a particular individual are aligned with others so the acceptance of immutable facts, limitations of the planet's resources and understanding the impact of distorted social values that has been perpetuated for generations are recognize as well as the human capacity to shape the conditions in which it exists, without extinguishing their cultural expressions or co-opt with something at the expense of their welfare.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Therefore, IDETRA proposition is that all individuals are properly informed about the aspects that surround them and perform in their current values, a behavioral transition. To achieve this goal, a free online education system containing the information necessary for this first stage to be completed will be available. At the end of the educational iteration, the participant is granted access to sets of transactional projects customizable to his reality. Taking into account that it is possible to develop and implement such projects with very few resources, they are designed in a modular way as previously stated.{% endblocktrans %}
+          </p>
+          <h6>{% blocktrans %}From our standpoint, if you can create automated equipments and perform maintenance of those equipments using waste and recycled materials, any other instance that could be achieved with more resources is easily conceivable.{% endblocktrans %}
+          </h6>
+          <p>
+            {% blocktrans %}Regarding limitations to this approach, technology and planetary capacities are usually under measured. Consider the following illustrative examples:{% endblocktrans %}
+          </p>
+          <li>
+            {% blocktrans %}The human being is able to create a high-tech closed ecosystem and live in a hostile environment such as outer space. (In other words: we have the technology to accomplish extraordinary feats){% endblocktrans %}
+          </li>
+          <li>
+            {% blocktrans %}If it rained gold for two days, all the people would try to gather the maximum amount of such mineral at home. If it continued raining every day for a year, they would create mechanisms to get rid of the nuisance. (In other words: the real problem is not the use of resources but the perception of the current value things around us have. This is intrinsic to any culture){% endblocktrans %}
+          </li>
+          <li>
+            {% blocktrans %}Considering an area the size of Australia (7,692,024 km²) and dividing it by the number of human inhabitants of the planet (round it up to 8 billion people), every baby, child, man, woman and elderly could possess for their own use, an area of 961.50 m², leaving the rest of the world for other things, such as agriculture, recreation, ecosystem not altered by man, etc. (In other words: we have more than enough territorial resources left to implement what is necessary for several generations){% endblocktrans %}
+          </li><li>
+            {% blocktrans %}In the 1960's, when the United States and the Soviet Union where on a space race, pens that write in zero gravity were developed at a cost of $ 1 million dolars and acquired by NASA so astronauts could write in space missions. The Soviet Union used pencils that could do pretty much the same type of work. Although the real history has more details, including the fact that USSR also purchased such pens later, this example still proves a point. (In other words: you can solve problems and overcome adversity in a highly technological and practical way, with a low commitment of money and very few resources){% endblocktrans %}
+          </li>
+          <h6>
+            {% blocktrans %}We call 'transition' the effort made by every human being to improve themselves and the environment up to a point where the root causes of all our problems are surpassed.{% endblocktrans %}
+          </h6>
+          <p>
+            {% blocktrans %}It is possible to say that to achieve such transition, we have to drastically change our values, the way we behave, how we live and how we relate among ourselves and with the environment. However, these changes are intended not to bring limitations to the welfare, the environment or the human expression of individuality. The plentifulness of resources and to change the governance matrix for a technological model have the characteristics of a necessary complementation to this expected behavioral change.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}We understand that if we don't undergo this transition, we will continue on the harmful course of a global detrimental reality we face today. Therefore, we propose starting iterating a new social, economic and cultural model, gradually supplanting the previous one.{% endblocktrans %}
+          </p>
+          
+
+          <!-- END CONTENT -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
+
+<!-- START MODAL -->
+
+<!-- Modal -->
+<div class="modal fade" id="how" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">{% trans 'How' %}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="extrainfo">
+          <!-- CONTENT -->
+
+          <h6>{% blocktrans %}But how can we do this?{% endblocktrans %}</h6>
+          <p>
+            {% blocktrans %}Everything starts with the educational platform. After you register and log in this website, you will have access to the EDU platform. There, you will find courses that are designed to inform you about the mechanics behind how you behave, how you interact with your general environment and how both of them work.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Imagine you could change your perception and values in such a way that is easy to avoid conflicts with family members, co-workers and strangers. That you can be healthier by doing a basic analysis of what you are eating and the exercise you can start doing without the need of relying on expensive solutions, biased products and services or poor advice.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Imagine that you can better understand where most of the behavior you want to change comes from, and have the tools to change them.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}This is what we are offering you.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}One important aspect behind all this is to inform you of facts and not try to indoctrinate you. We give you information and rely on it to be enough for all those changes to happen.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}In other words: We are not trying to convince you of anything. Get the information we provide, understand it and arrive at your own conclusions.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}To facilitate the entire process, all content is framed in a gamified fashion. This way, it is easier for you to go through all the material and makes all the knowledge actionable.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}If you find difficult to keep up with the courses and quizzes because you don't have the basic knowledge required to understand the subject addressed, we indicate third-party courses listed on each subject.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}If you want to know more about a specific subject, we provide links for those as well.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}There is also a discussion forum at the end of the page in each lesson and our social network of people who went through the entire course that can help you directly.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}For further clarifications on what the EDU platform is and how does it work, we encourage you to register and check its contents for yourself. It's free.{% endblocktrans %}
+          </p>
+          
+          <!-- END CONTENT -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
+
+<!-- START MODAL -->
+
+<!-- Modal -->
+<div class="modal fade" id="iwanttohelp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">{% trans 'I want to help' %}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="extrainfo">
+          <!-- CONTENT -->
+          <h6>{% blocktrans %}Loved it! I want to help IDETRA: How can I do it?{% endblocktrans %}</h6>
+          <p>
+            {% blocktrans %}If you want to help us, after your registration, opt in under "Profile" > "Edit Profile" and you will have access to the C.I. (Center of Intelligence) platform.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}There, we manage all projects that comprise IDETRA.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}First, you will only gain an execution-level access to it (so you can help by doing things that are required).{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}After you go through some specific courses on EDU, you are granted higher level access to projects and can work closer to the teams.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}This 'leveling' process is necessary so we can be more effective in our internal projects.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}For more information, please keep checking the rest of the website.{% endblocktrans %}
+          </p>
+          <!-- END CONTENT -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL -->
+
+<!-- START MODAL -->
+
+<!-- Modal -->
+<div class="modal fade" id="purpose" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">{% trans 'Why' %}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="extrainfo">
+          <!-- CONTENT -->
+
+          <h6>{% blocktrans %}On a final note,{% endblocktrans %}</h6>
+          <p>{% blocktrans %}we would like to state what is the core motivator of this entire endeavour:{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Consider that today, modern society has access to highly advanced technology and can make available food, clothing, housing and medical care, upgrade our educational system and develop a limitless supply of renewable and non-polluting goods and services.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Through the provision of a projected efficiently economy, everyone could enjoy a very high standard of living with all the amenities of a highly technological society. Instead of money, we could easily produce all the necessities of life and provide a high standard of living for everyone, unlike an economy based on scarcity (such as capitalism, socialism, communism, marxism, etc.){% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Our proposal states that the planet's resources cannot be linked to human labor, much less to repetitive work processes that can be easily performed by machines (including machine maintenance){% endblocktrans %}
+          </p><p>
+            {% blocktrans %}All the resources are held as the common heritage of all the people of planet Earth, in order to transcend over time the need for artificial boundaries that separate people and unifying our civilization. We emphasize that this approach to global governance has nothing in common with the present aims of the elite to form a world government headed by large corporations, with the majority of the global population subject to them. Our vision of globalization encourages all people on the planet to be the best they can, not to live in abject submission to a corporate governance.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}This proposal not only contributes to the well-being of people but also provides the resources and information necessary for an individual to participate in any area of competency. Success would be measured by the satisfaction of individual activities, rather than the acquisition of wealth, property and power.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}At the moment, we have enough material resources to provide a high standard of living for all inhabitants of the earth. Only when the population exceeds the tolerable capacity of a site is that problems such as greed, crime and violence emerge. To overcome this shortage, most of the crimes and even the prisons of today's society would no longer be necessary. We understand that this is an extremely difficult scenario to envision but these notions are well grounded in studies and experimentations. It would be possible to use technology to overcome shortages, through the application of renewable energy sources, computerization and automation of production, inventory and distribution, design of safe, energy-efficient cities, with advanced transportation systems, providing universal health care and more relevant education, and above all, generating a new incentive system based on human and environmental concern. You can extrapolate that aspect by changing certain behaviors that are considered standard by the current culture or even said instinctual, combined with the use of automated machines to replace the repetitive work and resource management (extraction, production, testing, measurement, distribution and recycling), we already have the ability to live by these precepts, extinguishing inequalities and factors that generate them (competition, monetary system, negotiations archaic as law enforcement, treatment of diseases, rehabilitation of offenders, etc.). Many people believe that today there is a lot of technology in the world, and this technology is the major cause of our environmental pollution. It's not the case. The abuse and misuse of technology that is what should be our main concerns. In a more humane civilization, instead of machines replacing people on a harmful perspective, they would reduce the workday, increase the availability of goods and services, and prolong the rest period. If we use new technologies to complement each and every repetitive work, raising the standard of living of all people, the introduction of technological machines will no longer be any kind of threat.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}A world based on such principles would also involve the effort to develop new energy sources, clean, renewable and geothermal, controlled fusion, solar, photovoltaic, wind, wave and tidal. We would finally be able to produce energy in unlimited quantity that could propel civilization for thousands of years. An initiative such as this should also commit to re-design our cities, transportation systems and industrial plants, to be efficient, clean and conveniently meet the needs of all people.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}With automated inventory on a global scale, we can maintain a balance between production and distribution. Only nutritious and healthy food would be available and planned obsolescence would be unnecessary and non-existent in such reality. By getting rid of the need for professions based on the monetary system, such as lawyers, bankers, insurance salesmen, marketing and advertising teams, vendors and stockbrokers, a considerable amount of waste will be eliminated. A good amount of energy would also be saved by eliminating the duplication of competitive products such as tools, cutlery, pots, pans and vacuum cleaners. It is good to choose. But instead of hundreds of different manufacturing plants and all the paperwork and personnel required to make similar products, only some of the highest quality would be needed to serve the entire population. Our only shortage is the lack of creative thought and intelligence to do this management for ourselves and criticism limited to the belief in our leaders to solve these and other problems. The most valuable untapped resource today is human ingenuity. With the elimination of debt, fear of losing employment and other ills plaguing our society, we can re-draw our values. Such security in knowing that your needs will always be met, combined with teaching how to relate to the planet and its limitations as well as with other human beings in a much more meaningful way, considerably reduce both mental and physical stress leaving us free to explore and develop our abilities and potential. If the idea of eliminating money bothers you, consider this: If a group of people with gold, diamonds and money was trapped on an island with no resources such as food, clean water and air, such wealth would be irrelevant to their survival. Only when resources are scarce is that money can be used to control the distribution. You can not, for example, sell the air we breathe or the water that flows from the abundant source of a mountain. Although the air and water are valuable when plentiful, they can not be sold. Counterpoint, if it rained gold every day of the year, people would no longer value it as scarce and expensive and would then seek solutions to control the aberrant weather event that is disrupting their lives, generating mechanisms in which gold rain would not negatively influence their daily lives. Money is only important in a society when certain resources for survival must be rationed and the people accept money as medium to exchange scarce resources. Money is a social convention, an agreement, so to speak. It is not a natural resource nor does it represent one. It is not necessary for survival unless we have been conditioned to accept it as such. Politics, beliefs and pseudoscience do not have guidelines for a management system in which human well-being is the driving force of its execution. We propose a model that puts nature and its laws, fauna and flora, together with the human being in the center of the whole purpose of civilization.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}For this initiative to work, it is primarily necessary that entrenched concepts of our society are criticized for each individual in their own reality, especially the duality 'what I want' versus 'what I need', where the inexorable conclusion is that a system can produce and supply what you need - when you need it - and unnecessary and cyclical goods and processes can be dramatically reduced, generating plenty of production and distribution.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Thus, inequality is taken out of the human civilization equation. Scientific studies show that societies produce more and develop better their creativity when the population is free and widely attended (sometimes at no cost), and fully embedded with factors related to survival and well-being, excluding socio-economic and cultural distortions that generate most psychosis, prejudices, phobias and current diseases. You must also separate initiatives related to transition to such a civilization from a civilization that lives in such a format. While the transition will need to encompass cultural and human practical differences that despite harmful are still considered 'normal' for the happiness and well being, the generations that are created in a resource-based economy will not know or live these old detrimental concepts and only then will the practice of that today is extrapolated as the best possible future of humanity. In the long term, this project aims to be the core drives from other cities to be replicated and that, consequently, this group of cities take such a proportion that they are no longer needed financial resources (donations, external production, exchange / barter and marketing of surplus production) intrinsically linked to the current state transition to a new technological socio-culture redesign. It is considered also that this transformation can occur in other countries, in parallel or sequentially to the project, which can result in critical mass range of cities in this format on the planet, thus having a real global transition from a scarcity-based reality to a reality based on abundance. This is considered only as a baseline for alignment opportunities and other initiatives.{% endblocktrans %}
+          </p><p>
+            {% blocktrans %}Therefore, our proposal could be summarized in the following parameters:{% endblocktrans %}
+          </p><p>
+            <ul>
+              <li>
+                {% blocktrans %}Monetary or marketing system is completely unnecessary{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}Any repetitive work is automated by machines{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}Unification of the planet and its resources by a technological approach system
+                Strategic access to consumer goods instead of personal property{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}Self-contained production systems / located within the same city{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}The scientific method as governance methodology{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}Educational change of the population from the perspective WANT versus NEED{% endblocktrans %}
+              </li>
+              <li>
+                {% blocktrans %}Consequent extinction of aberrant socio-economic-cultural practices to the current state of the human race{% endblocktrans %}
+              </li>
+            </ul>
+
+            <!-- END CONTENT -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END MODAL -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="extracontent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- CONTENT -->
+          <center>
+            <a href="https://www.facebook.com/search/top/?q=%23idetra" style="color:#376ab3;" target="blank"><i class="fab fa-facebook fa-6x"></i></a><br>
+            <b><a href="https://www.facebook.com/search/top/?q=%23idetra" target="blank">{% trans 'Indexed related posts' %}</a></b>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="container-fluid">
+              <div class="row justify-content-sm-center">
+                <div class="col-sm-auto"><h5>{% trans 'Zeitgeist - Moving Forward' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/4Z9WVZddH9w?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'The Venus Project - The Choice is Ours' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/Yb5ivvcTvRQ?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'The biology of our best and worst selves' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/ORthzIOEf30?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Addiction' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/ao8L-0nSYzg?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Non-violent communication' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/M-129JLTjkQ?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Is science "just a theory"?' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/1uzsuCFUQ68?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Critical thinking' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/6OLPL5p0fMg?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Religion' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/P0A_iF1B3k0?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Do you have an "open mind"?' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/T69TOuqaqXI?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Scientific method (1)' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/EV1SqGINnP8?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Scientific method (2)' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/i8wi0QnYN6s?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+
+                <div class="col-sm-auto"><h5>{% trans 'Extra: Niemeyer meets Jacque Fresco' %}</h5>
+                  <iframe src="https://www.youtube.com/embed/Tvv28D1ikWA?rel=0&amp;controls=0&amp;showinfo=0" width="480" height="270" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                </div>
+                <br><br>
+              </div>
+            </div>
+          </center>
+
+          <!-- END CONTENT -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close'%}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="executionphases" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">{% trans 'Phases' %}</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <br><center>
+          <h5>{% blocktrans %}TOTAL PROGRESS</h5>(feb/2015 - )
+          <p></p>
+          Summary of all phases combined{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100" style="width: 46%">46%</div>
+          </div>
+          <br><br></center>
+
+          <h5>{% blocktrans %}1) IDETRA Design</h5>(feb/2015 - oct/2015)
+          <p></p>
+          Research, discuss and design how we can reach a resource based economy using a strategy that can be implemented as quickly as possible, easily implemented by anyone in the world and have exponential capabilities, despite the resourses an individual has.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+          </div>
+
+          <br><br>
+
+          <h5>{% blocktrans %}2) Volunteers callout</h5>(jan/2016 - )
+          <p></p>
+          Make IDETRA public and connect with people who are willing to help make IDETRA a reality.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}3) EDU syllabus</h5>(jun/2016 - jan/2018)
+          <p></p>
+          Research, discuss and design what we should inform people, how to make it inclusive and if we can make the entire process a light experience.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+          </div>
+
+          <br><br>
+
+          <h5>{% blocktrans %}4) EDU platform</h5>(aug/2017 - jul/2018)
+          <p></p>
+          Create the online patform that users from all over the world will be able to access the courses and educate themselves.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">100%</div>
+          </div>
+
+          <br><br>
+          <h5>{% blocktrans %}5) Research and development of tangible solutions</h5>(jan/2016 - )
+          <p></p>
+          Understand what are the possible demands people can have and validate solution for all tiers (from recicled materials adaptations to ready-to-install solutions){% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">60%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}6) Prototype house</h5>(nov/2017 - )
+          <p></p>
+          Define, design and modify a house so IDETRA can validate it's final purpose and help people understand and engage more with the project.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">30%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}7) "Graduated" individuals (EDU)</h5>( - )
+          <p></p>
+          Have the first interested individuals finish the entire course{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}8) Environment changes (individual or group)</h5>( - )
+          <p></p>
+          Follow up how we are helping people change themselves and the world around them.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}9) Critical mass and expansion</h5>( - )
+          <p></p>
+          Follow through all changes being made and improve processes so critical mass can be achieved in multiple places{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+          </div>
+          <br><br>
+
+          <h5>{% blocktrans %}10) RBE (Resource Based Economy)</h5>( - )
+          <p></p>
+          The ultimate goal. This may take several years or even generations, and time will tell if and how IDETRA and other initiatives with the same goal will work together. We are here to aggregate, not be an independent endeavor that pursues only one strategy. Contact us if you believe your project is aligned with ours so we can benefit from a joint venture.{% endblocktrans %}
+          <p></p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+          </div>
+          <br><br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-dismiss="modal">{% trans 'Close' %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- title model -->
+  <div class="container-fluid" id="titlecontainer">
+    <div class="row"><a name="team"></a>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-sm-auto" id="titlename">
+        <h3 style="margin-left: 7px;">{% trans 'TEAM' %}</h3>
+      </div>
+    </div>
+  </div>
+  <!-- end title model -->
+
+  <br><br>
+
+  <center>
+    <div class="row">
+      {% for i in teamp %}
+      <div class="col-md-3 align-self-start">
+        {% if i.picture %}
+        <img src="{{ request.scheme }}://{{ request.get_host }}{{ MEDIA_URL }}{{ i.picture }}" class="img-fluid" alt="Responsive image" style="border-radius: 50%;"/>
+        {% else %}
+        <img src="/static/img/user_default_image/user_default_image.png" class="img-fluid" alt="Responsive image" style="border-radius: 50%;"/>
+        {% endif %}
+        <br>
+        {{ i.name }} {{ i.lastname }}
+        <br>
+        {% if i.collaborator %}
+        <a class="b-hoover-b" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Collaborator' %}">
+        <div style="height: 22px; width:22px; background-color: #ffc107; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; font-weight: bold;">C</div></div>
+        </a>
+        {% endif %}
+        {% if i.executive %}
+        <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Executive' %}">
+        <div style="height: 22px; width:22px; background-color: #007bff; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">E</div></div>
+        </a>
+        {% endif %}
+        {% if i.project_manager %}
+        <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Project Manager' %}">
+        <div style="height: 22px; width:22px; background-color: #dc3545; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">PM</div></div>
+        </a>
+        {% endif %}
+        {% if i.program_manager %}
+        <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'Program Manager' %}">
+        <div style="height: 22px; width:22px; background-color: #28a745; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">PrM</div></div>
+        </a>
+        {% endif %}
+        {% if i.general_coordinator %}
+        <a class="b-hoover-w" href="#" data-toggle="tooltip" data-placement="bottom" title="{% trans 'General Coordinator' %}">
+        <div style="height: 22px; width:22px; background-color: #343a40; border-radius: 50%; border: 0.09em solid #000000; display: inline-block;"><div style="padding: 3px 0px 0px 0px; font-size: 0.09em; color:#fff;">GC</div></div>
+        </a>
+        {% endif %}
+        <br>
+        <div style="font-size: 70%; margin-top: 4px;">
+        <div class="row justify-content-center align-items-center" style="margin-bottom: 4px;">
+          <div class="col-auto">
+            {% trans 'Projects:' %}&nbsp;
+          
+            <span class="badge badge-pill badge-dark">0</span>&nbsp;
+          </div>
+          <div class="col-xs-auto">
+            {% trans 'Completion:' %}
+          </div>
+          <div class="col col-xs-6">
+              <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark " role="progressbar" style="width: 75%; font-size: 70%;  font-weight: bold;" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+                    75%
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center" style="margin-bottom: 4px;">
+            <div class="col-auto">
+            {% trans 'Tasks:' %}&nbsp;
+          
+            <span class="badge badge-pill badge-dark">0</span>&nbsp;
+          </div>
+          <div class="col-xs-auto">
+            {% trans 'Completion:' %}
+          </div>
+          <div class="col col-xs-6">
+              <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated bg-dark " role="progressbar" style="width: 75%; font-size: 70%;  font-weight: bold;" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+                    75%
+                  </div>
+              </div>
+          </div>
+
+          </div>
+
+         
+        </div>
+
+        {% if 'pt' in request.path|slice:':4' %}
+        <p style="font-size: 70%; text-align: justify; text-justify: inter-word;">{{ i.minibio_br }}</p><br>
+        {% else %}
+        <p style="font-size: 70%; text-align: justify; text-justify: inter-word;">{{ i.minibio_en }}</p><br>
+        {% endif %}
+        <br>
+      </div>
+      {% endfor %}
+    </div>
+
+  </center>
+
+  <br><br>
+
+  <!-- title model -->
+  <div class="container-fluid" id="titlecontainer">
+    <div class="row"><a name="faq"></a>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-sm-auto" id="titlename">
+        <h3 style="margin-left: 7px;">{% trans 'FAQ (Frequently Asked Questions)' %}</h3>
+      </div>
+    </div>
+  </div>
+  <!-- end title model -->
+  <br><br>
+<center>
+  <button class="btn btn-dark btn-block" type="button" data-toggle="collapse" data-target="#FAQ2" aria-expanded="false" aria-controls="FAQ2">
+    {% trans 'Does The Venus Project knows about IDETRA?' %}
+  </button>
+  <div class="collapse" id="FAQ2">
+    <div class="card card-body" style="text-align: justify; text-justify: inter-word;">
+      {% trans 'Yes, but TVP does not support IDETRA in anyway. This was the agreement between both projects in 2015, so as not to cause problems of communication with the public and also so individuals who act on both initiatives do not cause interference in the progress of the work performed by each organization.' %}
+    </div>
+  </div>
+  <br><br>
+  <button class="btn btn-dark btn-block" type="button" data-toggle="collapse" data-target="#FAQ1" aria-expanded="false" aria-controls="FAQ1">
+    {% trans 'IDETRA and The Venus Project are related?' %}
+  </button>
+  <div class="collapse" id="FAQ1">
+    <div class="card card-body" style="text-align: justify; text-justify: inter-word;">
+      {% trans "IDETRA was founded by one of the POCs (point of contact) of The Venus Project in Brazil, but the connection between the two entities ends there. TVP (The Venus Project) does not directly support external initiatives that could lead to a Resource Based Economy (RBE), something that is completely understandable and justifiable considering not only past experiences of TVP in providing this type of support which have resulted in distortions of RBE concepts and serious problems (including legal ones) for TVP. In summary, both projects pursue very similar objectives but in different ways and need to act independently of one another." %}
+    </div>
+  </div>
+  <br><br>
+  <button class="btn btn-dark btn-block" type="button" data-toggle="collapse" data-target="#FAQ3" aria-expanded="false" aria-controls="FAQ3">
+    {% trans 'How can I contact IDETRA directly?' %}
+  </button>
+  <div class="collapse" id="FAQ3">
+    <div class="card card-body">
+      {% trans 'You can contact us on the e-mail' %}&nbsp;<a href="mailto:idetra@idetra.org" target="blank">idetra@idetra.org</a>
+    </div>
+  </div>
+</center>
+<div style="margin-bottom: 350px;"></div>
+
+  {% endblock content %} 

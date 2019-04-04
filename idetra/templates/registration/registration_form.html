@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %} 
+
+{% block content %}
+<br><br><br>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-3"></div>
+<div class='col-sm-6 text-center'>
+<h1>{% trans 'Registration' %}</h1>
+</div>
+<div class="col-sm-3"></div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3"></div>
+<form form class='col-sm-6' method="post" action=".">
+{% csrf_token %}
+{{ form|crispy }}
+<input class='btn btn-dark' type="submit" value="{% trans 'Submit' %}" />
+</form>
+<div class="col-sm-3"></div>
+</div>
+</div>
+{% endblock %}

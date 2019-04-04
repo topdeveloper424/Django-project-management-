@@ -1,0 +1,204 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red79\green123\blue61;\red23\green23\blue23;\red202\green202\blue202;
+\red70\green137\blue204;\red212\green214\blue154;\red140\green211\blue254;}
+{\*\expandedcolortbl;;\cssrgb\c37647\c54510\c30588;\cssrgb\c11765\c11765\c11765;\cssrgb\c83137\c83137\c83137;
+\cssrgb\c33725\c61176\c83922;\cssrgb\c86275\c86275\c66667;\cssrgb\c61176\c86275\c99608;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww26260\viewh19600\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \{% if 'en' in request.path|slice:':4' %\}\
+	\{% with endurl=request.path|slice:'4:' %\}\
+		\{\{ endurl \}\}\
+	\{% endwith %\}\
+\{% endif %\}\
+\
+\
+\{% if 'pt' in request.path|slice:':4' %\}\
+	\{% with endurl=request.path|slice:'7:' %\}\
+		\{\{ endurl \}\}\
+	\{% endwith %\}\
+\{% endif %\}\
+\
+\
+\
+\
+<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="/en/\{% if 'en' in request.path|slice:':4' %\}\{% with endurl=request.path|slice:'4:' %\}\{\{ endurl \}\}\{% endwith %\}\{% endif %\}">\{% trans 'English' %\}</a>\
+						<a class="dropdown-item nav-item" style="background-color: #ffffff00;" href="/pt-br/\{% if 'pt' in request.path|slice:':4' %\}\{% with endurl=request.path|slice:'7:' %\}\{\{ endurl \}\}\{% endwith %\}\{% endif %\}">\{% trans 'Portugu\'eas' %\}</a>\
+\
+\
+\
+<!-- \{\{ request.get_host \}\}\
+retorna o site -->\
+\
+<!-- from django.core.urlresolvers import resolve\
+current_url = resolve(request.path_info).url_name\
+retorna /profile ou o q vem depois de lingua -->\
+\
+<!-- \{\{ request.build_absolute_uri \}\} <br>\
+\{\{ request.path \}\}<br>\
+\{\{ request.get_full_path \}\}<br> \
+\{\{ value|urlize \}\}\
+-->\
+\
+<!-- blocktrans trimmed -->\
+\
+\
+VIEWS\
+\
+\
+teamp = Profile.objects.filter(iwanttohelp=True)\
+\
+def profile(request):\
+	if request.user.is_authenticated():\
+		if request.method == 'POST':\
+			editform = UserForm(request.POST, instance=request.user)\
+			editformp = ProfileForm(request.POST, request.FILES, instance=request.user.profile)\
+			iform = IwForm(request.POST, instance=request.user.profile)\
+			if editform.is_valid() and editformp.is_valid() and iform.is_valid():\
+				editform.save()\
+				editformp.save()\
+				iform.save()\
+			return redirect('/profile/')\
+		else:\
+			editform = UserForm(instance=request.user)\
+			editformp = ProfileForm(instance=request.user.profile)\
+			iform = IwForm(instance=request.user.profile)\
+\
+		usershow = request.user\
+		userp = request.user.profile\
+\
+		context = \{\
+		"editform" : editform ,\
+		"editformp" : editformp ,\
+		"iform" : iform,\
+		"usershow": usershow ,\
+		"userp": userp ,\
+		\}\
+	else:\
+		return redirect('/')\
+	return render(request, "profile.html", context)\
+\
+\
+\
+<!-- \
+\{% for i in courses %\}\
+\{\{ i \}\}<br>\
+\{% endfor %\}\
+\
+\
+\{% for pic in tpic %\}\
+\
+\
+\
+\{\{ pic.lesson_video \}\}\
+<img src="\{\{ pic.lesson_video \}\}" class="img-fluid" /><br>\
+<img src='\{\{ pic.lesson_video \}\}' /><br>\
+\
+\
+\{% endfor %\}\
+\
+\
+\
+\{\{ tpic \}\} -->\
+\
+\
+<!-- \{% cloudinary "sample.jpg" %\} -->\
+\
+<!-- \{% cloudinary mode.campo %\} -->\
+\
+<!-- \{% cloudinary "https://res.cloudinary.com/idetra/image/upload/v1527645756/sample.jpg" %\} -->\
+\
+\
+\
+\
+\
+\
+slugify\
+\
+No models:\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+slug \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0= models.SlugField(blank=True, null=True)\cf4 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+Fora do models:\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1 \cf5 \cb3 \expnd0\expndtw0\kerning0
+def\cf4  \cf6 pre_save_course\cf4 (\cf7 sender\cf4 , \cf7 instance\cf4 , *\cf7 args\cf4 , **\cf7 kwargs\cf4 ):\cb1 \
+\cb3 \'a0\'a0\'a0\'a0slug = slugify(instance.course_name)\cb1 \
+\cb3 \'a0\'a0\'a0\'a0instance.slug = slug\cb1 \
+\
+\cb3 pre_save.connect(pre_save_slugging, \cf7 sender\cf4 =Course)\cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+<br>\
+inherits tasks (task name and info) from map and extends it\
+<br>\
+<br>\
+view options: critical path, list\
+<br>\
+shows inside the square: duration, responsible names, end date, color code crossing end date, % done, color code %, (split square into 2 or something). null=True\
+<br>\
+<br>\
+TASK SELECTION (dropdown) button "view details". expands below\
+<br>\
+<br>\
+Task Details:\
+<br>\
+- Predecessor (can be more than one) dropdown and add/save button (show as list with "unlink" button)\
+<br>\
+- RACI (user self-determine what he/she will do and need)\
+<br>\
+PS: users that self-assign RESPONSIBLE willl have the tasks added up and percentage on the homepage\
+<br>\
+Responsible (C>/C>) \'96 Who is doing the task. (multiple users). if users sets his name, lists under "my area"\
+<br>\
+Accountable (C>/E>) \'96 Who must check if the task is satisfactory. changes status to completed (100%).\
+(only one person). defaults PM\
+<br>\
+Consulted (C>/E>)\'96 Who will be communicated with regarding decisions and tasks.\
+<br>\
+Informed (C>/C>) \'96 Who will be updated on decisions and actions during the project.\
+(any user can be e-mailed everytime this task has any changes - %, notes, deletion, completion)\
+<br>\
+<br>\
+- Start date (expected - input by user that sets RESPONSIBLE for himself)\
+<br>\
+- Duration input (alert: more than 8h, less than 80h. if more than 80h then maybe this is a deliverable and should be broken into two or more tasks. Follow the communication protocol of this project to alert the PM involved about this)\
+<br>\
+- End date (calculated)\
+<br>\
+<br>\
+0% done (checkbox) - comment field(C>/C>) - date delivered (research and discussion of task. can be eliminated, changed, broken into more, etc inside map during this phase)\
+<br>\
+25% done (checkbox) - comment field(C>/C>) - date delivered\
+<br>\
+50% done (checkbox) - comment field(C>/C>) - date delivered\
+<br>\
+75% done (checkbox) - comment field(C>/C>) - date delivered (auto alerts via email ACCOUNTABLE/PM)\
+<br>\
+100% done (checkbox) - comment field(C>/ACCOUNTABLE (if we cannot do like that, PM)) - date delivered\
+<br>\
+<br>\
+- Notes (general notes) (C>/C>)\
+<br>\
+- Quality parameters (C>/E>)\
+<br>\
+- Cost (C>/E>)\
+<br>\
+- Delivery link (C>/C>)(alert: if applicable)\
+<br>\
+<br>\
+SAVE BUTTON (C>/C>)\
+<br>\
+CHAT (C>/C>) (one chat instance for each task) \
+}

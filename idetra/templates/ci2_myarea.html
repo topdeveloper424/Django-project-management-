@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'ci1_menu.html' %}
+
+{% comment %}
+(only the logged user/only the logged user)
+
+My notes:
+edit button salves the data set by the user in the DB and returns here as text. accepts paragraphs and links (if possible)
+
+table:
+from a loop
+
+Project:
+clickable buttons that links to the given project. the rows are all projects that the user is involved in tasks (flag R.A.C.I -> responsible = True - more on that later)
+
+My tasks:
+the text comes from the task on that project. percentage changes the badge color  (the percentage comes from the task inside the project)
+
+Do until:
+date of delivery, set by the user inside the project's page (project's task). changes color by confronting today's date and the date that was set.
+
+E-mail reminder:
+user inserts and saves the number of days before the "do until" date he wants to receive an EMAIL REMINDER that the delivery date of the task is coming. can be altered and saved by user at any given time
+
+{% endcomment %}
+
+<br>
+<div class="row">
+	<div class="col align-self-end">
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#mynotesedit"><i class="fas fa-pen-square"></i></a>
+		<b>MY NOTES: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#mynotesinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="mynotesedit" tabindex="-1" role="dialog" aria-labelledby="mynotesedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit your notes here</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="mynotesinfo" tabindex="-1" role="dialog" aria-labelledby="mynotesinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Write down things you want to remember in general.
+							<br>
+							This area is for you only and does not interfere with anything.
+							<br>
+							Consider this a notepad of sorts.
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<div class="d-none d-md-block">
+	<div class="row">
+		<div class="col-md-3">Project</div>
+		<div class="col-md-4">My Tasks</div>
+		<div class="col-md-2">Do Until</div>
+		<div class="col-md-3">E-mail Reminder <a class="btn-help" href="#" data-toggle="modal" data-target="#emailreminderinfo"><i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="emailreminderinfo" tabindex="-1" role="dialog" aria-labelledby="emailreminderinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								Receive an e-mail 'X' days before the task is set to end. Empty means no e-mail will be sent.
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="d-md-none"><b>Project:</b></div>
+		 <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 1</span>
+          
+          Prototype House
+      	 </a>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>My Task:</b></div>
+		<div class="alert alert-dark d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+  			<small>Write script for psycology and some other 
+	  			<span class="badge badge-success py-1">
+	  				25%
+	  			</span>
+	  		</small>
+		</div>
+		
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>Do Until:</b></div>
+		<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+  			</small>
+		</div>
+	</div>
+	<div class="col-md-3">
+		
+		<form class="form-inline">
+			<div class="d-md-none"><b>E-mail Reminder:</b>
+				<a tabindex="0" class="badge badge-pill help_link" data-toggle="popover" data-trigger="focus" title="E-mail Reminder" data-content="Receive an e-mail 'X' days before the task is set to end. Empty means no e-mail will be sent.">
+					<span style="color:#007bff;">
+						<i class="far fa-question-circle"></i>
+					</span>
+				</a>
+			</div>Days:&nbsp;
+			<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">&nbsp;		
+			<button type="submit" class="btn btn-dark btn-sm">Save</button>
+		</form>
+	</div>
+</div>
+<div style="margin-bottom: 5px;"></div>
+<hr class="d-md-none" style="margin: 50px 0px 50px 0px;"></hr>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="d-md-none"><b>Project:</b></div>
+		 <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 1</span>
+          
+          Prototype House
+      	 </a>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>My Task:</b></div>
+		<div class="alert alert-dark d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+  			<small>Write script for psycology and some other 
+	  			<span class="badge badge-danger py-1">
+	  				25%
+	  			</span>
+	  		</small>
+		</div>
+		
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>Do Until:</b></div>
+		<div class="alert alert-warning d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+  			</small>
+		</div>
+	</div>
+	<div class="col-md-3">
+		
+		<form class="form-inline">
+			<div class="d-md-none"><b>E-mail Reminder:</b>
+				<a tabindex="0" class="badge badge-pill help_link" data-toggle="popover" data-trigger="focus" title="E-mail Reminder" data-content="Receive an e-mail 'X' days before the task is set to end. Empty means no e-mail will be sent.">
+					<span style="color:#007bff;">
+						<i class="far fa-question-circle"></i>
+					</span>
+				</a>
+			</div>Days:&nbsp;
+			<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">&nbsp;		
+			<button type="submit" class="btn btn-dark btn-sm">Save</button>
+		</form>
+	</div>
+</div>
+<div style="margin-bottom: 5px;"></div>
+<hr class="d-md-none" style="margin: 50px 0px 50px 0px;"></hr>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="d-md-none"><b>Project:</b></div>
+		 <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 1</span>
+          
+          Prototype House mda1Arf
+      	 </a>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>My Task:</b></div>
+		<div class="alert alert-dark d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+  			<small>Write script for psycology 
+	  			<span class="badge badge-warning py-1">
+	  				25%
+	  			</span>
+	  		</small>
+		</div>
+		
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>Do Until:</b></div>
+		<div class="alert alert-danger d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+  			</small>
+		</div>
+	</div>
+	<div class="col-md-3">
+		
+		<form class="form-inline">
+			<div class="d-md-none"><b>E-mail Reminder:</b>
+				<a tabindex="0" class="badge badge-pill help_link" data-toggle="popover" data-trigger="focus" title="E-mail Reminder" data-content="Receive an e-mail 'X' days before the task is set to end. Empty means no e-mail will be sent.">
+					<span style="color:#007bff;">
+						<i class="far fa-question-circle"></i>
+					</span>
+				</a>
+			</div>Days:&nbsp;
+			<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">&nbsp;		
+			<button type="submit" class="btn btn-dark btn-sm">Save</button>
+		</form>
+	</div>
+</div>
+<div style="margin-bottom: 5px;"></div>
+<hr class="d-md-none" style="margin: 50px 0px 50px 0px;"></hr>
+
+<div class="row">
+	<div class="col-md-3">
+		<div class="d-md-none"><b>Project:</b></div>
+		 <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 1</span>
+          
+          Prototype House
+      	 </a>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>My Task:</b></div>
+		<div class="alert alert-dark d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+  			<small>Write script  
+	  			<span class="badge badge-success py-1">
+	  				25%
+	  			</span>
+	  		</small>
+		</div>
+		
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>Do Until:</b></div>
+		<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+  			</small>
+		</div>
+	</div>
+	<div class="col-md-3">
+		
+		<form class="form-inline">
+			<div class="d-md-none"><b>E-mail Reminder:</b>
+				<a tabindex="0" class="badge badge-pill help_link" data-toggle="popover" data-trigger="focus" title="E-mail Reminder" data-content="Receive an e-mail 'X' days before the task is set to end. Empty means no e-mail will be sent.">
+					<span style="color:#007bff;">
+						<i class="far fa-question-circle"></i>
+					</span>
+				</a>
+			</div>Days:&nbsp;
+			<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">&nbsp;		
+			<button type="submit" class="btn btn-dark btn-sm">Save</button>
+		</form>
+	</div>
+</div>
+<div style="margin-bottom: 5px;"></div>
+<hr class="d-md-none" style="margin: 50px 0px 50px 0px;"></hr>
+<br>
+<br>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

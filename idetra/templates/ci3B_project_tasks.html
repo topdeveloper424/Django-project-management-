@@ -1,0 +1,2882 @@
+{% comment %}
+task's page:
+(C>/)
+
+the graph should be a javascript solution for plotting GANTT charts. there are a ton of free solutions out there.
+
+the functionality of changing the graph's dates changes idetra project's DB is cool, but not required.
+
+duration calculator:
+(C>/C>)
+a simple calculator that don't store any information on the DB
+calculus is as following:
+optimistic + (4 * most likely) + pessimistic / 6
+returns the value inside the phrase bellow
+
+tasks:
+(C>/)
+comes from the MAP section above. (in a nutsheel, parameters are extended here. base it on models crossing? your call)
+
+edit button:
+(C>/)
+
+	predecessor(s):
+	(C>/E>)
+	more than one task can be selected (holding shift, control or command (on mac - this already works on the front end like this)
+
+	task completion:
+	(C>/C> except the 100% selector. 100% can only be set by PM> . 100% garantees the task was properlly delivered and checked.
+	standard check is 0% by default
+
+	info:
+	(C>/E>)
+
+	save:
+	(C>/C>)
+
+	delete:
+	(E>/E>)
+
+task:
+(C>/)
+the percentage changes color according to system standard schema. it comes from a field that is located under "edit"
+
+predecessors(s):
+(C>/)
+only a list with the predecessors tasks
+
+R.A.C.I:
+(C>/C>)
+the user himself sets what are his roles on the project on each task
+
+	- Responsible: he will execute the task (each task can have multiple responsibles)
+	
+	- Accountable: checks if the task  is being done and how it was delivered. if the tasks is delayed, he answers for it. THERE CAN ONLY BE TWO PEOPLE HERE MAXIMUM (the PM is always the first spot default selection (only E> can set themselfs as accountable)
+	
+	- Consulted: multiple people. they check here if they want to be consulted during the task execution. they get an email everytime there are changes made on the task (delay on multiple changes in a short time: every 24 hours)
+	
+	- Informed: selects here in case whats to receive emails whenever the task changes. 24h delay in case of multiple changes in a short time.
+
+OBS: PM is default-selected as Informed when the task is created. he must de-select it if he doesnt want to receive emails on that task. 24h delay
+
+start:
+(C>/C>)
+date in which Responsible will start the task
+ideally the system should not allow him to set a date before subsequent critical path dates (the latest date - end date - of all predecessors of that task), but due to the complexity to implement this, it can be dropped for development. (the logic is: not allow him to set a start date of building a windows before the wall is finished - end date of wall building - or any other task involved in building a wall. you can't set a window in the void - without a wall)
+
+end:
+(C>/C>)
+date which the person believes he can finish and deliver the task
+
+delivery:
+(C>/C>)
+when the user needs to inform (or deliver) in a document what was done for the task.
+the link must have a *target="_blank"* tag
+if the link field is empty, the "view" blue link is not shown (only the edit icon)
+
+chat:
+(C>/C>)
+same chat module instance for each task
+
+info:
+(C>/C>)
+free text. only shows extra info from task
+
+
+IMPORTANT:
+from here comes the base for informations that are shown on the website's home
+	how many tasks each user is responsible
+	how many projects the user is involved
+
+INTERNAL NOTES:
+
+indicar o que cada percentual representa:
+0 - a necessidade da task foi identificada
+25 - o trabalho de pesquisa foi concluído
+75 - a task foi executada e gerou algo
+100 - o PM checa se o que foi gerado era o esperado
+
+informar em RACI sobre o que cada papel faz e o que ocorre se o papel for selecionado
+
+informar em END que na duvida o usuario pode usar o duration calculator
+
+informar que mais de uma task pode ser escolhida no edit, segurando shift ou ctrl (command no mac)
+
+informar boa pratica 8h/80h nessa secao tambem
+
+informar politica de milestones tambem
+
+
+
+{% endcomment %}
+
+
+<br>
+<iframe frameborder="0" style="width:100%;height:550px;" src="https://www.draw.io/?lightbox=1&highlight=0000ff&nav=1&title=mockup_WBS_line#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1WJsQ-PYSFrP1bDFganFBx-0Rg61OTE3g%26export%3Ddownload"></iframe>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<b>TASKS:</b>
+	</div>
+	<div class="col text-right">
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#durationcalculator">Duration Calculator</button>
+		<div class="modal fade" id="durationcalculator" tabindex="-1" role="dialog" aria-labelledby="durationcalculator" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="task" class="col-sm-8 col-form-label text-left">OPTIMISTIC number of days you estimate the task can be done</label>
+								<div class="col-sm-2 text-left">
+									<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="task" class="col-sm-8 col-form-label text-left">MOST LIKELY number of days you estimate the task can be done</label>
+								<div class="col-sm-2 text-left">
+									<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="task" class="col-sm-8 col-form-label text-left">PESSIMISTIC number of days you estimate the task can be done</label>
+								<div class="col-sm-2 text-left">
+									<input type="number" style="width: 50px;" class="form-control form-control-sm" id="reminder">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Calculate</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<br>
+						<div class="row">
+							<div class="col text-center">
+								You will likely take 23 {{ result }} days to complete this task.
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col text-left">
+								<small>
+									explains what all items above do.
+								</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<!-- --------------------------------TASKS LIST--------------------------------- -->
+<div class="row">
+	<div class="col-md-auto">
+		<span style="color: rgba(0, 0, 0, 0); "><i class="fas fa-pen-square"></i></span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>TASK</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>PREDECESSOR(S)</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>R.A.C.I</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>START</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>END</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>DELIVERY</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>CHAT</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>INFO</b></div>
+	</div>
+</div>
+
+
+
+
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-success">23%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<!-- ----------------------------END TASKS LIST----------------------- -->
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-warning">23%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskedit2"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="taskedit2" tabindex="-1" role="dialog" aria-labelledby="taskedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskpredecessors" class="col-sm-3 col-form-label">Predecessor(s)</label>
+								<div class="col-sm-5">
+									<select multiple class="form-control" id="taskpredecessors">
+										<option>Task 1</option>
+										<option>Task 2</option>
+										<option>Task 3</option>
+										<option>Task 4</option>
+										<option>Task n</option>
+									</select>
+								</div>
+							</div>
+							  <fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Task Completion</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            0%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            25%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            50%
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            75%
+							          </label>
+							        </div>
+							        <div class="form-check disabled">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+							          <label class="form-check-label" for="gridRadios3">
+							            100% (Delivered - PM edit only)
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="taskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>TASK: </b></div>
+		Some task here <span class="badge badge-danger">0%</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><b>PREDECESSOR(S): </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#predecessorslist">View</button>
+		<div class="modal fade" id="predecessorslist" tabindex="-1" role="dialog" aria-labelledby="predecessorslist" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<ul class="list-group">
+						<li class="list-group-item">List all tasks that preceed this one</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Morbi leo risus</li>
+						<li class="list-group-item">Porta ac consectetur ac</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>R.A.C.I: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#raci">View</button>
+		<div class="modal fade" id="raci" tabindex="-1" role="dialog" aria-labelledby="raci" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>
+						<b>(Task Name)</b>
+						<br>
+						<br>
+						<b>Responsible:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Accountable:</b>
+						<br>
+						Name 1
+						<br>
+						<br>
+						<b>Consulted:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						<br>
+						<br>
+						<b>Informed:</b>
+						<br>
+						Name 1
+						<br>
+						Name 2
+						<br>
+						Name 3
+						</p>
+						<form>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Responsible
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Accountable
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Consulted
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-3">Sign me up as:</div>
+								<div class="col-sm-9">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="gridCheck1">
+										<label class="form-check-label" for="gridCheck1">
+											Informed
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>START: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#startdateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					16/nov/2018
+	  			</small>
+			</div>
+		</a>
+		<div class="modal fade" id="startdateedit2" tabindex="-1" role="dialog" aria-labelledby="startdateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="startdatemodal" class="col-sm-3 col-form-label">Task Start Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="startdatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><b>END: </b></div>
+		<a href="#" class="btn-help" data-toggle="modal" data-target="#enddateedit2">
+			<div class="alert alert-success d-inline-flex" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+						16/nov/2018
+  				</small>
+			</div>
+		</a>
+		<div class="modal fade" id="enddateedit2" tabindex="-1" role="dialog" aria-labelledby="enddateedit2" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="enddatemodal" class="col-sm-3 col-form-label">Task End Date</label>
+								<div class="col-sm-4">
+									<input type="date" class="form-control" id="enddatemodal">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2 mt-1">
+		<div class="d-md-none"><b>DELIVERY: </b></div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#taskdeliverylink"><i class="fas fa-pen-square"></i></a><a href="teste.com" target="_blank" class="mt-5">View</a>
+		<div class="modal fade" id="taskdeliverylink" tabindex="-1" role="dialog" aria-labelledby="taskdeliverylink" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="taskdeliveryedit" class="col-sm-3 col-form-label">Task Delivery Link</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="taskdeliveryedit">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							Explain items here
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>CHAT: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskchat">View</button>
+		<div class="modal fade" id="taskchat" tabindex="-1" role="dialog" aria-labelledby="taskchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							CHAT AQUI (ASSIM COMO EDU)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>INFO: </b></div>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#taskinfoshow">View</button>
+		<div class="modal fade" id="taskinfoshow" tabindex="-1" role="dialog" aria-labelledby="taskinfoshow" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						Task info here
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+
+<br><br>

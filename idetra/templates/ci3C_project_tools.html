@@ -1,0 +1,2129 @@
+{% comment %}
+RISK CALCULATOR
+(E>/E>)
+
+total IEV:
+(E>/)
+sum of all instances of Initial Expected Value (decimal)
+good risks - green - save money (decreasing the total)
+bad risks - red - adds to this total
+
+total SEV:
+(E>/)
+sum of all values under Solution Expected Value (decimal)
+
+edit:
+(E>/E>)
+the green box means the risk is good, and red means it is bad (default = good)
+
+- risk = name of the risk (simple text)
+- type = defaults good
+- probability (1-10) = only accepts INT between 1 and 10
+- impact (1-10) = only accepts INT between 1 and 10
+- info = free text field, accepts paragraphs and links
+- I.Probability (%) = only values between 1 and 100 (%)
+- I.Impact ($) = accepts decimals
+- solution = free text field, accepts paragraphs and links
+- S.Probability (%) = = only values between 1 and 100 (%)
+- S.Impact ($) = accepts decimals
+
+
+risk:
+(E>/)
+shows values of probability and impact inserted in edit (1-10)
+colors change according to the following scale:
+1 to 4 - GREEN
+5 to 7 - YELLOW
+8 to 10 - RED
+
+EV:
+(E>/)
+muyltiply probabilities (1-10) and impact (1-10)
+color scale:
+1 to 33 - GREEN
+34 to 66 - YELLOW
+67 to 100 - RED
+
+info:
+(E>/)
+the "view" link opens a modal showing the info inserted in edit
+P and I are the values of I.Probability and I.Impact with the following color code:
+P(%)
+1 to 33 - GREEN
+34 to 66 - YELLOW
+67 to 100 - RED
+
+I($)
+HAS NO COLOR (badge-light)
+
+IEV:
+(E>/)
+multiplies I.P(%) and I.I($)
+shows monetary information (decimals)
+
+solution:
+(E>/)
+same as info
+
+SEV:
+(E>/)
+same as IEV
+
+
+COST CALCULATOR
+(E>/E>)
+
+total cost in project:
+(E>/)
+sum of all costs flagged as "send to total?" 
+
+
+edit:
+(E>/E>)
+
+	sent to total? (defaults "No")
+	defines the bg-color of "edit" button (no = red, yes = green)
+
+	name and info
+	cost name with some extra info in general
+
+	unit type
+	open text field that informs what is being calculated
+	
+	unit cost
+	how mch each one of those units cost
+	value ($) decimal
+
+	units to buy
+	how many units should be aquired
+	INT number
+
+total
+unit cost * units to buy
+
+
+
+INTERNAL NOTES:
+
+avisar o que é cada sigla
+EV = Expected Value
+IEV = Initial Expected Value after risk treatment
+SEV = Solution Expected Value after any new risk treatment
+
+
+{% endcomment %}
+
+
+
+
+<br>
+<b>RISK CALCULATOR:</b>
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md-4">
+		<p>
+			TOTAL IEV: $ 9872340
+			<br>
+			TOTAL SEV: $ 234562
+		</p>
+	</div>
+</div>
+<br>
+<small>
+<div class="row">
+	<div class="col-md-auto">
+		<span style="color: rgba(0, 0, 0, 0); "><i class="fas fa-pen-square"></i></span>
+	</div>
+	<div class="col-md-4">
+		<div class="d-none d-md-block"><b>RISK (+Probability and Impact)</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>EV</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>INFO</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>IEV</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>SOLUTION</b></div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-none d-md-block"><b>SEV</b></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-light">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-light">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-danger" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-danger" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-success" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-danger" >
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#riskedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="riskedit" tabindex="-1" role="dialog" aria-labelledby="riskedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="d-md-none"><b>RISK</b></div>
+		Some risk listed here
+		<span class="badge badge-danger">P 7</span>
+		<span class="badge badge-success">I 2</span>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>EV</b></div>
+		<span class="badge badge-success">14</span>
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>INFO</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#viewriskinfo">View</a>
+			<span class="badge badge-danger">P 70%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="viewriskinfo" tabindex="-1" role="dialog" aria-labelledby="viewriskinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Info Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>IEV</b></div>
+		5670
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>SOLUTION</b></div>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#risksolution">View</a>
+			<span class="badge badge-warning">P 35%</span>
+			<span class="badge badge-success">I 8100</span>
+		<div class="modal fade" id="risksolution" tabindex="-1" role="dialog" aria-labelledby="risksolution" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Solution Here
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+		<div class="d-md-none"><br><b>SEV</b></div>
+		2835
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#addrisk"><i class="fas fa-plus-square" style="color:blue;"></i></a>
+		<div class="modal fade" id="addrisk" tabindex="-1" role="dialog" aria-labelledby="addrisk" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="riskname" class="col-sm-3 col-form-label">Risk</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="riskname">
+								</div>
+							</div>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Type</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            Good
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Bad
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							  <div class="form-group row">
+								<label for="probability19" class="col-sm-3 col-form-label">Probability (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="probability19">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="impact19" class="col-sm-3 col-form-label">Impact (1-9)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="impact19">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="riskinfo" class="col-sm-3 col-form-label">Info</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="riskinfo"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iprobability" class="col-sm-3 col-form-label">I.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="iimpact" class="col-sm-3 col-form-label">I.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="iimpact">
+								</div>
+							</div>
+							<hr>
+							<div class="form-group row">
+								<label for="tsolution" class="col-sm-3 col-form-label">Solution</label>
+								<div class="col-sm-9">
+									<textarea class="form-control" rows="5" id="solution"></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="sprobability" class="col-sm-3 col-form-label">S.Probability (%)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="sprobability">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="simpact" class="col-sm-3 col-form-label">S.Impact ($)</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="simpact">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</small>
+
+<br>
+<br>
+<br>
+<br>
+<b>COST CALCULATOR:</b>
+<br>
+<br>
+<div class="row">
+	<div class="col">
+		TOTAL COST IN PROJECT: $ 40500
+	</div>
+</div>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-auto">
+		<span style="color: rgba(0, 0, 0, 0); "><i class="fas fa-pen-square"></i></span>
+	</div>
+	<div class="col-md-3">
+		<div class="d-none d-md-block"><b>COST</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>Unit Type</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>Unit Cost</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>Units to Buy</b></div>
+	</div>
+	<div class="col-md-2">
+		<div class="d-none d-md-block"><b>Total</b></div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-auto bg-danger">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#costedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="costedit" tabindex="-1" role="dialog" aria-labelledby="costedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<fieldset class="form-group">
+							    <div class="row">
+							      <legend class="col-form-label col-sm-3 pt-0">Send to Total?</legend>
+							      <div class="col-sm-9">
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+							          <label class="form-check-label" for="gridRadios1">
+							            No
+							          </label>
+							        </div>
+							        <div class="form-check">
+							          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+							          <label class="form-check-label" for="gridRadios2">
+							            Yes
+							          </label>
+							        </div>
+							      </div>
+							    </div>
+							  </fieldset>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm text-right"><i class="fas fa-times-circle"></i></button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>COST</b></div>
+		Some cost here
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>UNIT TYPE</b></div>
+		meters
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>UNIT COST</b></div>
+		300
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>UNITS TO BUY</b></div>
+		27
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>TOTAL</b></div>
+		8100
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+<div class="row">
+	<div class="col-md-auto bg-success">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#costedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="costedit" tabindex="-1" role="dialog" aria-labelledby="costedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some cost here
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		meters
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		300
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		27
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		8100
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#costedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="costedit" tabindex="-1" role="dialog" aria-labelledby="costedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some cost here
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		meters
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		300
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		27
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		8100
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#costedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="costedit" tabindex="-1" role="dialog" aria-labelledby="costedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some cost here
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		meters
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		300
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		27
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		8100
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#costedit"><i class="fas fa-pen-square"></i></a>
+		<div class="modal fade" id="costedit" tabindex="-1" role="dialog" aria-labelledby="costedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="d-md-none"><b>TASK</b></div>
+		Some cost here
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		meters
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		300
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		27
+	</div>
+	<div class="col-md-2">
+		<div class="d-md-none"><br><b>DELIVERABLE</b></div>
+		8100
+	</div>
+	<div class="d-md-none"><br><br></div>
+</div>
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-md-auto">
+		<div class="d-md-none"><br>&nbsp;</div>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#addcost"><i class="fas fa-plus-square" style="color:blue;"></i></a>
+		<div class="modal fade" id="addcost" tabindex="-1" role="dialog" aria-labelledby="addcost" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<form>
+							<div class="form-group row">
+								<label for="costname" class="col-sm-3 col-form-label">Cost Name and Info</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="costname">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unittype" class="col-sm-3 col-form-label">Unit Type</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="unittype">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitcost" class="col-sm-3 col-form-label">Unit Cost</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitcost">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="unitstbuy" class="col-sm-3 col-form-label">Units to Buy</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" id="unitstobuy">
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+								<br>
+							</div>
+						</form>
+						<small>
+							explains what all items above do.
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+<br>
+
+
+

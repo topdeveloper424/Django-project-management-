@@ -1,0 +1,16 @@
+{% load i18n %}
+{% trans "Welcome to IDETRA!" %}:
+
+
+{% trans 'This e-mail was registered on the website idetra.org' %}
+
+{% trans 'Click on the link below to activate your account:' %}
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+{% blocktrans %}
+
+This link is valid for {{ expiration_days }} days.
+
+
+Please ignore this e-mail if you did not request access to idetra.org. Your e-mail will be automatically removed from our records.
+{% endblocktrans %}

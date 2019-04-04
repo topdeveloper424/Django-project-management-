@@ -1,0 +1,132 @@
+<!-- <div class="alert alert-warning" role="alert" style="padding: 10px 0px 1px 0px;">
+<h5><center>(UNDER CONSTRUCTION / EM CONSTRUÇÃO)</center></h5>
+</div> -->
+
+{% comment %}
+
+*********************************************************************
+GENERAL INSTRUCTIONS
+
+1 - Interrogation buttons shows a fixed help text. It's not an instance by each project, but from the platform itself (by hardcode or database - it doesnt matter)
+
+2 - Dates that change color use the following rule:
+More than 11 days between today and date shown on screen: GREEN
+Between today and 10 days prior: YELLOW
+One or more days behind today: RED
+
+3 - Percentages that change collor use the following rule: 
+Between 0% and 24% = RED
+Between 25% and 49% = YELLOW
+Between 50% and 74% = BLUE
+Between 75% and 99% = GREEN
+100% = BLACK
+
+4 - ROLES RULES:
+
+(C) Collaborator - people who 'opted in' under their profile to help IDETRA (variable iwanttohelp = True on their profile)
+
+(E) Executive - people who are collaborators AND finished all courses that have the flag 'Executive' set to True
+
+(PM) Project Manager - collaborators that finished all courses flagged as 'project management'
+
+IMPORTANT: each project have only one project manager. the notation (PM) only refers to the project manager that is assigned to that given project. any other person that have a project manager flag in the system is treated as (E). any PrM and GC (below) have the same access and edit capabilities as the PM from any project.
+
+(PrM) Program Manager - collaborator that has the flag PrM set ot True. this role can only be given manually, from inside the admin page
+
+(GC) General Coordinator - collaborator that has the flag GC set to True. this role can only be given manually, from inside the admin page
+
+
+
+NOTATION:
+
+ex: (E>/PM>) = (who can see a given information/who can edit a given information)
+
+X> this role and all roles above it
+
+X< this role and all roles below it
+
+empty - like (X>/) = not aplicable, depends on some running function or can only be edited by changing the code
+
+The capabilities of who can see and who can edit should be a module that is easily implementable and easy to change which role up or down can see/edit a given area of the page
+
+
+
+END OF GENERAL INSTRUCTIONS
+********************************************************************
+
+all 3 buttons from secondary menu:
+(C>/)
+
+my area:
+(C>/)
+by clicking in the CI button on the main menu, the user sees 'my area'
+the black button of the project directs the user to that project main page 
+
+view all projects:
+(C>/)
+loop inside the modal "view all projects" populating all projects (phase, name, percentage of total completion and short description)
+percentages change the color  of the badge
+this list must be sorted by phase first, then project name
+
+assets:
+(PM>/PrM>)
+
+{% endcomment %}
+
+<div class="row">
+	<div class="col text-right">
+		<a class="btn btn-dark btn-sm" href="/ci" role="button">My Area</a>
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#allprojects">View All Projects</button>
+		<a class="btn btn-dark btn-sm" href="/ci/assets" role="button">Assets</a>
+	</div>
+</div>
+
+
+<div class="modal fade" id="allprojects" tabindex="-1" role="dialog" aria-labelledby="allprojects" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="allprojects">All Projects</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light ">Phase 1</span>
+          
+          Prototype House
+          <span class="badge badge-warning">23%</span>
+        </a>
+        <br>
+        <small>A short description of what this project is all about. Just some text that is in a field</small></p>
+        <div style="margin-bottom: 15px;"></div>
+
+        <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 2</span>
+          
+          University Network
+          <span class="badge badge-primary">85%</span>
+        </a>
+        <br>
+        <small>A short description of what this project is all about</small>
+        <div style="margin-bottom: 15px;"></div>
+
+        <a class="btn btn-dark btn-sm" href="/ci/project" role="button">
+          <span class="badge badge-light">Phase 3</span>
+          
+          Prototype Organic Food
+          <span class="badge badge-danger">0%</span>
+        </a>
+        <br>
+        <small>A short description of what this project is all about</small>
+        <div style="margin-bottom: 15px;"></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

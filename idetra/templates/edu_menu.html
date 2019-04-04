@@ -1,0 +1,163 @@
+{% load i18n %}
+{% load edu_tags %}
+
+<div class="row justify-content-center align-items-center">
+	<div class="col offset-md-1">
+		<div class="row justify-content-center align-items-center no-gutters">
+			<div class="col-12 text-center ">
+			<h3>{% trans 'Tokens' %}</h3>
+			</div>
+			<div class="col-md-12 text-center">
+				{% user_courses user=request.user %}
+			</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col col-12 text-center">
+				<br> 
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group btn-block" role="group" aria-label="First group">
+						<div class=" col-7 bg-outline-dark" style=" border-radius: 3px; font-weight: bold; border: 0.1em solid #000000; padding: 0px 5px 0px 5px; ">
+						{% trans 'Dictionary' %}
+						</div>
+						<button type="button" class="btn btn-dark btn-sm text-center w-100 rounded" data-toggle="modal" data-target=".dict_modal" style="margin: 0px 3px 0px 3px;"><i class="far fa-window-restore fa-sm"></i></button>
+						<div class="modal fade dict_modal" tabindex="-1" role="dialog" aria-labelledby="dictionary_modal" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div style="text-align: left; margin: 20px;">
+										{% include "dict_base.html" %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="btn btn-dark btn-sm text-center w-100 rounded" href="/{{ lc }}/dictionary/" role="button" target="_blank">
+						<i class="fas fa-external-link-alt fa-sm"></i></a>
+					</div>
+				</div>
+				<div style="margin-top: 5px ;">
+				</div>
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group btn-block" role="group" aria-label="First group">
+						<div class=" col-8 bg-outline-dark" style=" border-radius: 3px; font-weight: bold; border: 0.1em solid #000000; padding: 0px 5px 0px 0px; ">
+							{% trans 'References' %}
+						</div>
+						<button type="button" class="btn btn-dark btn-sm text-center w-100 rounded" data-toggle="modal" data-target=".refall_modal" style="margin: 0px 0px 0px 3px;">{% trans 'All' %}</button>
+						<div class="modal fade refall_modal" tabindex="-1" role="dialog" aria-labelledby="dictionary_modal" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div style="text-align: left; padding: 20px 20px 20px 20px;">
+										<div class="alert alert-primary" role="alert">
+											<h5 class="alert-heading">{% trans 'All external references from all courses' %}.</h5>
+											{% trans '<b>BASIC:</b> Knowledge that can help you better understand the lessons' %}.
+											<div style="margin-top: 5px ;"></div>
+											{% trans '<b>ADVANCED:</b> In case you want to know more than we present about a given subject' %}.
+										</div>
+										<ul class="link_menu_a">
+										{% for a in course %}
+											{% if lc == 'en' %}
+												<li class="link_menu_a">{{ a.course_name }}
+												<ul class="link_menu_a">
+											{% else %}
+												<li class="link_menu_a">{{ a.course_name_br }}
+												<ul class="link_menu_a">
+											{% endif %}
+											{% for b in a.sections.all %}
+												{% if lc == 'en' %}
+													<li class="link_menu_a">
+														{{ b.section_name }}
+													<ul class="link_menu_a">	
+												{% else %}
+													<li class="link_menu_a">
+														{{ b.section_name_br }}
+													<ul class="link_menu_a">
+												{% endif %}
+												{% for c in b.lessons.all %}
+													{% if lc == 'en' %}
+														<li class="link_menu_a">
+															{{ c.lesson_name }}
+														<ul class="link_menu_a">	
+													{% else %}
+														<li class="link_menu_a">
+															{{ c.lesson_name_br }}
+														<ul class="link_menu_a">
+													{% endif %}
+													{% for d in c.lesson_links.all %}
+														{% if lc == 'en' %}
+															<li class="link_menu_a"><a href="{{ request.scheme }}://{{ d.link }}" target="_blank"><span class="badge badge-secondary">{{ d.link_type }}</span>&nbsp;{{ d.link_name }}</a>
+															</li>	
+														{% else %}
+															<li class="link_menu_a"><a href="{{ request.scheme }}://{{ d.link_br }}" target="_blank"><span class="badge badge-secondary">{% if d.link_type == 'Basic' %}Básico{% else %}Avançado{% endif %}</span>&nbsp;{{ d.link_name_br }}</a>
+															</li>
+														{% endif %}	
+													{% endfor %}
+														</ul>
+														</li>
+												{% endfor %}
+													</ul>
+													</li>	
+											{% endfor %}
+												</ul>
+												</li>
+										{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="margin-top: 5px ;"></div>
+				<a class="b-hoover-b" href="#" data-toggle="modal" data-target="#cur_prog">
+					<div class="col bg-dark w-100" style="padding: 4px 5px 4px 5px; border-radius: 3px; color: #fff; ">
+						{% trans 'Overall Progress' %}
+						<div style="margin-top: 5px ;">
+						</div>
+						<center>
+							<div class="progress w-100">
+								<div class="progress-bar progress-bar-striped progress-bar-animated bg-dark" role="progressbar" style="width:{% overall_progress request.user %}% ;  font-weight: bold;" aria-valuenow="{{ pb }}" aria-valuemin="0" aria-valuemax="100"><div style="color:#e9ecef;">
+									{% overall_progress request.user %}%</div>
+								</div>
+							</div>
+						</center>
+					</div>
+				</a>	
+			</div>
+		</div>	
+	</div>
+</div>
+<div class="modal fade cur_prog" id="cur_prog" tabindex="-1" role="dialog" aria-hidden="true" >
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="padding: 20px 20px 20px 20px;">
+			<div class="alert alert-primary" role="alert">
+				<center>{% trans 'COURSES' %}</center>
+			</div>
+			{% for c in course %}
+				{% if c.main_edu %}
+					<span><span class="badge badge-secondary">{% course_progress user=request.user course=c %}%</span> - 
+					{% if lc == 'en' %}
+						<a href="/{{ lc }}/edu/{{ c.slug }}">{{ c.course_name }}</a>
+					{% else %}
+						<a href="/{{ lc }}/edu/{{ c.slug_br }}">{{ c.course_name_br }}</a>
+					{% endif %}
+					</span><br>
+				{% endif %}
+			{% endfor %}
+			<div class="alert alert-danger" role="alert">
+				<center>{% trans 'EXTRA COURSES' %}</center>
+			</div>
+			{% for d in course %}
+				{% if not d.main_edu %}
+					<span><span class="badge badge-secondary">{% course_progress user=request.user course=d %}%</span> - 
+					{% if lc == 'en' %}
+						<a href="{{ c.slug }}">{{ d.course_name }}</a>
+					{% else %}
+						<a href="{{ c.slug_br }}">{{ d.course_name_br }}</a>
+					{% endif %}
+					</span><br>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+		
+
+{# <img src="{{ i.token_file }}" class="img-fluid" style="border-radius: 50%; width: 40px; height: 40px;" /> #}

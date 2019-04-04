@@ -1,0 +1,3274 @@
+{% extends "base.html" %}
+{% block content %}
+{% include 'ci1_menu.html' %}
+
+{% comment %}
+
+the percentage next to the title is dynamic (the sum of the percentages of all tasks divided by the number of tasks). changes color.
+
+alert button:
+(C>/)
+fixed information (hardcoded. the same in all projects)
+
+Message Board:
+(C>/PM>)
+free text. accepts paragraphs and links
+
+Description:
+(C>/E>)
+
+Project chat:
+(C>/C>)
+instance of the chat module that is already in use in EDU. one chat for each project
+
+Project Manager:
+(C>/PrM>)
+is flagged manually through admin page
+
+	Versioning button:
+	(PM>/PM>)
+		- the form at the top saves all information od the project's DB into a retrivable instance.
+		- the list below shows all versions saved
+		- the PDF download button allows that data to be downloaded as pdf (this can be dropped out of scope if necessary)
+		- the CSV download button alloes data to be saved on user computer as a CSV
+		- none of those formats are required to be re-inputed into the system (unless it very easy and can be implemented)
+		- the retrive button ERASES all current data from the project and replaces it with the version retrived data on the DB (this should be done by table versioning, but other methods can be inplemented if necessary)
+		- delete button erases that version from the retrive DB table (or alike) 
+
+
+BUTTON THAT SAVES, DELETES and RETRIEVES versions of the project
+(PM>/PM>)
+
+BUTTON THAT DOWNLOADS the project data as pdf and csv in that time instance
+(PM>/PM>)
+
+Project Team:
+(C>/)
+based on the R.A.C.I matrix. anyone listed there gets populated here by loop. the same info as at the homepage. ordered by name
+
+start:
+(C>/PM>)
+set date for the project to start. colors change
+
+expected:
+(C>/PM>)
+date in which the project is expected to end. same color rules for date
+
+end (calc.):
+(C>/)
+date calculated in which the project will end. this information comes from the critical path of the project (under tasks. calculation details must explained by guilherme separately)
+
+end (deliv.):
+(C>/PM>)
+date in which the project was really delivered (manually inputed and saved) with everything approved by the PM
+
+scope summary:
+(C>/E>)
+free text summaryzing the project
+
+button "project charter":
+(E>/E>)
+
+project folder:
+(E>/PM>)
+DB link save (gdrive links usually)
+
+EVERYTHING ELSE inside project charter:
+(E>/E>)
+free text. accepts paragraphs and links
+
+processes and meetings:
+(E>/PM>)
+- processes are fixed (the same ones for all projects)
+- the colors are fixed (based on PMI areas of knowledge)
+- the internal info (unique for each project) when blank makes the title of the info also disapear
+- the checkbox "process" when selected makes the color weaker
+
+{% endcomment %}
+
+
+
+<br>
+<div class="alert alert-dark text-center clearfix pt-2 pb-0" role="alert">
+	<h4>
+		<span class="badge badge-light float-left">
+		&nbsp;Phase 1&nbsp;
+		</span>
+		&nbsp;Course Creation&nbsp;
+		<button type="button" class="btn btn-warning float-right btn-sm pb-1 pt-0 border border-dark btn-help" data-toggle="modal" data-target="#generalwarning"><i class="fas fa-exclamation-triangle fa-sm"></i>
+		</button>
+		<span class="badge badge-success float-right mr-1">
+		23%
+		</span>
+	</h4>
+</div>
+
+<div class="modal fade" id="generalwarning" tabindex="-1" role="dialog" aria-labelledby="generalwarning" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body bg-warning">
+				<center>
+					<i class="fas fa-exclamation-triangle"></i>
+						WARNING!
+					<i class="fas fa-exclamation-triangle"></i>
+					<br>
+					<br>
+					<p>Only one person AT A TIME can make changes to the fields below</p>
+					<p>Remeber to SAVE your progress so data is not lost</p>
+					<p>Saving data also allows other team members to edit information you are manipulating</p>
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#messageboardedit">	<i class="fas fa-pen-square"></i>
+		</a>
+		<b>MESSAGE BOARD:</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#messageboardhelp">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+		<small>
+		Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora.
+		</small>
+	</div>
+	<div class="modal fade" id="messageboardedit" tabindex="-1" role="dialog" aria-labelledby="messageboardedit" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<center>
+						<form>
+							<textarea class="form-control" rows="3"></textarea>
+							<small>Edit the message board here. Everyone will see it.</small>
+							<br>
+							<div class="text-right">
+								<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+							</div>
+						</form>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="messageboardhelp" tabindex="-1" role="dialog" aria-labelledby="messageboardhelp" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<center>
+						This is a dynamic board for general information regarding the project
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-lg-8 col-project">
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#description"><i class="fas fa-pen-square"></i></a>
+		<b>DESCRIPTION: </b>Develope IDETRA's courses, quizes, tokens, scripts and videos 
+	</div>
+	<div class="modal fade" id="description" tabindex="-1" role="dialog" aria-labelledby="teste" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<center>
+						<form>
+							<input type="text" class="form-control col-project">
+							<small>This also shows on the "View All Projects" menu, so be as brief as possible</small>
+							<br>
+							<div class="text-right">
+								<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+							</div>
+						</form>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 text-right col-project">
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#projectchat">PROJECT CHAT</button>
+		<div class="modal fade" id="projectchat" tabindex="-1" role="dialog" aria-labelledby="projectchat" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							chat here (same module as EDU chat)
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-8 col-project">
+		<b>PROJECT MANAGER: </b> Guilherme Viotti {# only first and last name of user #}<a style="color:red;" href="#" data-toggle="modal" data-target="#project-versions"><i class="fas fa-code-branch"></i></a>
+	</div>
+		<div class="modal fade" id="project-versions" tabindex="-1" role="dialog" aria-labelledby="teste" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<center>
+						<form class="form-inline">
+						  <div class="form-group mb-2">
+						    <input type="text" class="form-control-plaintext form-control-sm" id="projectversion" value="Project version name:">
+						  </div>
+						  <div class="form-group mx-sm-3 mb-2">
+						    <input type="text" class="form-control form-control-sm" id="projectversion" placeholder="">
+						  </div>
+						  <button type="submit" class="btn btn-dark btn-sm mb-2">Save</button>
+						</form>
+						<br>
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class=""><b>Version</b></div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class="">mockup version name 1</div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">PDF<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">CSV<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-warning border border-dark btn-sm">Retrive<i class="fas fa-undo-alt"></i></button></div>
+							</div>
+							<div class="col-1">
+								<div class="">
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm"><i class="fas fa-times-circle"></i></button>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class="">mockup version name 2</div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">PDF<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">CSV<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-warning border border-dark btn-sm">Retrive<i class="fas fa-undo-alt"></i></button></div>
+							</div>
+							<div class="col-1">
+								<div class="">
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm"><i class="fas fa-times-circle"></i></button>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class="">mockup version name 3</div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">PDF<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">CSV<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-warning border border-dark btn-sm">Retrive<i class="fas fa-undo-alt"></i></button></div>
+							</div>
+							<div class="col-1">
+								<div class="">
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm"><i class="fas fa-times-circle"></i></button>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-4">
+								<div class="">mockup version name 4</div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">PDF<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-dark btn-sm">CSV<i class="fas fa-download"></i></button></div>
+							</div>
+							<div class="col-2">
+								<div class=""><button type="button" class="btn btn-warning border border-dark btn-sm">Retrive<i class="fas fa-undo-alt"></i></button></div>
+							</div>
+							<div class="col-1">
+								<div class="">
+									<button type="submit" class="btn btn-outline-danger border border-0 btn-sm"><i class="fas fa-times-circle"></i></button>
+								</div>
+							</div>
+						</div>
+						<br>
+						<br>
+					</center>
+					<small>
+						explains what all items above do.
+					</small>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 text-right col-project">
+		<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#projectteam">PROJECT TEAM</button>
+		<div class="modal fade" id="projectteam" tabindex="-1" role="dialog" aria-labelledby="projectteam" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							there is already a logic in "include" here. needs formatting only
+							{% include "ci3_team.html" %}
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">{# changes color the closer to the date it gets #}
+	<div class="col-lg-3 col-project">
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#startdateedit"><i class="fas fa-pen-square"></i></a>
+		<b>START</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#startdateinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="startdateedit" tabindex="-1" role="dialog" aria-labelledby="startdateedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<input type="date" class="col-lg-3 form-control col-project">
+								<small>When the project will start or have started?</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="startdateinfo" tabindex="-1" role="dialog" aria-labelledby="startdateinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							this is the date that the project is set to start
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-danger d-inline-flex float-right" role="alert" style="padding: 5px 5px 5px 5px;">
+			<small>
+				12/jan/2018
+  			</small>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#expecteddateedit"><i class="fas fa-pen-square"></i></a>
+		<b>EXPECTED</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#expecteddateinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="expecteddateedit" tabindex="-1" role="dialog" aria-labelledby="expecteddateedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<input type="date" class="col-lg-3 form-control col-project">
+								<small>When the project is believed to end?</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="expecteddateinfo" tabindex="-1" role="dialog" aria-labelledby="expecteddateinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							this is the date that the project is believed to end
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-warning d-inline-flex float-right" role="alert" style="padding: 5px 5px 5px 5px;">
+			<small>
+				27/jun/2018
+  			</small>
+		</div>
+		<br>
+		<br>
+		<b>END (Calc.)</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#endcaldateinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="endcaldateinfo" tabindex="-1" role="dialog" aria-labelledby="endcaldateinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							this is the date that the project is calculated to end
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-success d-inline-flex float-right" role="alert" style="padding: 5px 5px 5px 5px;">
+			<small>
+				16/aug/2018
+  			</small>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#delivereddateedit"><i class="fas fa-pen-square"></i></a>
+		<b>END (Deliv.)</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#enddeldateinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="delivereddateedit" tabindex="-1" role="dialog" aria-labelledby="delivereddateedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<input type="date" class="col-lg-3 form-control col-project">
+								<small>When the project ended and was delivered?</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="enddeldateinfo" tabindex="-1" role="dialog" aria-labelledby="enddeldateinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							this is the date that the project was delivered and finished
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-dark d-inline-flex float-right" role="alert" style="padding: 5px 5px 5px 5px;">
+				<small>
+					2/jul/2018
+  			</small>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12 col-project">
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#scopesummary">	<i class="fas fa-pen-square"></i>
+		</a>
+		<b>SCOPE SUMMARY:</b>
+		<a class="btn-help" href="#" data-toggle="modal" data-target="#scopesummaryhelp">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+		Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			</div>
+			<div class="modal fade" id="scopesummary" tabindex="-1" role="dialog" aria-labelledby="scopesummary" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit the scope summary here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="scopesummaryhelp" tabindex="-1" role="dialog" aria-labelledby="scopesummaryhelp" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This is a summary of the scope of the project... BLA BLA BLA...
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 text-center col-project">
+				<a class="btn btn-dark btn-sm" data-toggle="collapse" href="#projectcharter" role="button" aria-expanded="false" aria-controls="projectcharter">
+					PROJECT CHARTER
+				</a>
+			</div>
+			<div class="collapse px-3" id="projectcharter">
+				<a class="btn-edit" href="#" data-toggle="modal" data-target="#projectfolderedit"><i class="fas fa-pen-square"></i></a>
+				<b><a href="#" target="_blank">PROJECT FOLDER </a></b>
+				<a class="btn-help" href="#" data-toggle="modal" data-target="#projectfolderinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="projectfolderedit" tabindex="-1" role="dialog" aria-labelledby="projectfolderedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<input type="text" class="form-control col-project">
+								<small>Copy and paste the project's Google Drive link here</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="projectfolderinfo" tabindex="-1" role="dialog" aria-labelledby="projectfolderinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							The project folder is an external link to BLA BLA BLA. Please use a gmail friendly account as a rule of thumb
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#backgroundedit"><i class="fas fa-pen-square"></i></a>
+		<b>BACKGROUND: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#backgroundinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="backgroundedit" tabindex="-1" role="dialog" aria-labelledby="backgroundedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit background here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="backgroundinfo" tabindex="-1" role="dialog" aria-labelledby="backgroundinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the background of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<b>SCOPE</b><a class="btn-help" href="#" data-toggle="modal" data-target="#scopeinfo">
+		<i class="material-icons md-help">help</i></a>
+		<div class="modal fade" id="scopeinfo" tabindex="-1" role="dialog" aria-labelledby="scopeinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							Scope is a subsection that points out BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="pl-4">
+			<a class="btn-edit" href="#" data-toggle="modal" data-target="#goalsedit"><i class="fas fa-pen-square"></i></a>
+			<b>GOALS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#goalsinfo">
+			<i class="material-icons md-help">help</i></a>
+			<br>
+				Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			<div class="modal fade" id="goalsedit" tabindex="-1" role="dialog" aria-labelledby="goalsedit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit goals here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="goalsinfo" tabindex="-1" role="dialog" aria-labelledby="goalsinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								What are the goals of the project/  BLA BLA BLA
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<a class="btn-edit" href="#" data-toggle="modal" data-target="#premissesedit"><i class="fas fa-pen-square"></i></a>
+			<b>PREMISSES: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#premissesinfo">
+			<i class="material-icons md-help">help</i></a>
+			<br>
+				Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			<div class="modal fade" id="premissesedit" tabindex="-1" role="dialog" aria-labelledby="premissesedit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit premisses here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="premissesinfo" tabindex="-1" role="dialog" aria-labelledby="premissesinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								What is the premisses of the project/  BLA BLA BLA
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<a class="btn-edit" href="#" data-toggle="modal" data-target="#dependenciesedit"><i class="fas fa-pen-square"></i></a>
+			<b>DEPENDENCIES: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#dependenciesinfo">
+			<i class="material-icons md-help">help</i></a>
+			<br>
+				Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			<div class="modal fade" id="dependenciesedit" tabindex="-1" role="dialog" aria-labelledby="dependenciesedit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit dependencies here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="dependenciesinfo" tabindex="-1" role="dialog" aria-labelledby="dependenciesinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								What is the dependencies of the project/  BLA BLA BLA
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<a class="btn-edit" href="#" data-toggle="modal" data-target="#constraintsedit"><i class="fas fa-pen-square"></i></a>
+			<b>CONSTRAINTS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#constraintsinfo">
+			<i class="material-icons md-help">help</i></a>
+			<br>
+				Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			<div class="modal fade" id="constraintsedit" tabindex="-1" role="dialog" aria-labelledby="constraintsedit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit constraints here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="constraintsinfo" tabindex="-1" role="dialog" aria-labelledby="constraintsinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								What is the constraints of the project/  BLA BLA BLA
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<br>
+			<a class="btn-edit" href="#" data-toggle="modal" data-target="#milestonesedit"><i class="fas fa-pen-square"></i></a>
+			<b>MILESTONES: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#milestonesinfo">
+			<i class="material-icons md-help">help</i></a>
+			<br>
+				Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+			<div class="modal fade" id="milestonesedit" tabindex="-1" role="dialog" aria-labelledby="milestonesedit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								<form>
+									<textarea class="form-control" rows="3"></textarea>
+									<small>Edit milestones here BLA BLA BLA</small>
+									<br>
+									<div class="text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+								</form>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="milestonesinfo" tabindex="-1" role="dialog" aria-labelledby="milestonesinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								What is the milestones of the project/  BLA BLA BLA
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#keystakeholdersedit"><i class="fas fa-pen-square"></i></a>
+		<b>KEY STAKEHOLDERS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#keystakeholdersinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="keystakeholdersedit" tabindex="-1" role="dialog" aria-labelledby="keystakeholdersedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit keystakeholders here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="keystakeholdersinfo" tabindex="-1" role="dialog" aria-labelledby="keystakeholdersinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the keystakeholders of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#legalrequirementsedit"><i class="fas fa-pen-square"></i></a>
+		<b>LEGAL REQUIREMENTS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#legalrequirementsinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="legalrequirementsedit" tabindex="-1" role="dialog" aria-labelledby="legalrequirementsedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit legal requirements here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="legalrequirementsinfo" tabindex="-1" role="dialog" aria-labelledby="legalrequirementsinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the legal requirements of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#aquisitionsedit"><i class="fas fa-pen-square"></i></a>
+		<b>AQUISITIONS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#aquisitionsinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="aquisitionsedit" tabindex="-1" role="dialog" aria-labelledby="aquisitionsedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit aquisitions here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="aquisitionsinfo" tabindex="-1" role="dialog" aria-labelledby="aquisitionsinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the aquisitions of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#projectbudgetedit"><i class="fas fa-pen-square"></i></a>
+		<b>PROJECT BUDGET (Time & Cost): </b><a class="btn-help" href="#" data-toggle="modal" data-target="#projectbudgetinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="projectbudgetedit" tabindex="-1" role="dialog" aria-labelledby="projectbudgetedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit projectbudget here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="projectbudgetinfo" tabindex="-1" role="dialog" aria-labelledby="projectbudgetinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the projectbudget of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#highlevelrisksedit"><i class="fas fa-pen-square"></i></a>
+		<b>HIGH LEVEL RISKS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#highlevelrisksinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="highlevelrisksedit" tabindex="-1" role="dialog" aria-labelledby="highlevelrisksedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit highlevelrisks here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="highlevelrisksinfo" tabindex="-1" role="dialog" aria-labelledby="highlevelrisksinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the highlevelrisks of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#qualityedit"><i class="fas fa-pen-square"></i></a>
+		<b>QUALITY (Parameters and Measurements): </b><a class="btn-help" href="#" data-toggle="modal" data-target="#qualityinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="qualityedit" tabindex="-1" role="dialog" aria-labelledby="qualityedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit quality here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="qualityinfo" tabindex="-1" role="dialog" aria-labelledby="qualityinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the quality of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#communicationedit"><i class="fas fa-pen-square"></i></a>
+		<b>COMMUNICATION: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#communicationinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="communicationedit" tabindex="-1" role="dialog" aria-labelledby="communicationedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit communication here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="communicationinfo" tabindex="-1" role="dialog" aria-labelledby="communicationinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the communication of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<a class="btn-edit" href="#" data-toggle="modal" data-target="#requisitesedit"><i class="fas fa-pen-square"></i></a>
+		<b>PROJECT REQUISITES: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#requisitesinfo">
+		<i class="material-icons md-help">help</i></a>
+		<br>
+			Lorem ipsum nullam nam auctor taciti praesent torquent, scelerisque nam aliquam pharetra fringilla nullam, scelerisque nostra enim class tempor varius. aliquet euismod nam justo aptent nam a class, dapibus litora mattis commodo proin purus, malesuada vel ac primis ullamcorper litora. fringilla aliquet vestibulum nisl ut lorem sem suscipit neque molestie, enim rhoncus ante convallis fermentum risus viverra nostra etiam, per ante vitae justo viverra luctus aliquam velit. rutrum lobortis turpis pretium velit sollicitudin commodo interdum praesent curabitur, semper donec justo volutpat per enim morbi rhoncus, neque condimentum consectetur faucibus bibendum vivamus quisque egestas.	
+		<div class="modal fade" id="requisitesedit" tabindex="-1" role="dialog" aria-labelledby="requisitesedit" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							<form>
+								<textarea class="form-control" rows="3"></textarea>
+								<small>Edit requisites here BLA BLA BLA</small>
+								<br>
+								<div class="text-right">
+									<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+								</div>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="requisitesinfo" tabindex="-1" role="dialog" aria-labelledby="requisitesinfo" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<center>
+							What is the requisites of the project/  BLA BLA BLA
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+</div>
+
+
+<b>PROCESSES AND MEETINGS: </b><a class="btn-help" href="#" data-toggle="modal" data-target="#processesandmeetingsinfo"><i class="material-icons md-help">help</i></a>
+<div class="modal fade" id="processesandmeetingsinfo" tabindex="-1" role="dialog" aria-labelledby="processesandmeetingsinfo" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<center>
+					Images of workflow, groups of processes curves and areas of knowledge
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+
+INITIATING
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: silver;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Develop Project Charter </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Recurrency: Tue. Every 15 days
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+</div>
+
+<br>
+
+PLANNING
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: orange;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Requisites Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: orange;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Scope Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: limegreen;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Risks Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: #f06894;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Stakeholder Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+</div>
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: deepskyblue;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Project Mapping </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Recurrency: Tue. Every 15 days
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: deepskyblue;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Tasks Creation </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: chocolate;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Task-Team Linking </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: #ff3333;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Communication Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+</div>
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: #ff5400;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Aquisitions Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: yellow;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Quality Improvement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25" style="background-color: #cc3399;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Cost Mapping </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+</div>
+<br>
+EXECUTING / MONITORING & CONTROLLING
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: deepskyblue;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Tasks Checkup </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: silver;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Requests for Changes </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: chocolate;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Team Engagement </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: yellow;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Quality Check </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+</div>
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: #ff5400;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Aquisitions Selection </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: #f06894;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Stakeholders Checkup </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+	<div class="card w-md-25 border border-white d-none d-md-block"></div>
+</div>
+<br>
+CLOSING
+<div class="card-group d-flex align-content-md-start">
+	<div class="card w-md-25" style="background-color: yellow;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Check Delivery Quality </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: silver;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Document Learned Lessons </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: silver;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>Deliver Project </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+		<div class="card w-md-25" style="background-color: silver;">
+	  <div class="card-body">
+	    <h6 class="card-subtitle">
+	    	<a class="btn-edit" href="#" data-toggle="modal" data-target="#developprojectcharteredit"><i class="fas fa-pen-square"></i></a>
+			<b>
+			Celebrate! </b><a class="btn-help" href="#" data-toggle="modal" data-target="#developprojectcharterinfo">
+			<i class="material-icons md-help">help</i></a>
+			<div class="modal fade" id="developprojectcharteredit" tabindex="-1" role="dialog" aria-labelledby="developprojectcharteredit" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form>
+								<div class="form-group row">
+									<div class="col-sm-3">Process</div>
+									<div class="col-sm-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="done">
+											<label class="form-check-label pt-1" for="done">Done / Not used</label>
+										</div>
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="date" class="col-sm-3 col-form-label">Date</label>
+									<div class="col-sm-4">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="recurrency" class="col-sm-3 col-form-label">Recurrency</label>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" id="recurrency">
+									</div>
+								</div>
+  								<div class="form-group row">
+  									<label for="time" class="col-sm-3 col-form-label">Time (UTC)</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="time">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="duration" class="col-sm-3 col-form-label">Duration</label>
+									<div class="col-sm-3">
+										<input type="time" class="form-control" id="duration">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<label for="meetingroom" class="col-sm-3 col-form-label">Meeting Room Link</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" id="meetingroom">
+									</div>
+								</div>
+  								<div class="form-group row">
+									<div class="col text-right">
+										<button type="submit" class="btn btn-dark btn-sm text-right">Save</button>
+									</div>
+									<br>
+								</div>
+							</form>
+							<small>
+								explains what all items above do.
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="developprojectcharterinfo" tabindex="-1" role="dialog" aria-labelledby="developprojectcharterinfo" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<center>
+								This process is about bla bla bla
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h6>
+	    <small>
+	    <p class="card-text">
+			Date: 2/jun/2018
+			<br>
+			Time (UTC): 13h
+			<br>
+			Duration: 1:30h
+			<br>
+			<a href="teste.com" target="_blank" class="badge badge-dark">Meeting Room <i class="fas fa-external-link-alt"></i></a>
+	    </p>
+		</small>
+	  </div>
+	</div>
+</div>
+<br>
+<br>
+
+
+
+<!-- ****************************** RFERENCIAS ****************************** -->
+
+{% comment %}
+
+{# botoes modais de edicao e help #}
+
+<b>DESCRIPTION:</b><a class="btn-help" href="#" data-toggle="modal" data-target="#ANCHOR">
+<i class="material-icons md-help">help</i></a>
+
+<br><br>
+
+<a class="btn-edit" href="#" data-toggle="modal" data-target="#ANCHOR"><i class="fas fa-pen-square"></i></a><b>DESCRIPTION: </b>
+
+<br><br>
+
+<a class="btn-edit" href="#" data-toggle="modal" data-target="#ANCHOR"><i class="fas fa-pen-square"></i></a><b>DESCRIPTION:</b><a class="btn-help" href="#" data-toggle="modal" data-target="#ANCHOR">
+<i class="material-icons md-help">help</i></a>
+
+<br><br>
+
+{# botao modal base #}
+
+<button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ANCHOR">Modal Button</button>
+
+{# modal base #}
+
+<div class="modal fade" id="ANCHOR" tabindex="-1" role="dialog" aria-labelledby="ANCHOR" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<center>
+					TESTE
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+
+{# collapse base #}
+
+<a class="btn btn-dark btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+	Collapse Link
+</a>
+
+<button class="btn btn-dark btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+	Collapse Button
+</button>
+
+<div class="collapse px-3" id="collapseExample">
+	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+</div>
+
+<br><br>
+
+
+{% endcomment %}
+
+
+<!-- *************************** FIM REFERENCIAS *************************** -->
+
+
+
+
+
+
+<div class="alert alert-dark text-center pb-0" role="alert">
+	<h1>MAP</h1>
+</div>
+{% include "ci3A_project_map.html" %}
+<div class="alert alert-dark text-center pb-0" role="alert">
+	<h1>TASKS</h1>
+</div>
+{% include "ci3B_project_tasks.html" %}
+<div class="alert alert-dark text-center pb-0" role="alert">
+	<h1>TOOLS</h1>
+</div>
+{% include "ci3C_project_tools.html" %}
+
+
+<br>
+<br>
+<br>
+{% comment %}
+<b>BACKEND</b>
+
+
+<h5>Project Charter: (E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<p>Considering the multidisciplinary nature of IDETRA and the long distance between volunteers, the Project Charter and the monitoring and controlling summary here shown intend to be as follows:</p>
+
+<p>WHAT IS A PROJECT CHARTER</p>
+
+<p>A project charter is a short central data document that defines the fundamental information about a project and is used to start/authorize it.</p>
+
+<p>In a nutshell, a charter provides a picture of:</p>
+
+<p>- Where we are going
+<p>- Why we are going there
+<p>- Who will be impacted
+<p>- The main risks involved
+<p>- Who is going to help
+
+<p>The charter not only establishes basic information but also reflects the key stakeholder's common vision.
+
+<p>It is signed off for approval by the project sponsors (in our case, the General Coordinators).
+
+<p>WHY WE NEED IT?
+
+<p>This document gives us a chance to easily circulate information regarding the big picture of the project.
+
+<p>It’s crucial that the common vision of basic parameters and structure be the same for everyone, especially during the initial stages of the project where there are so much uncertain or vague definitions and ideas. 
+
+<p>It will drastically decrease problems with miscommunications and eventually save a ton of time (because we all know that one thing might look absolutely different from someone else’s perspective).
+
+<p>Also, to have basic information about a project gathered in one place, helps establishing things like:
+
+<p>- What is considered to be a project success?
+<p>- How will success be measured?"><i class="far fa-question-circle fa-sm"></i></a></h5>
+
+Project folder (link to folder on google drive)(E>/PM>)
+<br>
+<br>
+Background(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Describe a short context for this project. Why is it necessary? What are the alternatives and their implications? Try to articulate as if you’re trying to engage a complete stranger and you need to briefly explain the basic elements of this project."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Scope(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="What is the result expected from this project considering it's boundaries? What actions will the team take to execute the project? (what will be done and what will NOT be done as 'work' by the team). Processes, assessments or work included in the project. Functionality, features, etc. that the end-product will strive to achieve. It is importante to address what will NOT be in the scope: Processes, assessments, or work NOT included in the project, functionality, features, etc. that the end-product will NOT strive to achieve."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+- Goals(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Goals should be high-level, succinct, and jargon-free. Consider writing SMART goals (Specific, Measurable, Achievable, Relevant, Time bound)."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+- Premisses(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Factors that are relied on in order for the project to succeed. Those are factors are considered to be true, but without including proof and educated assumptions in general."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+- Dependencies(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Are there factors or dependencies that could affect the project negatively or positively? Examples: is the project dependent on specific software feature development? Is anyone on the team going on vacation or committed to a separate project at a key moment during the project?"><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+- Constraints(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="These are the limiting factors that impact the project in a particular way. For example, when developing a new website the number of available programmers and technical limitations (platform, coding language, etc.) must be considered.
+Key Stakeholders"><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+- Project Milestones(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="What is the final due date for the project? What are known target dates for key deliverables/milestones in the project? If unknown, provide a rough anticipated estimate. It’s important to understand that these dates are merely guesses."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Key Stakeholders(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Make a list of people involved in and impacted by the project (high level groups of people are fine when necessary). PM, sponsor, client and team members. If you don’t know names of individuals, list the title of the required position and department."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Legal Requirements(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="What are the legal constrains the project has? What are the compliances and conformities that should be addressed? Also consider environmental impact, local government and people (who live around the site or not) that could legally leverage the project."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Aquisitions(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Assets that we already have and what will be done internally versus what will be bought, hired or rented"><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Project Budget (time and cost) (E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Make a note of the main project expenses and timeframes. Treat them as rough estimations. Try to make note of non-recurring and monthly recurring costs separately."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+High level risks(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="What are the potential but uncertain events or conditions that could impact the project? How might these risks be addressed? Anything that might get in the way of the team when trying to accomplish the project goals. Make sure to carefully weigh in on this point and clearly articulate the risks. A few examples: * Tight timeframe: The deadline doesn’t allow for any big schedule change * Part of the team are volunteers with no-money motivation: which may mean find and train new project participants. * Technical risks: i.e. part of the platform where we are planning on setting up a website may be an open source and may not be updated."><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Quality(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="Define keys aspects of quality in general. What is considered good result and bad result, what buildings and other things should withstand, materials, quality for the work being done by volunteers, what should be considered when testing quality. Also, measurements:
+What will be measured or tracked throughout the project? How will it be measured? What is the standard for “success” or “failure” in terms of metrics?"><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+Communication(E>/E>)
+<a tabindex="0" class="btn btn-circle" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="How do you and other members of the project team plan to communicate with each other? How frequently will you meet in person or otherwise? Where will you share documents? How will you communicate externally and share deliverables?"><i class="far fa-question-circle fa-sm"></i></a>
+<br>
+<br>
+
+
+
+{% endcomment %}
+
+
+
+{% endblock content %}
+
+
+
+
